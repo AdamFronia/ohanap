@@ -6,11 +6,4 @@ class Friendbook {
   void eintragHinzufuegen(Eintrag eintrag) {
     eintraege.add(eintrag);
   }
-
-  void freundebuchAnzeigen() {
-    print('Freundebuch:');
-    for (var eintrag in eintraege) {
-      eintrag.eintragAnzeigen();
-    }
-  }
 }

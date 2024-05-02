@@ -1,5 +1,5 @@
 import '../features/friendbook/domain/friendbook.dart';
-import 'DatabaseRepository.dart';
+import 'database_repository.dart';
 
 class MockDatabaseRepository implements DatabaseRepository {
   List<Friendbook> listOfFriendbooks = [];
