@@ -6,45 +6,38 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  'https://via.placeholder.com/473x932',
-                  width: 373,
-                  height: 532,
-                ),
-                Image.network(
-                  'https://via.placeholder.com/390x459',
-                  width: 290,
-                  height: 259,
-                ),
-              ],
-            ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: const EdgeInsets.only(bottom: 548),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF0EECFA),
+              Color(0x821697D7),
+            ],
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Container(
-              width: 293,
-              height: 210,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF00D7FF),
-                    Color(0x2400D7FF), // 14% Opacity
-                    Color(0x0000D7FF), // 0% Opacity
-                  ],
-                ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.network(
+              'assets/Bildschirmfoto 2024-05-02 um 14.03.38.png',
+              width: 390,
+              height: 296,
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Willkommen',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
