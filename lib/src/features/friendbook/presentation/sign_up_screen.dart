@@ -1,30 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api
-
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/features/friendbook/presentation/login_screen.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    Timer(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const LoginScreen(),
-        ),
-      );
-    });
-  }
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,30 +30,21 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           const Positioned(
-            top: 300,
+            top: 250,
             left: 0,
             right: 0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '''
-
-Willkommen 
-bei
-Ohana
-
-Ohana heißt 
-Familie 
-&         
-Familie heißt
-zusammen''',
                   textAlign: TextAlign.center,
+                  '''
+Regriestrierung
+''',
                   style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87),
                 ),
               ],
             ),
