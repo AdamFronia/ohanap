@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 import 'sign_up_screen.dart'; // Importiere den SignUpScreen
 
@@ -249,7 +248,10 @@ Login
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Iconsax.gallery4),
+                            Image(
+                                image:
+                                    AssetImage('assets/google-1.250x256.png'),
+                                height: 18),
                             SizedBox(width: 8),
                             Text(
                               'Login with Google',
