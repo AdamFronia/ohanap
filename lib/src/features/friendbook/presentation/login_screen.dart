@@ -179,7 +179,7 @@ Login
                     ],
                   ),
                 ),
-                const SizedBox(height: 1), // 16 Pixel Abstand
+                const SizedBox(height: 1),
                 SizedBox(
                   width: 232,
                   height: 53,
@@ -288,8 +288,7 @@ Login
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const SignUpScreen()), // Navigiere zum SignUpScreen
+                          builder: (context) => const SignUpScreen()),
                     );
                   },
                   child: Container(
