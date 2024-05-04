@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-  });
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +24,13 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 40), // Platz für die Verschiebung nach unten
                   Row(
                     children: [
-                      CustomButton(),
+                      Expanded(
+                        child: CustomButton(),
+                      ),
                       SizedBox(width: 10),
-                      CustomIconButton(icon: Icons.mail),
+                      Expanded(
+                        child: CustomIconButton(icon: Icons.mail_outlined),
+                      ),
                       Spacer(), // Füllt den verbleibenden Platz aus
                       CustomIconButton(icon: Icons.close),
                     ],
@@ -67,7 +69,7 @@ class CustomButton extends StatelessWidget {
         'Menü',
         style: TextStyle(
           color: Color(0xFF0C4CA4),
-          fontSize: 20,
+          fontSize: 18,
           fontFamily: 'SF Pro Rounded',
           fontWeight: FontWeight.w400,
         ),
