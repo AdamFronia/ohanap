@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +18,14 @@ class HomeScreen extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft + const Alignment(0.1, 0.4),
-            child: const Padding(
-              padding: EdgeInsets.all(10),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 40), // Platz für die Verschiebung nach unten
-                  Row(
+                  const SizedBox(
+                      height: 40), // Platz für die Verschiebung nach unten
+                  const Row(
                     children: [
                       Expanded(
                         child: CustomButton(),
@@ -33,6 +36,31 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Spacer(), // Füllt den verbleibenden Platz aus
                       CustomIconButton(icon: Icons.close),
+                    ],
+                  ),
+                  const SizedBox(
+                      height: 20), // Abstand zwischen Button und Bild erhöht
+                  Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft +
+                            const Alignment(1.0,
+                                3.2), // Verschiebung des Bildes nach rechts und unten
+                        child: Image.asset(
+                          'assets/ostseebroetchen.png', // Hier das Bild einfügen
+                          width: 120,
+                          height: 120,
+                        ),
+                      ),
+                      Positioned(
+                        right: 100,
+                        bottom: 0,
+                        child: Image.asset(
+                          'assets/papashund.png', // Hier das zweite Bild einfügen
+                          width: 60,
+                          height: 60,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -46,7 +74,9 @@ class HomeScreen extends StatelessWidget {
 }
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  const CustomButton({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
