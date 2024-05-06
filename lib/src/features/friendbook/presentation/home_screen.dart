@@ -101,40 +101,100 @@ class _HomeScreenState extends State<HomeScreen> {
                             .black), // Schriftfarbe des Textes im TextFormField auf Schwarz setzen
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 8,
                   ), // Platz für das Emojicontainer
-                  Row(
-                    children: [
-                      _buildEmojiContainer(
-                        assetPath: 'assets/emojieins.png',
-                        selected: selectedEmoji == 'assets/emojieins.png',
-                      ),
-                      const SizedBox(width: 10), // Abstand zwischen den Emojis
-                      _buildEmojiContainer(
-                        assetPath: 'assets/emojizwei.png',
-                        selected: selectedEmoji == 'assets/emojizwei.png',
-                      ),
-                      const SizedBox(width: 10), // Abstand zwischen den Emojis
-                      _buildEmojiContainer(
-                        assetPath: 'assets/emojidrei.png',
-                        selected: selectedEmoji == 'assets/emojidrei.png',
-                      ),
-                      const SizedBox(width: 10), // Abstand zwischen den Emojis
-                      _buildEmojiContainer(
-                        assetPath: 'assets/emojivier.png',
-                        selected: selectedEmoji == 'assets/emojivier.png',
-                      ),
-                      const SizedBox(width: 10), // Abstand zwischen den Emojis
-                      _buildEmojiContainer(
-                        assetPath: 'assets/emojifünf.png',
-                        selected: selectedEmoji == 'assets/emojifünf.png',
-                      ),
-                      const SizedBox(width: 10), // Abstand zwischen den Emojis
-                      _buildEmojiContainer(
-                        assetPath: 'assets/emojisechs.png',
-                        selected: selectedEmoji == 'assets/emojisechs.png',
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        _buildEmojiContainer(
+                          assetPath: 'assets/superhero (1).png',
+                          selected: selectedEmoji == 'assets/superhero (1).png',
+                        ),
+                        const SizedBox(
+                            width: 10), // Abstand zwischen den Emojis
+                        _buildEmojiContainer(
+                          assetPath: 'assets/superhero (2).png',
+                          selected: selectedEmoji == 'assets/superhero (2).png',
+                        ),
+                        const SizedBox(
+                            width: 10), // Abstand zwischen den Emojis
+                        _buildEmojiContainer(
+                          assetPath: 'assets/superhero (3).png',
+                          selected: selectedEmoji == 'assets/superhero (3).png',
+                        ),
+                        const SizedBox(
+                            width: 10), // Abstand zwischen den Emojis
+                        _buildEmojiContainer(
+                          assetPath: 'assets/superhero (4).png',
+                          selected: selectedEmoji == 'assets/superhero (4).png',
+                        ),
+                        const SizedBox(
+                            width: 10), // Abstand zwischen den Emojis
+                        _buildEmojiContainer(
+                          assetPath: 'assets/superhero (5).png',
+                          selected: selectedEmoji == 'assets/superhero (5).png',
+                        ),
+                        const SizedBox(
+                            width: 10), // Abstand zwischen den Emojis
+                        _buildEmojiContainer(
+                          assetPath: 'assets/superhero.png',
+                          selected: selectedEmoji == 'assets/superhero.png',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ), // Platz für den neuen Container
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFA1EFFD),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          offset: const Offset(0, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Beziehungsstatus',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Gib deinen Beziehungsstatus ein',
+                            labelStyle: const TextStyle(color: Colors.white),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                          ),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -156,22 +216,16 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       },
       child: Container(
+        padding: const EdgeInsets.all(6),
         width: 50,
-        height: 60,
+        height: 50,
         decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
           color: selected
-              ? const Color.fromARGB(255, 41, 246, 51)
+              ? const Color.fromARGB(255, 12, 158, 168)
               : Colors.transparent,
-          shape: BoxShape.circle,
-          border: selected
-              ? Border.all(color: const Color.fromARGB(255, 3, 3, 3), width: 2)
-              : null,
         ),
-        padding: const EdgeInsets.all(8),
-        child: Image.asset(
-          assetPath,
-          fit: BoxFit.contain,
-        ),
+        child: Image.asset(assetPath, fit: BoxFit.contain),
       ),
     );
   }
