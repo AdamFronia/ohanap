@@ -50,7 +50,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 4,
+                  ), // Platz für den Divider
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 10,
                   ), // Abstand zwischen Button und Bild erhöht
                   Stack(
                     children: [
@@ -76,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 10,
                   ), // Platz für das TextFormField
                   TextFormField(
                     decoration: const InputDecoration(
@@ -257,7 +268,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 4,
+                  ), // Platz für den Divider
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 4,
                   ), // Platz für die kleinen Buttons
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
