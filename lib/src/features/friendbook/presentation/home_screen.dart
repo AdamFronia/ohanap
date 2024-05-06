@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
   });
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late String selectedEmoji = '';
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,8 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                      height: 40), // Platz für die Verschiebung nach unten
+                    height: 40,
+                  ), // Platz für die Verschiebung nach unten
                   const Row(
                     children: [
                       Expanded(
@@ -39,7 +47,8 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                      height: 20), // Abstand zwischen Button und Bild erhöht
+                    height: 20,
+                  ), // Abstand zwischen Button und Bild erhöht
                   Stack(
                     children: [
                       Align(
@@ -48,18 +57,82 @@ class HomeScreen extends StatelessWidget {
                                 3.2), // Verschiebung des Bildes nach rechts und unten
                         child: Image.asset(
                           'assets/ostseebroetchen.png', // Hier das Bild einfügen
-                          width: 120,
-                          height: 120,
+                          width: 150,
+                          height: 150,
                         ),
                       ),
                       Positioned(
-                        right: 100,
+                        right: 80,
                         bottom: 0,
                         child: Image.asset(
                           'assets/papashund.png', // Hier das zweite Bild einfügen
-                          width: 60,
-                          height: 60,
+                          width: 75,
+                          height: 75,
                         ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ), // Platz für das TextFormField
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Lies mich',
+                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                          color: Colors
+                              .black), // Schriftfarbe des Labels auf Schwarz setzen
+                      hintStyle: TextStyle(
+                          color: Colors
+                              .black), // Schriftfarbe des Hinweistexts auf Schwarz setzen
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Colors
+                                .black), // Farbe der aktivierten Rahmenlinie auf Schwarz setzen
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Colors
+                                .black), // Farbe der fokussierten Rahmenlinie auf Schwarz setzen
+                      ),
+                    ),
+                    style: const TextStyle(
+                        color: Colors
+                            .black), // Schriftfarbe des Textes im TextFormField auf Schwarz setzen
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ), // Platz für das Emojicontainer
+                  Row(
+                    children: [
+                      _buildEmojiContainer(
+                        assetPath: 'assets/emojieins.png',
+                        selected: selectedEmoji == 'assets/emojieins.png',
+                      ),
+                      const SizedBox(width: 10), // Abstand zwischen den Emojis
+                      _buildEmojiContainer(
+                        assetPath: 'assets/emojizwei.png',
+                        selected: selectedEmoji == 'assets/emojizwei.png',
+                      ),
+                      const SizedBox(width: 10), // Abstand zwischen den Emojis
+                      _buildEmojiContainer(
+                        assetPath: 'assets/emojidrei.png',
+                        selected: selectedEmoji == 'assets/emojidrei.png',
+                      ),
+                      const SizedBox(width: 10), // Abstand zwischen den Emojis
+                      _buildEmojiContainer(
+                        assetPath: 'assets/emojivier.png',
+                        selected: selectedEmoji == 'assets/emojivier.png',
+                      ),
+                      const SizedBox(width: 10), // Abstand zwischen den Emojis
+                      _buildEmojiContainer(
+                        assetPath: 'assets/emojifünf.png',
+                        selected: selectedEmoji == 'assets/emojifünf.png',
+                      ),
+                      const SizedBox(width: 10), // Abstand zwischen den Emojis
+                      _buildEmojiContainer(
+                        assetPath: 'assets/emojisechs.png',
+                        selected: selectedEmoji == 'assets/emojisechs.png',
                       ),
                     ],
                   ),
@@ -68,6 +141,37 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildEmojiContainer({
+    required String assetPath,
+    required bool selected,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedEmoji = selected ? '' : assetPath;
+        });
+      },
+      child: Container(
+        width: 50,
+        height: 60,
+        decoration: BoxDecoration(
+          color: selected
+              ? const Color.fromARGB(255, 41, 246, 51)
+              : Colors.transparent,
+          shape: BoxShape.circle,
+          border: selected
+              ? Border.all(color: const Color.fromARGB(255, 3, 3, 3), width: 2)
+              : null,
+        ),
+        padding: const EdgeInsets.all(8),
+        child: Image.asset(
+          assetPath,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

@@ -1,3 +1,3 @@
-# ohanap
+# ohana
 
 A new Flutter project.
