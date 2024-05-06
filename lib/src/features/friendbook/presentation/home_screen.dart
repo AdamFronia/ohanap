@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -11,6 +12,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String selectedEmoji = '';
+  late String location = '';
+  bool isStarSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ), // Abstand zwischen Button und Bild erhöht
                   Stack(
                     children: [
@@ -73,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ), // Platz für das TextFormField
                   TextFormField(
                     decoration: const InputDecoration(
@@ -101,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             .black), // Schriftfarbe des Textes im TextFormField auf Schwarz setzen
                   ),
                   const SizedBox(
-                    height: 8,
+                    height: 20,
                   ), // Platz für das Emojicontainer
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -145,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 8,
+                    height: 20,
                   ), // Platz für den neuen Container
                   Container(
                     width: double.infinity,
@@ -196,6 +199,106 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ), // Platz für den weiteren Container
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          offset: const Offset(0, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Wohne in der Stadt/dem Land',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Gib deine Adresse ein',
+                            labelStyle: const TextStyle(color: Colors.white),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                          ),
+                          style: const TextStyle(color: Colors.white),
+                          onChanged: (value) {
+                            setState(() {
+                              location = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ), // Platz für die kleinen Buttons
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildSmallButton('note'),
+                        _buildSmallButton('features'),
+                        _buildSmallButton('home'),
+                        _buildSmallButton('users'),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isStarSelected = !isStarSelected;
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: isStarSelected
+                                  ? const Color.fromARGB(255, 14, 216, 252)
+                                  : null,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.25),
+                                  offset: const Offset(0, 3),
+                                  blurRadius: 6,
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              Icons.star,
+                              color: isStarSelected ? Colors.black : null,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -226,6 +329,55 @@ class _HomeScreenState extends State<HomeScreen> {
               : Colors.transparent,
         ),
         child: Image.asset(assetPath, fit: BoxFit.contain),
+      ),
+    );
+  }
+
+  Widget _buildSmallButton(String icon) {
+    IconData? buttonIcon;
+    Function()? onTap;
+
+    switch (icon) {
+      case 'note':
+        buttonIcon = Icons.last_page;
+        break;
+      case 'features':
+        buttonIcon = Icons.first_page;
+        break;
+      case 'home':
+        buttonIcon = Icons.add_circle_outline;
+        break;
+      case 'users':
+        buttonIcon = Icons.home_outlined;
+        onTap = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const UserScreen()),
+          );
+        };
+        break;
+    }
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 78, 171, 253),
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              offset: const Offset(0, 3),
+              blurRadius: 6,
+            ),
+          ],
+        ),
+        child: Icon(
+          buttonIcon,
+          color: const Color.fromARGB(255, 0, 101, 202),
+          size: 40,
+        ),
       ),
     );
   }
