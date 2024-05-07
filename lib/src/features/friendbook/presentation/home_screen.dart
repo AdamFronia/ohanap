@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart'; // Importiere InfozweiScreen
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   const SizedBox(
                     height: 40,
-                  ), // Platz für die Verschiebung nach unten
+                  ),
                   const Row(
                     children: [
                       Expanded(
@@ -45,13 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       Expanded(
                         child: CustomIconButton(icon: Icons.mail_outlined),
                       ),
-                      Spacer(), // Füllt den verbleibenden Platz aus
+                      Spacer(),
                       CustomIconButton(icon: Icons.close),
                     ],
                   ),
                   const SizedBox(
                     height: 4,
-                  ), // Platz für den Divider
+                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Divider(
@@ -59,18 +61,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       thickness: 1,
                     ),
                   ),
-
                   const SizedBox(
                     height: 10,
-                  ), // Abstand zwischen Button und Bild erhöht
+                  ),
                   Stack(
                     children: [
                       Align(
-                        alignment: Alignment.topLeft +
-                            const Alignment(1.0,
-                                3.2), // Verschiebung des Bildes nach rechts und unten
+                        alignment:
+                            Alignment.topLeft + const Alignment(1.0, 3.2),
                         child: Image.asset(
-                          'assets/ostseebroetchen.png', // Hier das Bild einfügen
+                          'assets/ostseebroetchen.png',
                           width: 150,
                           height: 150,
                         ),
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         right: 80,
                         bottom: 0,
                         child: Image.asset(
-                          'assets/papashund.png', // Hier das zweite Bild einfügen
+                          'assets/papashund.png',
                           width: 75,
                           height: 75,
                         ),
@@ -88,35 +88,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(
                     height: 10,
-                  ), // Platz für das TextFormField
+                  ),
                   TextFormField(
                     decoration: const InputDecoration(
                       labelText: 'Lies mich',
                       border: OutlineInputBorder(),
-                      labelStyle: TextStyle(
-                          color: Colors
-                              .black), // Schriftfarbe des Labels auf Schwarz setzen
-                      hintStyle: TextStyle(
-                          color: Colors
-                              .black), // Schriftfarbe des Hinweistexts auf Schwarz setzen
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintStyle: TextStyle(color: Colors.black),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors
-                                .black), // Farbe der aktivierten Rahmenlinie auf Schwarz setzen
+                        borderSide: BorderSide(color: Colors.black),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors
-                                .black), // Farbe der fokussierten Rahmenlinie auf Schwarz setzen
+                        borderSide: BorderSide(color: Colors.black),
                       ),
                     ),
-                    style: const TextStyle(
-                        color: Colors
-                            .black), // Schriftfarbe des Textes im TextFormField auf Schwarz setzen
+                    style: const TextStyle(color: Colors.black),
                   ),
                   const SizedBox(
                     height: 20,
-                  ), // Platz für das Emojicontainer
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -125,32 +115,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           assetPath: 'assets/superhero (1).png',
                           selected: selectedEmoji == 'assets/superhero (1).png',
                         ),
-                        const SizedBox(
-                            width: 10), // Abstand zwischen den Emojis
+                        const SizedBox(width: 10),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (2).png',
                           selected: selectedEmoji == 'assets/superhero (2).png',
                         ),
-                        const SizedBox(
-                            width: 10), // Abstand zwischen den Emojis
+                        const SizedBox(width: 10),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (3).png',
                           selected: selectedEmoji == 'assets/superhero (3).png',
                         ),
-                        const SizedBox(
-                            width: 10), // Abstand zwischen den Emojis
+                        const SizedBox(width: 10),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (4).png',
                           selected: selectedEmoji == 'assets/superhero (4).png',
                         ),
-                        const SizedBox(
-                            width: 10), // Abstand zwischen den Emojis
+                        const SizedBox(width: 10),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (5).png',
                           selected: selectedEmoji == 'assets/superhero (5).png',
                         ),
-                        const SizedBox(
-                            width: 10), // Abstand zwischen den Emojis
+                        const SizedBox(width: 10),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero.png',
                           selected: selectedEmoji == 'assets/superhero.png',
@@ -160,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(
                     height: 20,
-                  ), // Platz für den neuen Container
+                  ),
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
@@ -212,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(
                     height: 20,
-                  ), // Platz für den weiteren Container
+                  ),
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
@@ -269,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(
                     height: 4,
-                  ), // Platz für den Divider
+                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Divider(
@@ -279,13 +264,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(
                     height: 4,
-                  ), // Platz für die kleinen Buttons
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton('note'),
+                        _buildSmallButton('note'), // Updated note Button
                         _buildSmallButton('features'),
                         _buildSmallButton('home'),
                         _buildSmallButton('users'),
@@ -361,9 +346,25 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (icon) {
       case 'note':
         buttonIcon = Icons.last_page;
+        onTap = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    const InfozweiScreen()), // Navigiere zum InfozweiScreen
+          );
+        };
         break;
       case 'features':
         buttonIcon = Icons.first_page;
+        onTap = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    const InfoeinsScreen()), // Navigiere zum InfoeinsScreen
+          );
+        };
         break;
       case 'home':
         buttonIcon = Icons.home_outlined;

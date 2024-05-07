@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({
@@ -331,13 +332,13 @@ class UserScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton('note'),
-                        _buildSmallButton('features'),
-                        _buildSmallButton('home'),
-                        _buildSmallButton('users'),
+                        _buildSmallButton(context, 'note'),
+                        _buildSmallButton(context, 'features'),
+                        _buildSmallButton(context, 'home'),
+                        _buildSmallButton(context, 'users'),
                         GestureDetector(
                           onTap: () {
-                            // Implementiere die Aktion für den Stern-Button
+                            // Implementieren Sie die Aktion für den Stern-Button
                           },
                           child: Container(
                             padding: const EdgeInsets.all(8),
@@ -365,28 +366,42 @@ class UserScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSmallButton(String icon) {
+  Widget _buildSmallButton(BuildContext context, String icon) {
     IconData? buttonIcon;
+    Function()? onPressed;
 
     switch (icon) {
       case 'note':
         buttonIcon = Icons.last_page;
+        onPressed = () {
+          // Implementieren Sie die Aktion für die entsprechende Taste
+        };
         break;
       case 'features':
         buttonIcon = Icons.first_page;
+        onPressed = () {
+          // Implementieren Sie die Aktion für die entsprechende Taste
+        };
         break;
       case 'home':
         buttonIcon = Icons.home_outlined;
+        onPressed = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+          );
+        };
         break;
       case 'users':
         buttonIcon = Icons.add_circle_outline;
+        onPressed = () {
+          // Implementieren Sie die Aktion für die entsprechende Taste
+        };
         break;
     }
 
     return GestureDetector(
-      onTap: () {
-        // Implementiere die Aktion für die entsprechende Taste
-      },
+      onTap: onPressed,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -395,8 +410,9 @@ class UserScreen extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.25),
-              offset: const Offset(0, 3),
-              blurRadius: 6,
+              offset: const Offset(4, 0),
+              blurRadius: 4,
+              spreadRadius: 0,
             ),
           ],
         ),
