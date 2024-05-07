@@ -37,7 +37,7 @@ class InfoeinsScreen extends StatelessWidget {
                       CustomIconButton(icon: Icons.close),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 5),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Divider(
@@ -45,41 +45,230 @@ class InfoeinsScreen extends StatelessWidget {
                       thickness: 1,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                  const SizedBox(height: 3),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        Container(
+                          width: 180,
+                          height: 180,
+                          decoration: ShapeDecoration(
+                            color: const Color.fromARGB(255, 38, 142, 247),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(width: 1),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            shadows: const [
+                              BoxShadow(
+                                color: Color(0x3F000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                right: 65,
+                                top: 40,
+                                child: Image.asset(
+                                  'assets/mental-health.png',
+                                  width: 50,
+                                  height: 50,
+                                ),
+                              ),
+                              const Positioned(
+                                left: 20,
+                                bottom: 25,
+                                child: SizedBox(
+                                  width: 140,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Lieblingshobby',
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.blue),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
+                        const SizedBox(width: 5),
+                        Container(
+                          width: 180,
+                          height: 180,
+                          decoration: ShapeDecoration(
+                            color: const Color.fromARGB(255, 241, 119, 31),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(width: 1),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            shadows: const [
+                              BoxShadow(
+                                color: Color(0x3F000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                right: 65,
+                                top: 40,
+                                child: Image.asset(
+                                  'assets/summer-holidays.png',
+                                  width: 50,
+                                  height: 50,
+                                ),
+                              ),
+                              const Positioned(
+                                left: 20,
+                                bottom: 25,
+                                child: SizedBox(
+                                  width: 140,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      labelText: 'LiebstUrlaubsort',
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.blue),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        Container(
+                          width: 180,
+                          height: 180,
+                          decoration: ShapeDecoration(
+                            color: const Color.fromARGB(255, 186, 58, 241),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(width: 1),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            shadows: const [
+                              BoxShadow(
+                                color: Color(0x3F000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                right: 65,
+                                top: 40,
+                                child: Image.asset(
+                                  'assets/businessman.png',
+                                  width: 50,
+                                  height: 50,
+                                ),
+                              ),
+                              const Positioned(
+                                left: 20,
+                                bottom: 25,
+                                child: SizedBox(
+                                  width: 140,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Beruf',
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.blue),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        Container(
+                          width: 180,
+                          height: 180,
+                          decoration: ShapeDecoration(
+                            color: const Color.fromARGB(255, 245, 53, 178),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(width: 1),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            shadows: const [
+                              BoxShadow(
+                                color: Color(0x3F000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                right: 65,
+                                top: 40,
+                                child: Image.asset(
+                                  'assets/astronaut.png',
+                                  width: 50,
+                                  height: 50,
+                                ),
+                              ),
+                              const Positioned(
+                                left: 20,
+                                bottom: 25,
+                                child: SizedBox(
+                                  width: 140,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Wunsch-Beruf',
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.blue),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -91,7 +280,122 @@ class InfoeinsScreen extends StatelessWidget {
                       thickness: 1,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 3),
+                  Row(
+                    children: [
+                      Container(
+                        width: 180,
+                        height: 180,
+                        decoration: ShapeDecoration(
+                          color: const Color.fromARGB(255, 104, 217, 59),
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(width: 1),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x3F000000),
+                              blurRadius: 4,
+                              offset: Offset(0, 4),
+                              spreadRadius: 0,
+                            )
+                          ],
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              right: 65,
+                              top: 40,
+                              child: Image.asset(
+                                'assets/wheel.png',
+                                width: 50,
+                                height: 50,
+                              ),
+                            ),
+                            const Positioned(
+                              left: 20,
+                              bottom: 25,
+                              child: SizedBox(
+                                width: 140,
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    labelText: 'Lieblingsfarbe',
+                                    labelStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontFamily: 'SF Pro',
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.blue),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                          width: 5), // Abstand zwischen den Containern
+                      Container(
+                        width: 180,
+                        height: 180,
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFFFECC4C),
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(width: 1),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x3F000000),
+                              blurRadius: 4,
+                              offset: Offset(0, 4),
+                              spreadRadius: 0,
+                            )
+                          ],
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              right: 65,
+                              top: 40,
+                              child: Image.asset(
+                                'assets/birthday-cake.png',
+                                width: 50,
+                                height: 50,
+                              ),
+                            ),
+                            const Positioned(
+                              left: 20,
+                              bottom: 25,
+                              child: SizedBox(
+                                width: 140,
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    labelText: 'Geburtsdatum',
+                                    labelStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontFamily: 'SF Pro',
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.blue),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Divider(
@@ -99,7 +403,70 @@ class InfoeinsScreen extends StatelessWidget {
                       thickness: 1,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 3),
+                  const SizedBox(width: 5), // Abstand zwischen den Containern
+                  Container(
+                    width: 180,
+                    height: 180,
+                    decoration: ShapeDecoration(
+                      color: const Color.fromARGB(255, 135, 46, 230),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 4,
+                          offset: Offset(0, 4),
+                          spreadRadius: 0,
+                        )
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          right: 65,
+                          top: 40,
+                          child: Image.asset(
+                            'assets/sleep.png',
+                            width: 50,
+                            height: 50,
+                          ),
+                        ),
+                        const Positioned(
+                          left: 25,
+                          bottom: 25,
+                          child: SizedBox(
+                            width: 140,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Schlafenszeit',
+                                labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.blue),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
@@ -131,6 +498,58 @@ class InfoeinsScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContainer({required Color color, required String text}) {
+    return Container(
+      width: 200,
+      height: 150,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(16.93),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            offset: const Offset(0, 1.692631483078003),
+            blurRadius: 1.692631483078003,
+          ),
+        ],
+        border: Border.all(
+          color: Colors.black,
+          width: 0.42,
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            left: 10,
+            top: 55,
+            child: Container(
+              width: 80,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10.58),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 15,
+            top: 10,
+            child: Text(
+              text,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 9.31,
+                fontFamily: 'SF Pro',
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
