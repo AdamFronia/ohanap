@@ -366,10 +366,10 @@ class _HomeScreenState extends State<HomeScreen> {
         buttonIcon = Icons.first_page;
         break;
       case 'home':
-        buttonIcon = Icons.add_circle_outline;
+        buttonIcon = Icons.home_outlined;
         break;
       case 'users':
-        buttonIcon = Icons.home_outlined;
+        buttonIcon = Icons.add_circle_outline;
         onTap = () {
           Navigator.push(
             context,
