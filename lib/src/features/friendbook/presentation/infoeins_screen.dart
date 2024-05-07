@@ -506,58 +506,6 @@ class InfoeinsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildContainer({required Color color, required String text}) {
-    return Container(
-      width: 200,
-      height: 150,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(16.93),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(0, 1.692631483078003),
-            blurRadius: 1.692631483078003,
-          ),
-        ],
-        border: Border.all(
-          color: Colors.black,
-          width: 0.42,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            left: 10,
-            top: 55,
-            child: Container(
-              width: 80,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.58),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 15,
-            top: 10,
-            child: Text(
-              text,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 9.31,
-                fontFamily: 'SF Pro',
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildSmallButton(String icon) {
     IconData? buttonIcon;
 
