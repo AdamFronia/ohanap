@@ -424,7 +424,51 @@ class InfozweiScreen extends StatelessWidget {
                                   width: 140,
                                   child: TextField(
                                     decoration: InputDecoration(
-                                      labelText: 'Essen',
+                                      labelText: 'Getränk',
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.blue),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Positioned(
+                                left: 20,
+                                bottom: 100,
+                                child: SizedBox(
+                                  width: 140,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Musik',
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontFamily: 'SF Pro',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.blue),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Positioned(
+                                left: 20,
+                                bottom: 40,
+                                child: SizedBox(
+                                  width: 140,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Tier',
                                       labelStyle: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -459,8 +503,8 @@ class InfozweiScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          width: 180,
-                          height: 180,
+                          width: 250,
+                          height: 233,
                           decoration: ShapeDecoration(
                             color: const Color.fromARGB(255, 38, 142, 247),
                             shape: RoundedRectangleBorder(
@@ -479,10 +523,10 @@ class InfozweiScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Positioned(
-                                right: 65,
+                                right: 100,
                                 top: 40,
                                 child: Image.asset(
-                                  'assets/mental-health.png',
+                                  'assets/personality.png',
                                   width: 50,
                                   height: 50,
                                 ),
@@ -491,10 +535,10 @@ class InfozweiScreen extends StatelessWidget {
                                 left: 20,
                                 bottom: 25,
                                 child: SizedBox(
-                                  width: 140,
+                                  width: 210,
                                   child: TextField(
                                     decoration: InputDecoration(
-                                      labelText: 'Lieblingshobby',
+                                      labelText: 'Über mich',
                                       labelStyle: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -514,8 +558,8 @@ class InfozweiScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Container(
-                          width: 180,
-                          height: 180,
+                          width: 250,
+                          height: 233,
                           decoration: ShapeDecoration(
                             color: const Color.fromARGB(255, 241, 119, 31),
                             shape: RoundedRectangleBorder(
@@ -534,10 +578,10 @@ class InfozweiScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Positioned(
-                                right: 65,
+                                right: 100,
                                 top: 40,
                                 child: Image.asset(
-                                  'assets/summer-holidays.png',
+                                  'assets/endorsement.png',
                                   width: 50,
                                   height: 50,
                                 ),
@@ -546,10 +590,10 @@ class InfozweiScreen extends StatelessWidget {
                                 left: 20,
                                 bottom: 25,
                                 child: SizedBox(
-                                  width: 140,
+                                  width: 210,
                                   child: TextField(
                                     decoration: InputDecoration(
-                                      labelText: 'LiebstUrlaubsort',
+                                      labelText: 'Das kann ich besonders gut',
                                       labelStyle: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -569,8 +613,8 @@ class InfozweiScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Container(
-                          width: 180,
-                          height: 180,
+                          width: 250,
+                          height: 233,
                           decoration: ShapeDecoration(
                             color: const Color.fromARGB(255, 186, 58, 241),
                             shape: RoundedRectangleBorder(
@@ -589,10 +633,10 @@ class InfozweiScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Positioned(
-                                right: 65,
+                                right: 100,
                                 top: 40,
                                 child: Image.asset(
-                                  'assets/businessman.png',
+                                  'assets/lol.png',
                                   width: 50,
                                   height: 50,
                                 ),
@@ -601,10 +645,10 @@ class InfozweiScreen extends StatelessWidget {
                                 left: 20,
                                 bottom: 25,
                                 child: SizedBox(
-                                  width: 140,
+                                  width: 210,
                                   child: TextField(
                                     decoration: InputDecoration(
-                                      labelText: 'Beruf',
+                                      labelText: 'etwas lustiges über mich',
                                       labelStyle: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -624,8 +668,8 @@ class InfozweiScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Container(
-                          width: 180,
-                          height: 180,
+                          width: 300,
+                          height: 233,
                           decoration: ShapeDecoration(
                             color: const Color.fromARGB(255, 245, 53, 178),
                             shape: RoundedRectangleBorder(
@@ -644,7 +688,7 @@ class InfozweiScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Positioned(
-                                right: 65,
+                                right: 125,
                                 top: 40,
                                 child: Image.asset(
                                   'assets/astronaut.png',
@@ -656,10 +700,11 @@ class InfozweiScreen extends StatelessWidget {
                                 left: 20,
                                 bottom: 25,
                                 child: SizedBox(
-                                  width: 140,
+                                  width: 260,
                                   child: TextField(
                                     decoration: InputDecoration(
-                                      labelText: 'Wunsch-Beruf',
+                                      labelText:
+                                          'Wo siehst du dich in der Zukunft',
                                       labelStyle: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
