@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart'; // Import des MessageScreens hinzugefügt
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,17 +40,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: CustomButton(),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
-                        child: CustomIconButton(icon: Icons.mail_outlined),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const MessageScreen(), // Öffne MessageScreen
+                              ),
+                            );
+                          },
+                          child:
+                              const CustomIconButton(icon: Icons.mail_outlined),
+                        ),
                       ),
-                      Spacer(),
-                      CustomIconButton(icon: Icons.close),
+                      const Spacer(),
+                      const CustomIconButton(icon: Icons.close),
                     ],
                   ),
                   const SizedBox(
@@ -340,12 +354,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildSmallButton(String icon) {
-    IconData? buttonIcon;
+    Widget? buttonIcon;
     Function()? onTap;
 
     switch (icon) {
       case 'note':
-        buttonIcon = Icons.last_page;
+        buttonIcon = const Icon(
+          Icons.last_page,
+          size: 40,
+          color: Color.fromARGB(255, 0, 101, 202),
+        );
         onTap = () {
           Navigator.push(
             context,
@@ -354,7 +372,11 @@ class _HomeScreenState extends State<HomeScreen> {
         };
         break;
       case 'features':
-        buttonIcon = Icons.first_page;
+        buttonIcon = const Icon(
+          Icons.first_page,
+          size: 40,
+          color: Color.fromARGB(255, 0, 101, 202),
+        );
         onTap = () {
           Navigator.push(
             context,
@@ -363,10 +385,18 @@ class _HomeScreenState extends State<HomeScreen> {
         };
         break;
       case 'home':
-        buttonIcon = Icons.home_outlined;
+        buttonIcon = const Icon(
+          Icons.home_outlined,
+          size: 40,
+          color: Color.fromARGB(255, 0, 101, 202),
+        );
         break;
       case 'users':
-        buttonIcon = Icons.add_circle_outline;
+        buttonIcon = const Icon(
+          Icons.add_circle_outline,
+          size: 40,
+          color: Color.fromARGB(255, 0, 101, 202),
+        );
         onTap = () {
           Navigator.push(
             context,
@@ -391,45 +421,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        child: Icon(
-          buttonIcon,
-          color: const Color.fromARGB(255, 0, 101, 202),
-          size: 40,
-        ),
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(4, 0),
-            blurRadius: 4,
-            spreadRadius: 0,
-          ),
-        ],
-        border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-      ),
-      child: const Text(
-        'Menü',
-        style: TextStyle(
-          color: Color(0xFF0C4CA4),
-          fontSize: 18,
-          fontFamily: 'SF Pro Rounded',
-          fontWeight: FontWeight.w400,
+        child: Container(
+          child: buttonIcon,
         ),
       ),
     );
@@ -462,6 +455,50 @@ class CustomIconButton extends StatelessWidget {
         icon,
         color: const Color(0xFF0C4CA4),
         size: 20,
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const MenueScreen()), // Öffne MenuScreen
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
+        decoration: BoxDecoration(
+          color: const Color(0xFFA1EFFD),
+          borderRadius: BorderRadius.circular(28),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              offset: const Offset(4, 0),
+              blurRadius: 4,
+              spreadRadius: 0,
+            ),
+          ],
+          border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
+        ),
+        child: const Text(
+          'Menü',
+          style: TextStyle(
+            color: Color(0xFF0C4CA4),
+            fontSize: 18,
+            fontFamily: 'SF Pro Rounded',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
       ),
     );
   }
