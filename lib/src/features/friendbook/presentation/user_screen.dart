@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({
@@ -38,295 +40,295 @@ class UserScreen extends StatelessWidget {
                       CustomIconButton(icon: Icons.close),
                     ],
                   ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  // Kleiner Container mit Bild und Name "User"
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                        const CustomIconButton(icon: Icons.add), // "+" Button
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
                   const SizedBox(height: 20),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Kleiner Container mit Bild und Name "User"
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ostseebroetchen.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'User',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+                        const CustomIconButton(icon: Icons.add), // "+" Button
+                        const SizedBox(width: 10),
+                        const CustomIconButton(
+                            icon: Icons.visibility), // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
@@ -374,13 +376,23 @@ class UserScreen extends StatelessWidget {
       case 'note':
         buttonIcon = Icons.last_page;
         onPressed = () {
-          // Implementieren Sie die Aktion für die entsprechende Taste
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    const InfozweiScreen()), // Navigiere zum InfozweiScreen
+          ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
       case 'features':
         buttonIcon = Icons.first_page;
         onPressed = () {
-          // Implementieren Sie die Aktion für die entsprechende Taste
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    const InfoeinsScreen()), // Navigiere zum InfoeinsScreen
+          ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
       case 'home':

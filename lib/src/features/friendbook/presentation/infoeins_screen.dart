@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class InfoeinsScreen extends StatelessWidget {
   const InfoeinsScreen({
@@ -287,7 +290,7 @@ class InfoeinsScreen extends StatelessWidget {
                         width: 180,
                         height: 180,
                         decoration: ShapeDecoration(
-                          color: const Color.fromARGB(255, 104, 217, 59),
+                          color: const Color.fromARGB(255, 201, 238, 243),
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(width: 1),
                             borderRadius: BorderRadius.circular(50),
@@ -337,8 +340,7 @@ class InfoeinsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                          width: 5), // Abstand zwischen den Containern
+                      const SizedBox(width: 5),
                       Container(
                         width: 180,
                         height: 180,
@@ -404,7 +406,7 @@ class InfoeinsScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 3),
-                  const SizedBox(width: 5), // Abstand zwischen den Containern
+                  const SizedBox(width: 5),
                   Container(
                     width: 180,
                     height: 180,
@@ -472,10 +474,10 @@ class InfoeinsScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton('note'),
-                        _buildSmallButton('features'),
-                        _buildSmallButton('home'),
-                        _buildSmallButton('users'),
+                        _buildSmallButton(context, 'note'),
+                        _buildSmallButton(context, 'features'),
+                        _buildSmallButton(context, 'home'),
+                        _buildSmallButton(context, 'users'),
                         GestureDetector(
                           onTap: () {
                             // Implementiere die Aktion für den Stern-Button
@@ -483,13 +485,12 @@ class InfoeinsScreen extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.transparent, // Farbe anpassen
+                              color: Colors.transparent,
                               borderRadius: BorderRadius.circular(50),
-                              // Schatten und andere Eigenschaften anpassen
                             ),
                             child: const Icon(
                               Icons.star,
-                              color: Colors.black, // Farbe anpassen
+                              color: Colors.black,
                               size: 20,
                             ),
                           ),
@@ -506,28 +507,47 @@ class InfoeinsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSmallButton(String icon) {
+  Widget _buildSmallButton(BuildContext context, String icon) {
     IconData? buttonIcon;
+    Function()? onPressed;
 
     switch (icon) {
       case 'note':
         buttonIcon = Icons.last_page;
+        onPressed = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const InfozweiScreen()),
+          );
+        };
+
         break;
       case 'features':
         buttonIcon = Icons.first_page;
+
         break;
       case 'home':
         buttonIcon = Icons.home_outlined;
+        onPressed = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+          );
+        };
         break;
       case 'users':
         buttonIcon = Icons.add_circle_outline;
+        onPressed = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const UserScreen()),
+          );
+        };
         break;
     }
 
     return GestureDetector(
-      onTap: () {
-        // Implementiere die Aktion für die entsprechende Taste
-      },
+      onTap: onPressed,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -536,8 +556,9 @@ class InfoeinsScreen extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.25),
-              offset: const Offset(0, 3),
-              blurRadius: 6,
+              offset: const Offset(4, 0),
+              blurRadius: 4,
+              spreadRadius: 0,
             ),
           ],
         ),

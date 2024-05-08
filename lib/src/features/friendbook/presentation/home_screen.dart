@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart'; // Importiere InfozweiScreen
+import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -270,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton('note'), // Updated note Button
+                        _buildSmallButton('note'),
                         _buildSmallButton('features'),
                         _buildSmallButton('home'),
                         _buildSmallButton('users'),
@@ -349,9 +349,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap = () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    const InfozweiScreen()), // Navigiere zum InfozweiScreen
+            MaterialPageRoute(builder: (context) => const InfozweiScreen()),
           );
         };
         break;
@@ -360,9 +358,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap = () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    const InfoeinsScreen()), // Navigiere zum InfoeinsScreen
+            MaterialPageRoute(builder: (context) => const InfoeinsScreen()),
           );
         };
         break;
