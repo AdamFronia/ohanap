@@ -50,7 +50,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -97,7 +97,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -130,7 +130,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Steckbriefe',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -144,7 +144,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -177,7 +177,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Gallerie',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -191,7 +191,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -224,7 +224,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Einstellungen',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -238,7 +238,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -271,7 +271,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Blockliste',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -285,7 +285,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -318,7 +318,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'QR-Code',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -332,7 +332,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -365,7 +365,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Mitwirkende',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -379,7 +379,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -412,7 +412,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Admins',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -426,7 +426,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -459,7 +459,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Kontaktinfos',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -473,7 +473,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -506,7 +506,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Impressum',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -520,7 +520,7 @@ class MenueScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 155,
+                    width: 160,
                     height: 50,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
@@ -553,7 +553,7 @@ class MenueScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Suche',
+                          'Ausloggen',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,

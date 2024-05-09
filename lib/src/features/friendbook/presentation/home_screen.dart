@@ -298,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: isStarSelected
-                                  ? const Color.fromARGB(255, 14, 216, 252)
+                                  ? const Color.fromARGB(255, 247, 255, 95)
                                   : null,
                               borderRadius: BorderRadius.circular(50),
                               boxShadow: [
