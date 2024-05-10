@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({
@@ -314,28 +315,38 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(4, 0),
-            blurRadius: 4,
-            spreadRadius: 0,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MenueScreen(),
           ),
-        ],
-        border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-      ),
-      child: const Text(
-        'Menü',
-        style: TextStyle(
-          color: Color(0xFF0C4CA4),
-          fontSize: 18,
-          fontFamily: 'SF Pro Rounded',
-          fontWeight: FontWeight.w400,
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
+        decoration: BoxDecoration(
+          color: const Color(0xFFA1EFFD),
+          borderRadius: BorderRadius.circular(28),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              offset: const Offset(4, 0),
+              blurRadius: 4,
+              spreadRadius: 0,
+            ),
+          ],
+          border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
+        ),
+        child: const Text(
+          "Menü",
+          style: TextStyle(
+            color: Color(0xFF0C4CA4),
+            fontSize: 18,
+            fontFamily: 'SF Pro Rounded',
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
     );
