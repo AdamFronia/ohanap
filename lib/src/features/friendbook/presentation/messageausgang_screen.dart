@@ -6,8 +6,10 @@ import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
-class MessageschreibenScreen extends StatelessWidget {
-  const MessageschreibenScreen({super.key});
+class MessageausgangScreen extends StatelessWidget {
+  const MessageausgangScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +80,19 @@ class MessageschreibenScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Schreiben',
+                    child: GestureDetector(
+                      onTap: () {
+                        // Navigiere zum MessageeingangScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MessageScreen(),
+                          ),
+                        );
+                      },
+                      child: const Center(
+                        child: Text(
+                          'Ausgang',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
                             fontSize: 16,
@@ -93,13 +101,13 @@ class MessageschreibenScreen extends StatelessWidget {
                             height: 0,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
                   Container(
-                    width: 360,
-                    height: 534,
+                    width: 372,
+                    height: 100,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 21, vertical: 10),
                     clipBehavior: Clip.antiAlias,
@@ -125,24 +133,62 @@ class MessageschreibenScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    child: const TextField(
-                      maxLines: null,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Hier schreiben...',
-                        contentPadding: EdgeInsets.all(16),
-                      ),
-                      style: TextStyle(
-                        color: Color(0xFF0B4BA4),
-                        fontSize: 16,
-                        fontFamily: 'SF Pro Rounded',
-                        fontWeight: FontWeight.w400,
-                        height: 1.5,
+                    child: const Center(
+                      child: Text(
+                        'Nachricht von User XY',
+                        style: TextStyle(
+                          color: Color(0xFF0B4BA4),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Rounded',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 4),
+                  Container(
+                    width: 372,
+                    height: 100,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 21, vertical: 10),
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFA1EFFD),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            width: 5, color: Color(0x19000000)),
+                        borderRadius: BorderRadius.circular(28),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 4,
+                          offset: Offset(1, 1),
+                          spreadRadius: 0,
+                        ),
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 4,
+                          offset: Offset(-1, -1),
+                          spreadRadius: 0,
+                        )
+                      ],
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Nachricht von User XYZ',
+                        style: TextStyle(
+                          color: Color(0xFF0B4BA4),
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Rounded',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 335),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Divider(
@@ -201,9 +247,9 @@ class MessageschreibenScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const InfozweiScreen(),
-            ),
-          );
+                builder: (context) =>
+                    const InfozweiScreen()), // Navigiere zum InfozweiScreen
+          ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
       case 'features':
@@ -212,9 +258,9 @@ class MessageschreibenScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const InfoeinsScreen(),
-            ),
-          );
+                builder: (context) =>
+                    const InfoeinsScreen()), // Navigiere zum InfoeinsScreen
+          ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
       case 'home':
@@ -232,15 +278,7 @@ class MessageschreibenScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const UserScreen()),
-          );
-        };
-        break;
-      case 'Schreiben':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MessageScreen()),
-          );
+          ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
     }
@@ -272,7 +310,9 @@ class MessageschreibenScreen extends StatelessWidget {
 }
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  const CustomButton({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -326,8 +366,13 @@ class CustomIconButton extends StatelessWidget {
         if (icon == Icons.mail_outlined) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const MessageScreen()),
+            MaterialPageRoute(
+              builder: (context) =>
+                  const MessageScreen(), // Öffne das MessageScreen erneut
+            ),
           );
+        } else {
+          // Implementiere Aktion für andere Icons
         }
       },
       child: Container(

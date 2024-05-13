@@ -2,22 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menueadmins_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menueausgang_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menueblockliste_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menueeinstellungen_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuegallerie_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menueimpressum_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuekontaktinfos_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuemitwirkende_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menueqrcode_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuesteckbriefe_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuesuche_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart'; // Importieren Sie das MessageScreen
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
-class MenueScreen extends StatelessWidget {
-  const MenueScreen({
+class MenuemitwirkendeScreen extends StatelessWidget {
+  const MenuemitwirkendeScreen({
     super.key,
   });
 
@@ -42,24 +32,29 @@ class MenueScreen extends StatelessWidget {
                   const SizedBox(height: 40),
                   Row(
                     children: [
-                      const Expanded(
-                        child: CustomButton(),
-                      ),
-                      const SizedBox(width: 10),
                       Expanded(
-                        child: GestureDetector(
-                          onTap: () {
+                        child: CustomButton(
+                          onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const MessageScreen(), // Öffne MessageScreen
-                              ),
+                                  builder: (context) => const MenueScreen()),
                             );
                           },
-                          child:
-                              const CustomIconButton(icon: Icons.mail_outlined),
                         ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: CustomIconButton(
+                            icon: Icons.mail_outlined,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MessageScreen()),
+                              );
+                            }),
                       ),
                       const Spacer(),
                       const CustomIconButton(icon: Icons.close),
@@ -73,18 +68,91 @@ class MenueScreen extends StatelessWidget {
                       thickness: 1,
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/babe.jpg',
+                          width: 50,
+                          height: 50,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Ramona T.\nFamily Management ',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // "Auge" Button
+                      ],
+                    ),
+                  ),
 
-                  _buildMenuButton(context, 'Suche'),
-                  _buildMenuButton(context, 'Steckbriefe'),
-                  _buildMenuButton(context, 'Gallerie'),
-                  _buildMenuButton(context, 'Einstellungen'),
-                  _buildMenuButton(context, 'Blockliste'),
-                  _buildMenuButton(context, 'QR-Code'),
-                  _buildMenuButton(context, 'Mitwirkende'),
-                  _buildMenuButton(context, 'Admins'),
-                  _buildMenuButton(context, 'Kontaktinfos'),
-                  _buildMenuButton(context, 'Impressum'),
-                  _buildMenuButton(context, 'Ausloggen'),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/peggy.jpg',
+                          width: 50,
+                          height: 50,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Peggy´s Bügelperlen\nFamily Management',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/tvm.jpg',
+                          width: 50,
+                          height: 50,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Thomas von Martinér\nVola Gründer/CEO(App)\nDie Traumfabrik (Gründer/CEO)',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // "Auge" Button
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 378),
 
                   // Kleiner Container mit Bild und Name "User"
 
@@ -136,143 +204,41 @@ class MenueScreen extends StatelessWidget {
   }
 
   Widget _buildMenuButton(BuildContext context, String label) {
-    Function()? onPressed;
-
-    switch (label) {
-      case 'Suche':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MenuesucheScreen()),
-          );
-        };
-        break;
-      case 'Steckbriefe':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenuesteckbriefeScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'Gallerie':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenuegallerieScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'Einstellungen':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenueeinstellungenScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'Blockliste':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenueblocklisteScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'QR-Code':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MenueqrcodeScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'Mitwirkende':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenuemitwirkendeScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-      case 'Admins':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MenueadminsScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'Kontaktinfos':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenuekontaktinfosScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'Impressum':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenueimpressumScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-      case 'Ausloggen':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MenueausloggenScreen()),
-          ); // Implementieren Sie die Aktion für den "Steckbriefe" Button
-        };
-        break;
-
-      // Weitere Fälle für andere Menüpunkte hier hinzufügen...
-
-      default:
-        onPressed = () {
-          // Implementieren Sie die Aktion für das entsprechende Menü
-        };
-    }
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
-      child: GestureDetector(
-        onTap: onPressed,
-        child: Container(
-          width: 160,
-          height: 50,
-          padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: const Color(0xFFA1EFFD),
-            shape: RoundedRectangleBorder(
-              side: const BorderSide(width: 5, color: Color(0x19000000)),
-              borderRadius: BorderRadius.circular(28),
-            ),
-            shadows: const [
-              BoxShadow(
-                color: Color(0x3F000000),
-                blurRadius: 4,
-                offset: Offset(1, 1),
-                spreadRadius: 0,
-              ),
-              BoxShadow(
-                color: Color(0x3F000000),
-                blurRadius: 4,
-                offset: Offset(-1, -1),
-                spreadRadius: 0,
-              )
-            ],
+      child: Container(
+        width: 160,
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
+        clipBehavior: Clip.antiAlias,
+        decoration: ShapeDecoration(
+          color: const Color(0xFFA1EFFD),
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(width: 5, color: Color(0x19000000)),
+            borderRadius: BorderRadius.circular(28),
           ),
+          shadows: const [
+            BoxShadow(
+              color: Color(0x3F000000),
+              blurRadius: 4,
+              offset: Offset(1, 1),
+              spreadRadius: 0,
+            ),
+            BoxShadow(
+              color: Color(0x3F000000),
+              blurRadius: 4,
+              offset: Offset(-1, -1),
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MenueScreen()),
+            );
+          },
           child: Center(
             child: Text(
               label,
@@ -360,8 +326,11 @@ class MenueScreen extends StatelessWidget {
 }
 
 class CustomButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+
   const CustomButton({
     super.key,
+    this.onPressed,
   });
 
   @override
@@ -381,13 +350,16 @@ class CustomButton extends StatelessWidget {
         ],
         border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
       ),
-      child: const Text(
-        'Menü',
-        style: TextStyle(
-          color: Color(0xFF0C4CA4),
-          fontSize: 18,
-          fontFamily: 'SF Pro Rounded',
-          fontWeight: FontWeight.w400,
+      child: InkWell(
+        onTap: onPressed,
+        child: const Text(
+          'Menü',
+          style: TextStyle(
+            color: Color(0xFF0C4CA4),
+            fontSize: 18,
+            fontFamily: 'SF Pro Rounded',
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
     );
@@ -396,8 +368,9 @@ class CustomButton extends StatelessWidget {
 
 class CustomIconButton extends StatelessWidget {
   final IconData icon;
+  final VoidCallback? onPressed;
 
-  const CustomIconButton({super.key, required this.icon});
+  const CustomIconButton({super.key, required this.icon, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -416,10 +389,13 @@ class CustomIconButton extends StatelessWidget {
         ],
         border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
       ),
-      child: Icon(
-        icon,
-        color: const Color(0xFF0C4CA4),
-        size: 20,
+      child: InkWell(
+        onTap: onPressed,
+        child: Icon(
+          icon,
+          color: const Color(0xFF0C4CA4),
+          size: 20,
+        ),
       ),
     );
   }

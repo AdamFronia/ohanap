@@ -165,7 +165,7 @@ Registrierung
                               // Aktion für die Datenschutzerklärung einfügen
                             },
                             child: const Text(
-                              'Datenschutzbestimmungen',
+                              'Datenschutzbestimmungen\nAGB´s',
                               style: TextStyle(
                                 color: Colors.blue,
                                 fontSize: 12,
@@ -183,7 +183,7 @@ Registrierung
                             onChanged: (newValue) {},
                           ),
                           const Text(
-                            'Ich akzeptiere die Datenschutzerklärung',
+                            'Ich akzeptiere die Datenschutzerklärung\nund die AGB`s',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.black87,

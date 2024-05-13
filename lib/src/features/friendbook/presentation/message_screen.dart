@@ -3,6 +3,8 @@ import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/messageausgang_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/messageeingang_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/messageschreiben_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
@@ -52,7 +54,6 @@ class MessageScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 2),
-                  // Schreiben-Button
                   Container(
                     width: 160,
                     height: 50,
@@ -134,12 +135,18 @@ class MessageScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const MessageeingangScreen(), // Navigiere zum MessageEingangScreen
+                          ),
+                        );
+                      },
+                      child: const Center(
+                        child: Text(
                           'Eingang',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
@@ -149,7 +156,7 @@ class MessageScreen extends StatelessWidget {
                             height: 0,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -181,12 +188,18 @@ class MessageScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const MessageausgangScreen(), // Navigiere zum MessageAusgangScreen
+                          ),
+                        );
+                      },
+                      child: const Center(
+                        child: Text(
                           'Ausgang',
                           style: TextStyle(
                             color: Color(0xFF0B4BA4),
@@ -196,7 +209,7 @@ class MessageScreen extends StatelessWidget {
                             height: 0,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 434),
@@ -258,8 +271,9 @@ class MessageScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    const InfozweiScreen()), // Navigiere zum InfozweiScreen
+              builder: (context) =>
+                  const InfozweiScreen(), // Navigiere zum InfozweiScreen
+            ),
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
@@ -269,8 +283,9 @@ class MessageScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    const InfoeinsScreen()), // Navigiere zum InfoeinsScreen
+              builder: (context) =>
+                  const InfoeinsScreen(), // Navigiere zum InfoeinsScreen
+            ),
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
@@ -377,12 +392,11 @@ class CustomIconButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFFA1EFFD),
         borderRadius: BorderRadius.circular(28),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(4, 0),
-            blurRadius: 4,
-            spreadRadius: 0,
+            color: Colors.black26,
+            offset: Offset(0, 2),
+            blurRadius: 4.0,
           ),
         ],
         border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
