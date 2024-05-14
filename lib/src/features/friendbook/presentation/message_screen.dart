@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/messageausgang_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/messageeingang_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/messageschreiben_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class MessageScreen extends StatelessWidget {
-  const MessageScreen({
-    super.key,
-  });
+  // Attribute
+  final DatabaseRepository databaseRepository;
+
+  // Konstruktor
+  const MessageScreen({super.key, required this.databaseRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +89,9 @@ class MessageScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const MessageschreibenScreen(),
+                            builder: (context) => MessageschreibenScreen(
+                              databaseRepository: databaseRepository,
+                            ),
                           ),
                         );
                       },
@@ -140,8 +143,9 @@ class MessageScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const MessageeingangScreen(), // Navigiere zum MessageEingangScreen
+                            builder: (context) => MessageeingangScreen(
+                              databaseRepository: databaseRepository,
+                            ), // Navigiere zum MessageEingangScreen
                           ),
                         );
                       },
@@ -193,8 +197,9 @@ class MessageScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const MessageausgangScreen(), // Navigiere zum MessageAusgangScreen
+                            builder: (context) => MessageausgangScreen(
+                              databaseRepository: databaseRepository,
+                            ), // Navigiere zum MessageAusgangScreen
                           ),
                         );
                       },
@@ -226,10 +231,10 @@ class MessageScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton(context, 'note'),
-                        _buildSmallButton(context, 'features'),
-                        _buildSmallButton(context, 'home'),
-                        _buildSmallButton(context, 'users'),
+                        buildSmallButton(context, 'note'),
+                        buildSmallButton(context, 'features'),
+                        buildSmallButton(context, 'home'),
+                        buildSmallButton(context, 'users'),
                         GestureDetector(
                           onTap: () {
                             // Implementieren Sie die Aktion für den Stern-Button
@@ -260,7 +265,7 @@ class MessageScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSmallButton(BuildContext context, String icon) {
+  Widget buildSmallButton(BuildContext context, String icon) {
     IconData? buttonIcon;
     Function()? onPressed;
 
@@ -271,8 +276,9 @@ class MessageScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  const InfozweiScreen(), // Navigiere zum InfozweiScreen
+              builder: (context) => InfozweiScreen(
+                databaseRepository: databaseRepository,
+              ), // Navigiere zum InfozweiScreen
             ),
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
@@ -283,8 +289,9 @@ class MessageScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  const InfoeinsScreen(), // Navigiere zum InfoeinsScreen
+              builder: (context) => InfoeinsScreen(
+                databaseRepository: databaseRepository,
+              ), // Navigiere zum InfoeinsScreen
             ),
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
@@ -294,7 +301,10 @@ class MessageScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(
+                builder: (context) => HomeScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           );
         };
         break;
@@ -303,7 +313,10 @@ class MessageScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const UserScreen()),
+            MaterialPageRoute(
+                builder: (context) => UserScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
@@ -330,81 +343,6 @@ class MessageScreen extends StatelessWidget {
           color: const Color.fromARGB(255, 0, 101, 202),
           size: 40,
         ),
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MenueScreen(),
-          ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFA1EFFD),
-          borderRadius: BorderRadius.circular(28),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              offset: const Offset(4, 0),
-              blurRadius: 4,
-              spreadRadius: 0,
-            ),
-          ],
-          border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-        ),
-        child: const Text(
-          "Menü",
-          style: TextStyle(
-            color: Color(0xFF0C4CA4),
-            fontSize: 18,
-            fontFamily: 'SF Pro Rounded',
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomIconButton extends StatelessWidget {
-  final IconData icon;
-
-  const CustomIconButton({super.key, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black26,
-            offset: Offset(0, 2),
-            blurRadius: 4.0,
-          ),
-        ],
-        border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-      ),
-      child: Icon(
-        icon,
-        color: const Color(0xFF0C4CA4),
-        size: 20,
       ),
     );
   }

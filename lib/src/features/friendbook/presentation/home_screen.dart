@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import für SystemNavigator
+import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart'; // Import des MessageScreens hinzugefügt
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    super.key,
-  });
+  // Attribute
+  final DatabaseRepository databaseRepository;
+
+  // Konstruktor
+  const HomeScreen({super.key, required this.databaseRepository});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   late String selectedEmoji = '';
   late String location = '';
   bool isStarSelected = false;
@@ -53,8 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const MessageScreen(), // Öffne MessageScreen
+                                builder: (context) => MessageScreen(
+                                  databaseRepository: widget.databaseRepository,
+                                ),
                               ),
                             );
                           },
@@ -63,11 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       const Spacer(),
-                      CustomIconButton(
+                      const CustomIconButton(
                         icon: Icons.close,
-                        onPressed: () {
-                          SystemNavigator.pop(); // Beenden der App
-                        },
+                        // onPressed: () {
+                        //   SystemNavigator.pop(); // Beenden der App
+                        // },
                       ),
                     ],
                   ),
@@ -290,10 +292,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton('note'),
-                        _buildSmallButton('features'),
-                        _buildSmallButton('home'),
-                        _buildSmallButton('users'),
+                        buildSmallButton(
+                            'note', widget.databaseRepository, context),
+                        buildSmallButton(
+                            'features', widget.databaseRepository, context),
+                        buildSmallButton(
+                            'home', widget.databaseRepository, context),
+                        buildSmallButton(
+                            'users', widget.databaseRepository, context),
                         GestureDetector(
                           onTap: () {
                             setState(() {
@@ -358,158 +364,89 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Widget _buildSmallButton(String icon) {
-    Widget? buttonIcon;
-    Function()? onTap;
-
-    switch (icon) {
-      case 'note':
-        buttonIcon = const Icon(
-          Icons.last_page,
-          size: 40,
-          color: Color.fromARGB(255, 0, 101, 202),
-        );
-        onTap = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const InfozweiScreen()),
-          );
-        };
-        break;
-      case 'features':
-        buttonIcon = const Icon(
-          Icons.first_page,
-          size: 40,
-          color: Color.fromARGB(255, 0, 101, 202),
-        );
-        onTap = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const InfoeinsScreen()),
-          );
-        };
-        break;
-      case 'home':
-        buttonIcon = const Icon(
-          Icons.home_outlined,
-          size: 40,
-          color: Color.fromARGB(255, 0, 101, 202),
-        );
-        break;
-      case 'users':
-        buttonIcon = const Icon(
-          Icons.add_circle_outline,
-          size: 40,
-          color: Color.fromARGB(255, 0, 101, 202),
-        );
-        onTap = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const UserScreen()),
-          );
-        };
-        break;
-    }
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 78, 171, 253),
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              offset: const Offset(0, 3),
-              blurRadius: 6,
-            ),
-          ],
-        ),
-        child: Container(
-          child: buttonIcon,
-        ),
-      ),
-    );
-  }
 }
 
-class CustomIconButton extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback? onPressed;
+Widget buildSmallButton(
+    String icon, DatabaseRepository databaseRepository, BuildContext context) {
+  Widget? buttonIcon;
+  Function()? onTap;
 
-  const CustomIconButton({super.key, required this.icon, this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFA1EFFD),
-          borderRadius: BorderRadius.circular(28),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              offset: const Offset(4, 0),
-              blurRadius: 4,
-              spreadRadius: 0,
-            ),
-          ],
-          border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-        ),
-        child: Icon(
-          icon,
-          color: const Color(0xFF0C4CA4),
-          size: 20,
-        ),
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+  switch (icon) {
+    case 'note':
+      buttonIcon = const Icon(
+        Icons.last_page,
+        size: 40,
+        color: Color.fromARGB(255, 0, 101, 202),
+      );
+      onTap = () {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => const MenueScreen()), // Öffne MenuScreen
+              builder: (context) => InfozweiScreen(
+                    databaseRepository: databaseRepository,
+                  )),
         );
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFA1EFFD),
-          borderRadius: BorderRadius.circular(28),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              offset: const Offset(4, 0),
-              blurRadius: 4,
-              spreadRadius: 0,
-            ),
-          ],
-          border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-        ),
-        child: const Text(
-          'Menü',
-          style: TextStyle(
-            color: Color(0xFF0C4CA4),
-            fontSize: 18,
-            fontFamily: 'SF Pro Rounded',
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ),
-    );
+      };
+      break;
+    case 'features':
+      buttonIcon = const Icon(
+        Icons.first_page,
+        size: 40,
+        color: Color.fromARGB(255, 0, 101, 202),
+      );
+      onTap = () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => InfoeinsScreen(
+                    databaseRepository: databaseRepository,
+                  )),
+        );
+      };
+      break;
+    case 'home':
+      buttonIcon = const Icon(
+        Icons.home_outlined,
+        size: 40,
+        color: Color.fromARGB(255, 0, 101, 202),
+      );
+      break;
+    case 'users':
+      buttonIcon = const Icon(
+        Icons.add_circle_outline,
+        size: 40,
+        color: Color.fromARGB(255, 0, 101, 202),
+      );
+      onTap = () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => UserScreen(
+                    databaseRepository: databaseRepository,
+                  )),
+        );
+      };
+      break;
   }
+
+  return GestureDetector(
+    onTap: onTap,
+    child: Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 78, 171, 253),
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            offset: const Offset(0, 3),
+            blurRadius: 6,
+          ),
+        ],
+      ),
+      child: Container(
+        child: buttonIcon,
+      ),
+    ),
+  );
 }

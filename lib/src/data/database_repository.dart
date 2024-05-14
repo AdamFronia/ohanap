@@ -1,6 +1,5 @@
-import '../features/friendbook/domain/friendbook.dart';
+import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 
 abstract class DatabaseRepository {
-  void createFriendsBook(Friendbook friendbook);
-  List<Friendbook> showFriendsbook();
+  List<Profile> getAllProfiles();
 }

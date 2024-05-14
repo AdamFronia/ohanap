@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class InfozweiScreen extends StatefulWidget {
-  const InfozweiScreen({
-    super.key,
-  });
+  // Attribute
+  final DatabaseRepository databaseRepository;
 
+  // Konstruktor
+  const InfozweiScreen({super.key, required this.databaseRepository});
   @override
   State<InfozweiScreen> createState() => _InfozweiScreenState();
 }
@@ -543,10 +545,10 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton(context, 'note'),
-                        _buildSmallButton(context, 'features'),
-                        _buildSmallButton(context, 'home'),
-                        _buildSmallButton(context, 'users'),
+                        buildSmallButton(context, 'note'),
+                        buildSmallButton(context, 'features'),
+                        buildSmallButton(context, 'home'),
+                        buildSmallButton(context, 'users'),
                         GestureDetector(
                           onTap: () {
                             // Implementiere die Aktion für den Stern-Button
@@ -577,7 +579,7 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
     );
   }
 
-  Widget _buildSmallButton(BuildContext context, String icon) {
+  Widget buildSmallButton(BuildContext context, String icon) {
     IconData? buttonIcon;
     Function()? onPressed;
 
@@ -592,8 +594,9 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    const InfoeinsScreen()), // Navigiere zum InfozweiScreen
+                builder: (context) => InfoeinsScreen(
+                      databaseRepository: widget.databaseRepository,
+                    )), // Navigiere zum InfozweiScreen
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
@@ -602,7 +605,10 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(
+                builder: (context) => HomeScreen(
+                      databaseRepository: widget.databaseRepository,
+                    )),
           );
         };
         break;
@@ -611,7 +617,10 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const UserScreen()),
+            MaterialPageRoute(
+                builder: (context) => UserScreen(
+                      databaseRepository: widget.databaseRepository,
+                    )),
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart'; // Importieren Sie das MessageScreen
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class MenueqrcodeScreen extends StatelessWidget {
-  const MenueqrcodeScreen({
-    super.key,
-  });
+  // Attribute
+  final DatabaseRepository databaseRepository;
+
+  // Konstruktor
+  const MenueqrcodeScreen({super.key, required this.databaseRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -30,34 +32,39 @@ class MenueqrcodeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 40),
-                  Row(
+                  const Row(
                     children: [
                       Expanded(
                         child: CustomButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MenueScreen()),
-                            );
-                          },
-                        ),
+                            // onPressed: () {
+                            //   Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => MenueScreen(
+                            //               databaseRepository: databaseRepository,
+                            //             )),
+                            //   );
+                            // },
+                            ),
                       ),
-                      const SizedBox(width: 10),
+                      SizedBox(width: 10),
                       Expanded(
                         child: CustomIconButton(
-                            icon: Icons.mail_outlined,
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MessageScreen()),
-                              );
-                            }),
+                          icon: Icons.mail_outlined,
+                          // onPressed: () {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => MessageScreen(
+                          //               databaseRepository:
+                          //                   databaseRepository,
+                          //             )),
+                          //   );
+                          // }),
+                        ),
                       ),
-                      const Spacer(),
-                      const CustomIconButton(icon: Icons.close),
+                      Spacer(),
+                      CustomIconButton(icon: Icons.close),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -69,7 +76,7 @@ class MenueqrcodeScreen extends StatelessWidget {
                     ),
                   ),
 
-                  _buildMenuButton(context, 'QR-Code'),
+                  buildMenuButton(context, 'QR-Code'),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: const Divider(
@@ -103,10 +110,10 @@ class MenueqrcodeScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton(context, 'note'),
-                        _buildSmallButton(context, 'features'),
-                        _buildSmallButton(context, 'home'),
-                        _buildSmallButton(context, 'users'),
+                        buildSmallButton(context, 'note'),
+                        buildSmallButton(context, 'features'),
+                        buildSmallButton(context, 'home'),
+                        buildSmallButton(context, 'users'),
                         GestureDetector(
                           onTap: () {
                             // Implementieren Sie die Aktion für den Stern-Button
@@ -137,7 +144,7 @@ class MenueqrcodeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuButton(BuildContext context, String label) {
+  Widget buildMenuButton(BuildContext context, String label) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Container(
@@ -170,7 +177,10 @@ class MenueqrcodeScreen extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MenueScreen()),
+              MaterialPageRoute(
+                  builder: (context) => MenueScreen(
+                        databaseRepository: databaseRepository,
+                      )),
             );
           },
           child: Center(
@@ -190,7 +200,7 @@ class MenueqrcodeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSmallButton(BuildContext context, String icon) {
+  Widget buildSmallButton(BuildContext context, String icon) {
     IconData? buttonIcon;
     Function()? onPressed;
 
@@ -200,7 +210,10 @@ class MenueqrcodeScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const InfozweiScreen()),
+            MaterialPageRoute(
+                builder: (context) => InfozweiScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           );
         };
         break;
@@ -209,7 +222,10 @@ class MenueqrcodeScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const InfoeinsScreen()),
+            MaterialPageRoute(
+                builder: (context) => InfoeinsScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           );
         };
         break;
@@ -218,7 +234,10 @@ class MenueqrcodeScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(
+                builder: (context) => HomeScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           );
         };
         break;
@@ -227,7 +246,10 @@ class MenueqrcodeScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const UserScreen()),
+            MaterialPageRoute(
+                builder: (context) => UserScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           ); // Implementieren Sie die Aktion für die entsprechende Taste
         };
         break;
@@ -253,82 +275,6 @@ class MenueqrcodeScreen extends StatelessWidget {
           buttonIcon,
           color: const Color.fromARGB(255, 0, 101, 202),
           size: 40,
-        ),
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  final VoidCallback? onPressed;
-
-  const CustomButton({
-    super.key,
-    this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(4, 0),
-            blurRadius: 4,
-            spreadRadius: 0,
-          ),
-        ],
-        border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-      ),
-      child: InkWell(
-        onTap: onPressed,
-        child: const Text(
-          'Menü',
-          style: TextStyle(
-            color: Color(0xFF0C4CA4),
-            fontSize: 18,
-            fontFamily: 'SF Pro Rounded',
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomIconButton extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback? onPressed;
-
-  const CustomIconButton({super.key, required this.icon, this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(4, 0),
-            blurRadius: 4,
-            spreadRadius: 0,
-          ),
-        ],
-        border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-      ),
-      child: InkWell(
-        onTap: onPressed,
-        child: Icon(
-          icon,
-          color: const Color(0xFF0C4CA4),
-          size: 20,
         ),
       ),
     );

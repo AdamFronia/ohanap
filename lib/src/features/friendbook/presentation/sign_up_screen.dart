@@ -1,11 +1,14 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
 
 import 'home_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  final DatabaseRepository databaseRepository;
 
+  // Konstruktor
+  const SignUpScreen({super.key, required this.databaseRepository});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -198,7 +201,9 @@ Registrierung
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()),
+                                  builder: (context) => HomeScreen(
+                                        databaseRepository: databaseRepository,
+                                      )),
                             );
                           },
                           style: ElevatedButton.styleFrom(

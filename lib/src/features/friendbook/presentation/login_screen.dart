@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
 
 import 'sign_up_screen.dart'; // Importiere den SignUpScreen
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({
-    super.key,
-  });
+  final DatabaseRepository databaseRepository;
+
+  // Konstruktor
+  const LoginScreen({super.key, required this.databaseRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -288,7 +290,9 @@ Login
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SignUpScreen()),
+                          builder: (context) => SignUpScreen(
+                                databaseRepository: databaseRepository,
+                              )),
                     );
                   },
                   child: Container(

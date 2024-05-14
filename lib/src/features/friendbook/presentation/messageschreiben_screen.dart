@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class MessageschreibenScreen extends StatelessWidget {
-  const MessageschreibenScreen({super.key});
+  // Attribute
+  final DatabaseRepository databaseRepository;
+
+  // Konstruktor
+  const MessageschreibenScreen({super.key, required this.databaseRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +157,11 @@ class MessageschreibenScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton(context, 'note'),
-                        _buildSmallButton(context, 'features'),
-                        _buildSmallButton(context, 'home'),
-                        _buildSmallButton(context, 'users'),
+                        buildSmallButton('note', databaseRepository, context),
+                        buildSmallButton(
+                            'features', databaseRepository, context),
+                        buildSmallButton('home', databaseRepository, context),
+                        buildSmallButton('users', databaseRepository, context),
                         GestureDetector(
                           onTap: () {
                             // Implementieren Sie die Aktion für den Stern-Button
@@ -186,169 +188,6 @@ class MessageschreibenScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSmallButton(BuildContext context, String icon) {
-    IconData? buttonIcon;
-    Function()? onPressed;
-
-    switch (icon) {
-      case 'note':
-        buttonIcon = Icons.last_page;
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const InfozweiScreen(),
-            ),
-          );
-        };
-        break;
-      case 'features':
-        buttonIcon = Icons.first_page;
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const InfoeinsScreen(),
-            ),
-          );
-        };
-        break;
-      case 'home':
-        buttonIcon = Icons.home_outlined;
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          );
-        };
-        break;
-      case 'users':
-        buttonIcon = Icons.add_circle_outline;
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const UserScreen()),
-          );
-        };
-        break;
-      case 'Schreiben':
-        onPressed = () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MessageScreen()),
-          );
-        };
-        break;
-    }
-
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 78, 171, 253),
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              offset: const Offset(4, 0),
-              blurRadius: 4,
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: Icon(
-          buttonIcon,
-          color: const Color.fromARGB(255, 0, 101, 202),
-          size: 40,
-        ),
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MenueScreen(),
-          ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFA1EFFD),
-          borderRadius: BorderRadius.circular(28),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              offset: const Offset(4, 0),
-              blurRadius: 4,
-              spreadRadius: 0,
-            ),
-          ],
-          border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-        ),
-        child: const Text(
-          "Menü",
-          style: TextStyle(
-            color: Color(0xFF0C4CA4),
-            fontSize: 18,
-            fontFamily: 'SF Pro Rounded',
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomIconButton extends StatelessWidget {
-  final IconData icon;
-
-  const CustomIconButton({super.key, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (icon == Icons.mail_outlined) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MessageScreen()),
-          );
-        }
-      },
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFA1EFFD),
-          borderRadius: BorderRadius.circular(28),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(0, 2),
-              blurRadius: 4.0,
-            ),
-          ],
-          border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-        ),
-        child: Icon(
-          icon,
-          color: const Color(0xFF0C4CA4),
-          size: 20,
-        ),
       ),
     );
   }

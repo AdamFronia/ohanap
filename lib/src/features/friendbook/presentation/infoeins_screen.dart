@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class InfoeinsScreen extends StatelessWidget {
-  const InfoeinsScreen({
-    super.key,
-  });
+  // Attribute
+  final DatabaseRepository databaseRepository;
+
+  // Konstruktor
+  const InfoeinsScreen({super.key, required this.databaseRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -474,10 +477,10 @@ class InfoeinsScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _buildSmallButton(context, 'note'),
-                        _buildSmallButton(context, 'features'),
-                        _buildSmallButton(context, 'home'),
-                        _buildSmallButton(context, 'users'),
+                        buildSmallButton(context, 'note'),
+                        buildSmallButton(context, 'features'),
+                        buildSmallButton(context, 'home'),
+                        buildSmallButton(context, 'users'),
                         GestureDetector(
                           onTap: () {
                             // Implementiere die Aktion für den Stern-Button
@@ -507,7 +510,7 @@ class InfoeinsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSmallButton(BuildContext context, String icon) {
+  Widget buildSmallButton(BuildContext context, String icon) {
     IconData? buttonIcon;
     Function()? onPressed;
 
@@ -517,7 +520,10 @@ class InfoeinsScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const InfozweiScreen()),
+            MaterialPageRoute(
+                builder: (context) => InfozweiScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           );
         };
 
@@ -531,7 +537,10 @@ class InfoeinsScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(
+                builder: (context) => HomeScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           );
         };
         break;
@@ -540,7 +549,10 @@ class InfoeinsScreen extends StatelessWidget {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const UserScreen()),
+            MaterialPageRoute(
+                builder: (context) => UserScreen(
+                      databaseRepository: databaseRepository,
+                    )),
           );
         };
         break;
@@ -567,72 +579,6 @@ class InfoeinsScreen extends StatelessWidget {
           color: const Color.fromARGB(255, 0, 101, 202),
           size: 40,
         ),
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(4, 0),
-            blurRadius: 4,
-            spreadRadius: 0,
-          ),
-        ],
-        border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-      ),
-      child: const Text(
-        'Menü',
-        style: TextStyle(
-          color: Color(0xFF0C4CA4),
-          fontSize: 18,
-          fontFamily: 'SF Pro Rounded',
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-    );
-  }
-}
-
-class CustomIconButton extends StatelessWidget {
-  final IconData icon;
-
-  const CustomIconButton({super.key, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(4, 0),
-            blurRadius: 4,
-            spreadRadius: 0,
-          ),
-        ],
-        border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
-      ),
-      child: Icon(
-        icon,
-        color: const Color(0xFF0C4CA4),
-        size: 20,
       ),
     );
   }
