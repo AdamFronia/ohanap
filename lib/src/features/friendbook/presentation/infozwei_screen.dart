@@ -3,10 +3,39 @@ import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
-class InfozweiScreen extends StatelessWidget {
+class InfozweiScreen extends StatefulWidget {
   const InfozweiScreen({
     super.key,
   });
+
+  @override
+  State<InfozweiScreen> createState() => _InfozweiScreenState();
+}
+
+class _InfozweiScreenState extends State<InfozweiScreen> {
+  List<Map<String, dynamic>> dataList = [];
+  List<String> itemTitles = [
+    "Ich habe Geschwister",
+    "Ich mache gerne Sport",
+    "Ich lese gerne",
+    "Ich mag Tiere",
+    "Ich bin immer pünktlich",
+    "Ich esse gerne Obst",
+    "Ich bin Hilfsbereit",
+    "Ich schlafe gerne",
+    "Ich Kuschel gerne",
+    "Ich treffe mich gerne mit einen Freunden",
+  ];
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < itemTitles.length; i++) {
+      dataList.add({
+        "titleIndex": i,
+        "isChecked": false,
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,292 +103,66 @@ class InfozweiScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Positioned(
-                                right: 80,
-                                top: 10,
-                                child: Image.asset(
-                                  'assets/checklist.png',
-                                  width: 50,
-                                  height: 50,
+                                right: 0,
+                                left: 0,
+                                top: 0,
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(50),
+                                    topRight: Radius.circular(50),
+                                  ),
+                                  child: SizedBox(
+                                    height: 300,
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: dataList.length,
+                                      itemBuilder: (context, index) {
+                                        final int? titleIndex =
+                                            dataList[index]["titleIndex"];
+                                        final String? title = titleIndex != null
+                                            ? itemTitles[titleIndex]
+                                            : null;
+                                        return CheckboxListTile(
+                                          value: dataList[index]["isChecked"],
+                                          onChanged: (value) {
+                                            setState(() {
+                                              dataList[index]["isChecked"] =
+                                                  value!;
+                                            });
+                                          },
+                                          title: title != null
+                                              ? Text(
+                                                  title,
+                                                  style: const TextStyle(
+                                                      color: Colors.black87),
+                                                )
+                                              : null,
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
                               ),
                               Positioned(
-                                left: 20,
-                                bottom: 240,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            true, // Hier true für das Ankreuzfeld "Hallo"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
+                                right: 0,
+                                left: 0,
+                                top: 0,
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(50),
+                                    topRight: Radius.circular(50),
+                                  ),
+                                  child: Container(
+                                    width: 150,
+                                    height: 50,
+                                    color:
+                                        const Color.fromARGB(255, 247, 188, 38),
+                                    child: Image.asset(
+                                      'assets/checklist.png',
+                                      width: 50,
+                                      height: 50,
                                     ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich habe Geschwister',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 220,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich mache gerne Sport',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 200,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich lese gerne',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 180,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich mag Tiere',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 160,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich bin immer pünktlich',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 140,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich esse gerne Obst',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 120,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich bin Hilfsbereit',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 100,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich schlafe gerne',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 80,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich kuschel gerne',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                bottom: 45,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: Checkbox(
-                                        value:
-                                            false, // Hier false für das Ankreuzfeld "Tschüss"
-                                        onChanged:
-                                            (_) {}, // Hier kannst du bei Bedarf eine Funktion implementieren
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Text(
-                                      'Ich treffe mich gerne \n mit meine Freunden',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ],
