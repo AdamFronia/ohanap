@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 
 class MessageschreibenScreen extends StatelessWidget {
@@ -31,9 +30,6 @@ class MessageschreibenScreen extends StatelessWidget {
                   const SizedBox(height: 40),
                   const Row(
                     children: [
-                      Expanded(
-                        child: CustomButton(),
-                      ),
                       SizedBox(width: 10),
                       Expanded(
                         child: CustomIconButton(icon: Icons.mail_outlined),

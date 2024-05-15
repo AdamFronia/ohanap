@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 
 class MenuemitwirkendeScreen extends StatelessWidget {
@@ -31,17 +30,6 @@ class MenuemitwirkendeScreen extends StatelessWidget {
                   const SizedBox(height: 40),
                   const Row(
                     children: [
-                      Expanded(
-                        child: CustomButton(
-                            // onPressed: () {
-                            //   Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => const MenueScreen()),
-                            //   );
-                            // },
-                            ),
-                      ),
                       SizedBox(width: 10),
                       Expanded(
                         child: CustomIconButton(

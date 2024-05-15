@@ -28,17 +28,6 @@ class MenueimpressumScreen extends StatelessWidget {
                   const SizedBox(height: 40),
                   const Row(
                     children: [
-                      Expanded(
-                        child: CustomButton(
-                            // onPressed: () {
-                            //   Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => const MenueScreen()),
-                            //   );
-                            // },
-                            ),
-                      ),
                       SizedBox(width: 10),
                       Expanded(
                         child: CustomIconButton(

@@ -67,7 +67,6 @@ class _TemplateScreenState extends State<TemplateScreen> {
                     const SizedBox(
                       height: 4,
                     ),
-
                     Footer(databaseRepository: widget.databaseRepository),
                   ],
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
@@ -80,6 +81,15 @@ class _FooterState extends State<Footer> {
         break;
       case 'features':
         buttonIcon = Icons.first_page;
+        onPressed = () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoeinsScreen(
+                      databaseRepository: widget.databaseRepository,
+                    )),
+          );
+        };
 
         break;
       case 'home':
