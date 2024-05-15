@@ -251,37 +251,6 @@ class MenueblocklisteScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildSmallButton('note', databaseRepository, context),
-                        buildSmallButton(
-                            'features', databaseRepository, context),
-                        buildSmallButton('home', databaseRepository, context),
-                        buildSmallButton('users', databaseRepository, context),
-                        GestureDetector(
-                          onTap: () {
-                            // Implementieren Sie die Aktion für den Stern-Button
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.transparent, // Farbe anpassen
-                              borderRadius: BorderRadius.circular(50),
-                              // Schatten und andere Eigenschaften anpassen
-                            ),
-                            child: const Icon(
-                              Icons.star,
-                              color: Colors.black, // Farbe anpassen
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
