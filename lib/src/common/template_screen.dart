@@ -32,47 +32,44 @@ class _TemplateScreenState extends State<TemplateScreen> {
                 fit: BoxFit.fill,
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft + const Alignment(0.1, 0.4),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Header(
-                        databaseRepository: widget.databaseRepository,
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Header(
+                      databaseRepository: widget.databaseRepository,
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: const Divider(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        thickness: 1,
                       ),
-                      const SizedBox(
-                        height: 4,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    // ab hier individuell
+                    widget.content,
+                    // hier ended die invidua...
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: const Divider(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        thickness: 1,
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        child: const Divider(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          thickness: 1,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      // ab hier individuell
-                      Expanded(child: widget.content),
-                      // hier ended die invidua...
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        child: const Divider(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          thickness: 1,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Spacer(),
-                      Footer(databaseRepository: widget.databaseRepository),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+
+                    Footer(databaseRepository: widget.databaseRepository),
+                  ],
                 ),
               ),
             ),

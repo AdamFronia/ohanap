@@ -46,213 +46,210 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
       databaseRepository: widget.databaseRepository,
       content: Column(
         children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Container(
-                  width: 220,
-                  height: 330,
-                  decoration: ShapeDecoration(
-                    color: const Color.fromARGB(255, 247, 188, 38),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                      )
-                    ],
+          Row(
+            children: [
+              Container(
+                width: 220,
+                height: 330,
+                decoration: ShapeDecoration(
+                  color: const Color.fromARGB(255, 247, 188, 38),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1),
+                    borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        right: 0,
-                        left: 0,
-                        top: 0,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                          child: SizedBox(
-                            height: 300,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: dataList.length,
-                              itemBuilder: (context, index) {
-                                final int? titleIndex =
-                                    dataList[index]["titleIndex"];
-                                final String? title = titleIndex != null
-                                    ? itemTitles[titleIndex]
-                                    : null;
-                                return CheckboxListTile(
-                                  value: dataList[index]["isChecked"],
-                                  onChanged: (value) {
-                                    setState(() {
-                                      dataList[index]["isChecked"] = value!;
-                                    });
-                                  },
-                                  title: title != null
-                                      ? Text(
-                                          title,
-                                          style: const TextStyle(
-                                              color: Colors.black87),
-                                        )
-                                      : null,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        left: 0,
-                        top: 0,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                          child: Container(
-                            width: 150,
-                            height: 50,
-                            color: const Color.fromARGB(255, 247, 188, 38),
-                            child: Image.asset(
-                              'assets/checklist.png',
-                              width: 50,
-                              height: 50,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  shadows: const [
+                    BoxShadow(
+                      color: Color(0x3F000000),
+                      blurRadius: 4,
+                      offset: Offset(0, 4),
+                      spreadRadius: 0,
+                    )
+                  ],
                 ),
-                const SizedBox(width: 5),
-                Container(
-                  width: 220,
-                  height: 330,
-                  decoration: ShapeDecoration(
-                    color: const Color.fromARGB(255, 47, 181, 23),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1),
-                      borderRadius: BorderRadius.circular(50),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      right: 0,
+                      left: 0,
+                      top: 0,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        ),
+                        child: SizedBox(
+                          height: 300,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: dataList.length,
+                            itemBuilder: (context, index) {
+                              final int? titleIndex =
+                                  dataList[index]["titleIndex"];
+                              final String? title = titleIndex != null
+                                  ? itemTitles[titleIndex]
+                                  : null;
+                              return CheckboxListTile(
+                                value: dataList[index]["isChecked"],
+                                onChanged: (value) {
+                                  setState(() {
+                                    dataList[index]["isChecked"] = value!;
+                                  });
+                                },
+                                title: title != null
+                                    ? Text(
+                                        title,
+                                        style: const TextStyle(
+                                            color: Colors.black87),
+                                      )
+                                    : null,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                      )
-                    ],
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        right: 80,
-                        top: 10,
-                        child: Image.asset(
-                          'assets/love.png',
-                          width: 50,
+                    Positioned(
+                      right: 0,
+                      left: 0,
+                      top: 0,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        ),
+                        child: Container(
+                          width: 150,
                           height: 50,
-                        ),
-                      ),
-                      const Positioned(
-                        left: 20,
-                        bottom: 220,
-                        child: SizedBox(
-                          width: 140,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              labelText: 'Essen',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w400,
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
-                            ),
+                          color: const Color.fromARGB(255, 247, 188, 38),
+                          child: Image.asset(
+                            'assets/checklist.png',
+                            width: 50,
+                            height: 50,
                           ),
                         ),
                       ),
-                      const Positioned(
-                        left: 20,
-                        bottom: 160,
-                        child: SizedBox(
-                          width: 140,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              labelText: 'Getränk',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w400,
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        left: 20,
-                        bottom: 100,
-                        child: SizedBox(
-                          width: 140,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              labelText: 'Musik',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w400,
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        left: 20,
-                        bottom: 40,
-                        child: SizedBox(
-                          width: 140,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              labelText: 'Tier',
-                              labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w400,
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 5),
+              Container(
+                width: 220,
+                height: 330,
+                decoration: ShapeDecoration(
+                  color: const Color.fromARGB(255, 47, 181, 23),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  shadows: const [
+                    BoxShadow(
+                      color: Color(0x3F000000),
+                      blurRadius: 4,
+                      offset: Offset(0, 4),
+                      spreadRadius: 0,
+                    )
+                  ],
+                ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      right: 80,
+                      top: 10,
+                      child: Image.asset(
+                        'assets/love.png',
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    const Positioned(
+                      left: 20,
+                      bottom: 220,
+                      child: SizedBox(
+                        width: 140,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Essen',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro',
+                              fontWeight: FontWeight.w400,
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      left: 20,
+                      bottom: 160,
+                      child: SizedBox(
+                        width: 140,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Getränk',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro',
+                              fontWeight: FontWeight.w400,
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      left: 20,
+                      bottom: 100,
+                      child: SizedBox(
+                        width: 140,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Musik',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro',
+                              fontWeight: FontWeight.w400,
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      left: 20,
+                      bottom: 40,
+                      child: SizedBox(
+                        width: 140,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Tier',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontFamily: 'SF Pro',
+                              fontWeight: FontWeight.w400,
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 4),
           Container(
