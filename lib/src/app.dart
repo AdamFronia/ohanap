@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/data/mock_database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
     DatabaseRepository databaseRepository = MockDatabaseRepository();
 
     return MaterialApp(
-      home: MessageScreen(
+      home: MenueScreen(
         databaseRepository: databaseRepository,
       ),
       // SplashScreen(databaseRepository: databaseRepository),
