@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuesteckbriefe_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.dart';
 
 class MenueqrcodeScreen extends StatelessWidget {
   // Attribute
@@ -16,7 +17,11 @@ class MenueqrcodeScreen extends StatelessWidget {
         databaseRepository: databaseRepository,
         content: Column(
           children: [
-            buildMenuButton(context, 'QR-Code'),
+            Ohanabutton(
+                databaseRepository: databaseRepository,
+                text: "QR-Code",
+                destination:
+                    MenueScreen(databaseRepository: databaseRepository)),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: const Divider(

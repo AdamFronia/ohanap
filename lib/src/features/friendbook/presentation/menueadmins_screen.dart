@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuesteckbriefe_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.dart';
 
 class MenueadminsScreen extends StatelessWidget {
   // Attribute
@@ -17,7 +18,11 @@ class MenueadminsScreen extends StatelessWidget {
         databaseRepository: databaseRepository,
         content: Column(
           children: [
-            buildMenuButton(context, 'Admins'),
+            Ohanabutton(
+                databaseRepository: databaseRepository,
+                text: "Admins",
+                destination:
+                    MenueScreen(databaseRepository: databaseRepository)),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: const Divider(

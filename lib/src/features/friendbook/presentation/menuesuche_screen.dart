@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuesteckbriefe_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.dart';
 
 class MenuesucheScreen extends StatelessWidget {
   // Attribute
@@ -16,7 +17,11 @@ class MenuesucheScreen extends StatelessWidget {
         databaseRepository: databaseRepository,
         content: Column(
           children: [
-            buildMenuButton(context, 'Suche'),
+            Ohanabutton(
+                databaseRepository: databaseRepository,
+                text: "Suche",
+                destination:
+                    MenueScreen(databaseRepository: databaseRepository)),
 
             // Eingabefeld für Suche
             const Padding(

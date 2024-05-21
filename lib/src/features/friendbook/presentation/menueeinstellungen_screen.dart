@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/menuesteckbriefe_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.dart';
 
 class MenueeinstellungenScreen extends StatelessWidget {
   // Attribute
@@ -16,8 +17,16 @@ class MenueeinstellungenScreen extends StatelessWidget {
         databaseRepository: databaseRepository,
         content: Column(
           children: [
-            buildMenuButton(context, 'Einstellungen'),
-            buildMenuButton(context, 'Hintergrund '),
+            Ohanabutton(
+                databaseRepository: databaseRepository,
+                text: "Einstellungen",
+                destination:
+                    MenueScreen(databaseRepository: databaseRepository)),
+            Ohanabutton(
+                databaseRepository: databaseRepository,
+                text: "Hintergrund",
+                destination:
+                    MenueScreen(databaseRepository: databaseRepository)),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: const Divider(
