@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart';
 
 class Header extends StatelessWidget {
@@ -17,7 +18,7 @@ class Header extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MessageScreen(
+                  builder: (context) => MenueScreen(
                     databaseRepository: databaseRepository,
                   ),
                 ),

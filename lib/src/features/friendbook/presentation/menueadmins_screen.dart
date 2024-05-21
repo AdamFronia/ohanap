@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menuesteckbriefe_screen.dart';
@@ -12,146 +13,78 @@ class MenueadminsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: Image.asset(
-              'assets/hintergrund1.png',
-              fit: BoxFit.cover,
+    return TemplateScreen(
+        databaseRepository: databaseRepository,
+        content: Column(
+          children: [
+            buildMenuButton(context, 'Admins'),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Divider(
+                color: Color.fromARGB(255, 0, 0, 0),
+                thickness: 1,
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft + const Alignment(0.1, 0.4),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            // Eingabefeld für Suche
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
                 children: [
-                  const SizedBox(height: 40),
-                  const Row(
-                    children: [
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: CustomIconButton(
-                          icon: Icons.mail_outlined,
-                          // onPressed: () {
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => MessageScreen(
-                          //               databaseRepository:
-                          //                   databaseRepository,
-                          //             )),
-                          //   );
-                          // }
-                        ),
-                      ),
-                      Spacer(),
-                      CustomIconButton(icon: Icons.close),
-                    ],
+                  Image.asset(
+                    'assets/ostseebroetchen.png',
+                    width: 30,
+                    height: 30,
                   ),
-                  const SizedBox(height: 4),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
+                  const SizedBox(width: 10),
+                  const Text(
+                    'User',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
 
-                  buildMenuButton(context, 'Admins'),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  // Eingabefeld für Suche
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/ostseebroetchen.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'User',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-
-                        const SizedBox(width: 10),
-                        const CustomIconButton(
-                            icon: Icons.visibility), // "Auge" Button
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 392),
-
-                  // Kleiner Container mit Bild und Name "User"
-
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Divider(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      thickness: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
+                  const SizedBox(width: 10),
+                  const CustomIconButton(
+                      icon: Icons.visibility), // "Auge" Button
                 ],
               ),
             ),
-          ),
-        ],
-      ),
-    );
+
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Divider(
+                color: Color.fromARGB(255, 0, 0, 0),
+                thickness: 1,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/ostseebroetchen.png',
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'User',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
+
+                  const SizedBox(width: 10),
+                  const CustomIconButton(
+                      icon: Icons.visibility), // "Auge" Button
+                ],
+              ),
+            )
+          ],
+        ));
   }
 }
