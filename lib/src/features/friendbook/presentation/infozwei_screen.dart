@@ -4,6 +4,7 @@ import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/todolist.dart';
 
 class InfozweiScreen extends StatefulWidget {
   // Attribute
@@ -16,30 +17,6 @@ class InfozweiScreen extends StatefulWidget {
 }
 
 class _InfozweiScreenState extends State<InfozweiScreen> {
-  List<Map<String, dynamic>> dataList = [];
-  List<String> itemTitles = [
-    "Ich habe Geschwister",
-    "Ich mache gerne Sport",
-    "Ich lese gerne",
-    "Ich mag Tiere",
-    "Ich bin immer pünktlich",
-    "Ich esse gerne Obst",
-    "Ich bin Hilfsbereit",
-    "Ich schlafe gerne",
-    "Ich Kuschel gerne",
-    "Ich treffe mich gerne mit einen Freunden",
-  ];
-  @override
-  void initState() {
-    super.initState();
-    for (int i = 0; i < itemTitles.length; i++) {
-      dataList.add({
-        "titleIndex": i,
-        "isChecked": false,
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
@@ -50,89 +27,8 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                Container(
-                  width: 220,
-                  height: 330,
-                  decoration: ShapeDecoration(
-                    color: const Color.fromARGB(255, 247, 188, 38),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 1),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
-                      )
-                    ],
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        right: 0,
-                        left: 0,
-                        top: 0,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                          child: SizedBox(
-                            height: 300,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: dataList.length,
-                              itemBuilder: (context, index) {
-                                final int? titleIndex =
-                                    dataList[index]["titleIndex"];
-                                final String? title = titleIndex != null
-                                    ? itemTitles[titleIndex]
-                                    : null;
-                                return CheckboxListTile(
-                                  value: dataList[index]["isChecked"],
-                                  onChanged: (value) {
-                                    setState(() {
-                                      dataList[index]["isChecked"] = value!;
-                                    });
-                                  },
-                                  title: title != null
-                                      ? Text(
-                                          title,
-                                          style: const TextStyle(
-                                              color: Colors.black87),
-                                        )
-                                      : null,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        left: 0,
-                        top: 0,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                          child: Container(
-                            width: 150,
-                            height: 50,
-                            color: const Color.fromARGB(255, 247, 188, 38),
-                            child: Image.asset(
-                              'assets/checklist.png',
-                              width: 50,
-                              height: 50,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                Todolist(
+                  databaseRepository: widget.databaseRepository,
                 ),
                 const SizedBox(width: 5),
                 Container(
