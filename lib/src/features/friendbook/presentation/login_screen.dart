@@ -3,12 +3,17 @@ import 'package:ohanap/src/data/database_repository.dart';
 
 import 'sign_up_screen.dart'; // Importiere den SignUpScreen
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
 
   // Konstruktor
   const LoginScreen({super.key, required this.databaseRepository});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -291,7 +296,7 @@ Login
                       context,
                       MaterialPageRoute(
                           builder: (context) => SignUpScreen(
-                                databaseRepository: databaseRepository,
+                                databaseRepository: widget.databaseRepository,
                               )),
                     );
                   },
