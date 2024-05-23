@@ -19,6 +19,9 @@ class Profile {
   bool likesReading;
   String aboutMe;
   List<Map<String, dynamic>> dataList;
+  String? thatsMyStrengths;
+  String? funnyFact;
+  String? futuretime;
   // Konstruktor
   Profile({
     required this.profilePicUrl,
@@ -38,5 +41,8 @@ class Profile {
     required this.likesReading,
     required this.aboutMe,
     required this.dataList,
+    this.thatsMyStrengths,
+    this.funnyFact,
+    this.futuretime,
   });
 }
