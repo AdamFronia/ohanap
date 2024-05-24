@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/homecenter.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/homecenterreadme.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/homeplace.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/homestatus.dart';
 
 class HomeScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
@@ -19,45 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
       databaseRepository: widget.databaseRepository,
       content: Column(
         children: [
-          Stack(
-            children: [
-              Align(
-                alignment: Alignment.topLeft + const Alignment(1.0, 3.2),
-                child: Image.asset(
-                  'assets/ostseebroetchen.png',
-                  width: 150,
-                  height: 150,
-                ),
-              ),
-              Positioned(
-                right: 80,
-                bottom: 0,
-                child: Image.asset(
-                  'assets/papashund.png',
-                  width: 75,
-                  height: 75,
-                ),
-              ),
-            ],
-          ),
+          Homecenter(databaseRepository: widget.databaseRepository),
           const SizedBox(
             height: 10,
           ),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Lies mich',
-              border: OutlineInputBorder(),
-              labelStyle: TextStyle(color: Colors.black),
-              hintStyle: TextStyle(color: Colors.black),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
-              ),
-            ),
-            style: const TextStyle(color: Colors.black),
-          ),
+          Homecenterreadme(databaseRepository: widget.databaseRepository),
           const SizedBox(
             height: 20,
           ),
@@ -100,112 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(
             height: 20,
           ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: const Color(0xFFA1EFFD),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
-                  offset: const Offset(0, 3),
-                  blurRadius: 6,
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Beziehungsstatus',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Gib deinen Beziehungsstatus ein',
-                    labelStyle: const TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                  ),
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
+          Homestatus(databaseRepository: widget.databaseRepository),
           const SizedBox(
             height: 20,
           ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
-                  offset: const Offset(0, 3),
-                  blurRadius: 6,
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Wohne in der Stadt/dem Land',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Gib deine Adresse ein',
-                    labelStyle: const TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                  ),
-                  style: const TextStyle(color: Colors.white),
-                  onChanged: (value) {
-                    setState(() {
-                      location = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
+          Homeplace(databaseRepository: widget.databaseRepository),
           const SizedBox(
             height: 4,
           ),

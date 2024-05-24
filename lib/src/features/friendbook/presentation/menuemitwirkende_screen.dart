@@ -48,6 +48,33 @@ class MenuemitwirkendeScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
+                    'assets/peggy.jpg',
+                    width: 50,
+                    height: 50,
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'Peggy´s Bügelperlen\nFamily Management',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Divider(
+                color: Color.fromARGB(255, 0, 0, 0),
+                thickness: 1,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Image.asset(
                     'assets/tvm.jpg',
                     width: 50,
                     height: 50,
