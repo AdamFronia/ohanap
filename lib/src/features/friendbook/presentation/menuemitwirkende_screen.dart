@@ -26,40 +26,13 @@ class MenuemitwirkendeScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   const Text(
-                    'Ramona T.\nFamily Management ',
+                    'Ramona T.\nFamily Management \nErzieherin',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   // "Auge" Button
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: const Divider(
-                color: Color.fromARGB(255, 0, 0, 0),
-                thickness: 1,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/peggy.jpg',
-                    width: 50,
-                    height: 50,
-                  ),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'Peggy´s Bügelperlen\nFamily Management',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                 ],
               ),
             ),
