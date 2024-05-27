@@ -1,4 +1,3 @@
-import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 
@@ -17,6 +16,45 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _termsAccepted = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  String? _validateEmail(String? value) {
+    const emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
+    final regExp = RegExp(emailPattern);
+    if (value == null || value.isEmpty) {
+      return 'Bitte E-mail eingeben';
+    } else if (!regExp.hasMatch(value)) {
+      return 'Bitte eine gültige E-mail Adresse eingeben';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Bitte Passwort eingeben';
+    } else if (value.length < 8) {
+      return 'Passwort muss mindestens 8 Zeichen lang sein';
+    } else if (!RegExp(r'[A-Z]').hasMatch(value)) {
+      return 'Passwort muss mindestens einen Großbuchstaben enthalten';
+    } else if (!RegExp(r'[0-9]').hasMatch(value)) {
+      return 'Passwort muss mindestens eine Zahl enthalten';
+    } else if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+      return 'Passwort muss mindestens ein Sonderzeichen enthalten';
+    }
+    return null;
+  }
+
+  String? _validateConfirmPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Bitte Passwort wiederholen';
+    } else if (value != _passwordController.text) {
+      return 'Passwörter stimmen nicht überein';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    '''
-Registrierung
-''',
+                    'Registrierung',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 24,
@@ -64,66 +100,14 @@ Registrierung
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: 291,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            // Icon für Deutschland-Vorwahl
-                            CountryFlag.fromCountryCode('DE',
-                                height: 30, width: 30, borderRadius: 8),
-                            const SizedBox(width: 8),
-                            // Textfeld für die Telefonnummer
-                            Expanded(
-                              child: TextFormField(
-                                style: const TextStyle(color: Colors.black87),
-                                decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Telefonnummer',
-                                  labelStyle: TextStyle(color: Colors.black),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.blueAccent),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.blueAccent),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Bitte Telefonnummer eingeben';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'oder',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 60),
                   SizedBox(
                     width: 291,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
+                          controller: _emailController,
                           style: const TextStyle(color: Colors.black87),
                           decoration: const InputDecoration(
                             filled: true,
@@ -138,15 +122,11 @@ Registrierung
                               borderSide: BorderSide(color: Colors.blueAccent),
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Bitte E-mail eingeben';
-                            }
-                            return null;
-                          },
+                          validator: _validateEmail,
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 20),
                         TextFormField(
+                          controller: _passwordController,
                           obscureText: true,
                           style: const TextStyle(color: Colors.black87),
                           decoration: const InputDecoration(
@@ -162,15 +142,11 @@ Registrierung
                               borderSide: BorderSide(color: Colors.blueAccent),
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Bitte Passwort eingeben';
-                            }
-                            return null;
-                          },
+                          validator: _validatePassword,
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 20),
                         TextFormField(
+                          controller: _confirmPasswordController,
                           obscureText: true,
                           style: const TextStyle(color: Colors.black87),
                           decoration: const InputDecoration(
@@ -186,14 +162,9 @@ Registrierung
                               borderSide: BorderSide(color: Colors.blueAccent),
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Bitte Passwort wiederholen';
-                            }
-                            return null;
-                          },
+                          validator: _validateConfirmPassword,
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -232,7 +203,7 @@ Registrierung
                             ),
                           ],
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 20),
                         Center(
                           child: ElevatedButton(
                             onPressed: _termsAccepted
@@ -242,10 +213,11 @@ Registrierung
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => HomeScreen(
-                                                  databaseRepository:
-                                                      widget.databaseRepository,
-                                                )),
+                                          builder: (context) => HomeScreen(
+                                            databaseRepository:
+                                                widget.databaseRepository,
+                                          ),
+                                        ),
                                       );
                                     } else {
                                       ScaffoldMessenger.of(context)

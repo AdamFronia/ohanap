@@ -6,6 +6,7 @@ import 'package:ohanap/src/features/friendbook/presentation/personal_container.d
 class InfoeinsScreen extends StatelessWidget {
   final DatabaseRepository databaseRepository;
   const InfoeinsScreen({super.key, required this.databaseRepository});
+
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
@@ -51,20 +52,23 @@ class InfoeinsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 3),
-          const Row(
-            children: [
-              PersonalContainer(
-                assetPath: 'assets/astronaut.png',
-                text: "Lieblingsfarbe",
-                color: Colors.cyanAccent,
-              ),
-              SizedBox(width: 5),
-              PersonalContainer(
-                assetPath: 'assets/birthday-cake.png',
-                text: "Geburtsdatum",
-                color: Colors.yellow,
-              ),
-            ],
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                PersonalContainer(
+                  assetPath: 'assets/astronaut.png',
+                  text: "Lieblingsfarbe",
+                  color: Colors.cyanAccent,
+                ),
+                SizedBox(width: 5),
+                PersonalContainer(
+                  assetPath: 'assets/birthday-cake.png',
+                  text: "Geburtsdatum",
+                  color: Colors.yellow,
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 4),
           Container(
@@ -75,7 +79,6 @@ class InfoeinsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 3),
-          const SizedBox(width: 5),
           const PersonalContainer(
             assetPath: 'assets/astronaut.png',
             text: "Schlafenszeit",

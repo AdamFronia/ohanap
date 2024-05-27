@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String selectedEmoji = '';
   late String location = '';
+
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
@@ -24,60 +25,53 @@ class _HomeScreenState extends State<HomeScreen> {
       content: Column(
         children: [
           Homecenter(databaseRepository: widget.databaseRepository),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Homecenterreadme(databaseRepository: widget.databaseRepository),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                _buildEmojiContainer(
-                  assetPath: 'assets/superhero (1).png',
-                  selected: selectedEmoji == 'assets/superhero (1).png',
-                ),
-                const SizedBox(width: 10),
-                _buildEmojiContainer(
-                  assetPath: 'assets/superhero (2).png',
-                  selected: selectedEmoji == 'assets/superhero (2).png',
-                ),
-                const SizedBox(width: 10),
-                _buildEmojiContainer(
-                  assetPath: 'assets/superhero (3).png',
-                  selected: selectedEmoji == 'assets/superhero (3).png',
-                ),
-                const SizedBox(width: 10),
-                _buildEmojiContainer(
-                  assetPath: 'assets/superhero (4).png',
-                  selected: selectedEmoji == 'assets/superhero (4).png',
-                ),
-                const SizedBox(width: 10),
-                _buildEmojiContainer(
-                  assetPath: 'assets/superhero (5).png',
-                  selected: selectedEmoji == 'assets/superhero (5).png',
-                ),
-                const SizedBox(width: 10),
-                _buildEmojiContainer(
-                  assetPath: 'assets/superhero.png',
-                  selected: selectedEmoji == 'assets/superhero.png',
-                ),
-              ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _buildEmojiContainer(
+                    assetPath: 'assets/superhero (1).png',
+                    selected: selectedEmoji == 'assets/superhero (1).png',
+                  ),
+                  const SizedBox(width: 10),
+                  _buildEmojiContainer(
+                    assetPath: 'assets/superhero (2).png',
+                    selected: selectedEmoji == 'assets/superhero (2).png',
+                  ),
+                  const SizedBox(width: 10),
+                  _buildEmojiContainer(
+                    assetPath: 'assets/superhero (3).png',
+                    selected: selectedEmoji == 'assets/superhero (3).png',
+                  ),
+                  const SizedBox(width: 10),
+                  _buildEmojiContainer(
+                    assetPath: 'assets/superhero (4).png',
+                    selected: selectedEmoji == 'assets/superhero (4).png',
+                  ),
+                  const SizedBox(width: 10),
+                  _buildEmojiContainer(
+                    assetPath: 'assets/superhero (5).png',
+                    selected: selectedEmoji == 'assets/superhero (5).png',
+                  ),
+                  const SizedBox(width: 10),
+                  _buildEmojiContainer(
+                    assetPath: 'assets/superhero.png',
+                    selected: selectedEmoji == 'assets/superhero.png',
+                  ),
+                ],
+              ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           Homestatus(databaseRepository: widget.databaseRepository),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           Homeplace(databaseRepository: widget.databaseRepository),
-          const SizedBox(
-            height: 4,
-          ),
+          const SizedBox(height: 4),
         ],
       ),
     );

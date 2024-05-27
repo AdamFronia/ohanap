@@ -39,14 +39,10 @@ class Header extends StatelessWidget {
                 ],
                 border: Border.all(color: const Color(0x1C8FE0F3), width: 5),
               ),
-              child: const Text(
-                'Menü',
-                style: TextStyle(
-                  color: Color(0xFF0C4CA4),
-                  fontSize: 18,
-                  fontFamily: 'SF Pro Rounded',
-                  fontWeight: FontWeight.w400,
-                ),
+              child: const Icon(
+                Icons.menu,
+                color: Color(0xFF0C4CA4),
+                size: 20,
               ),
             ),
           ),

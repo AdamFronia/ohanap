@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/logincenter.dart';
 
-import 'sign_up_screen.dart'; // Importiere den SignUpScreen
+import 'sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
 
-  // Konstruktor
   const LoginScreen({super.key, required this.databaseRepository});
 
   @override
@@ -15,34 +15,43 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late final DatabaseRepository databaseRepository;
   bool _autoLogin = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  String? _validateEmail(String? value) {
+    const emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
+    final regExp = RegExp(emailPattern);
+    if (value == null || value.isEmpty) {
+      return 'Bitte E-mail eingeben';
+    } else if (!regExp.hasMatch(value)) {
+      return 'Bitte eine gültige E-mail Adresse eingeben';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Bitte Passwort eingeben';
+    } else if (value.length < 8) {
+      return 'Passwort muss mindestens 8 Zeichen lang sein';
+    } else if (!RegExp(r'[A-Z]').hasMatch(value)) {
+      return 'Passwort muss mindestens einen Großbuchstaben enthalten';
+    } else if (!RegExp(r'[0-9]').hasMatch(value)) {
+      return 'Passwort muss mindestens eine Zahl enthalten';
+    } else if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+      return 'Passwort muss mindestens ein Sonderzeichen enthalten';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            padding: const EdgeInsets.only(bottom: 508),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/Bildschirmfoto.png',
-                ),
-                fit: BoxFit.cover,
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFF0EECFA),
-                  Color(0x821697D7),
-                ],
-              ),
-            ),
-          ),
+          Logincenter(databaseRepository: widget.databaseRepository),
           Positioned(
             top: 250,
             left: 0,
@@ -53,28 +62,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    '''
-Login
-''',
+                    'Login',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 40),
                   SizedBox(
                     width: 291,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
+                          controller: _emailController,
                           style: const TextStyle(color: Colors.black87),
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(),
-                            labelText: 'E-mail / Telefonnummer',
+                            labelText: 'E-mail ',
                             labelStyle: TextStyle(color: Colors.black),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueAccent),
@@ -83,15 +91,11 @@ Login
                               borderSide: BorderSide(color: Colors.blueAccent),
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Bitte E-mail oder Telefonnummer eingeben';
-                            }
-                            return null;
-                          },
+                          validator: _validateEmail,
                         ),
                         const SizedBox(height: 12),
                         TextFormField(
+                          controller: _passwordController,
                           obscureText: true,
                           style: const TextStyle(color: Colors.black87),
                           decoration: const InputDecoration(
@@ -107,12 +111,7 @@ Login
                               borderSide: BorderSide(color: Colors.blueAccent),
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Bitte Passwort eingeben';
-                            }
-                            return null;
-                          },
+                          validator: _validatePassword,
                         ),
                         const SizedBox(height: 4),
                         GestureDetector(
@@ -120,7 +119,7 @@ Login
                             // Hier die Logik für das Passwort vergessen
                           },
                           child: const Text(
-                            '             Passwort vergessen',
+                            'Passwort vergessen',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 16,
@@ -147,7 +146,7 @@ Login
                           // Form is not valid, show a message
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                                content: Text('Please correct the errors')),
+                                content: Text('Bitte Fehler korrigieren')),
                           );
                         }
                       },
@@ -177,9 +176,7 @@ Login
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 1,
-                  ),
+                  const SizedBox(height: 1),
                   SizedBox(
                     width: 291,
                     child: Column(
@@ -249,9 +246,7 @@ Login
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   SizedBox(
                     width: 232,
                     height: 53,
@@ -296,9 +291,7 @@ Login
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   const Text(
                     'Neuer Benutzer? Hier starten!',
                     style: TextStyle(
@@ -308,17 +301,16 @@ Login
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SignUpScreen(
-                                  databaseRepository: widget.databaseRepository,
-                                )),
+                          builder: (context) => SignUpScreen(
+                            databaseRepository: widget.databaseRepository,
+                          ),
+                        ),
                       );
                     },
                     child: Container(
