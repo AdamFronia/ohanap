@@ -19,16 +19,6 @@ class MenueausloggenScreen extends StatelessWidget {
           children: [
             Ohanabutton(
                 databaseRepository: databaseRepository,
-                text: "Ausloggen",
-                destination:
-                    MenueScreen(databaseRepository: databaseRepository)),
-            Ohanabutton(
-                databaseRepository: databaseRepository,
-                text: "und",
-                destination:
-                    MenueScreen(databaseRepository: databaseRepository)),
-            Ohanabutton(
-                databaseRepository: databaseRepository,
                 text: "Account",
                 destination:
                     MenueScreen(databaseRepository: databaseRepository)),

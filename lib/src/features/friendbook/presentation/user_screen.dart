@@ -14,44 +14,56 @@ class UserScreen extends StatelessWidget {
   // Methoden
   @override
   Widget build(BuildContext context) {
-    final List<Profile> allProfiles = databaseRepository.getAllProfiles();
-
     return TemplateScreen(
       databaseRepository: databaseRepository,
-      content: ListView.separated(
-        separatorBuilder: (context, index) {
-          return const Divider();
-        },
-        shrinkWrap: true,
-        itemCount: allProfiles.length,
-        itemBuilder: (context, index) {
-          final currentProfile = allProfiles[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                SizedBox(
-                  height: 30,
-                  width: 30,
-                  child: Image.network(
-                    currentProfile.profilePicUrl,
+      content: FutureBuilder<List<Profile>>(
+        future: databaseRepository.getAllProfiles(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Icon(Icons.error));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No profiles found'));
+          } else {
+            final allProfiles = snapshot.data!;
+            return ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Divider();
+              },
+              shrinkWrap: true,
+              itemCount: allProfiles.length,
+              itemBuilder: (context, index) {
+                final currentProfile = allProfiles[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 30,
+                        width: 30,
+                        child: Image.network(
+                          currentProfile.profilePicUrl,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        currentProfile.name,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      const CustomIconButton(icon: Icons.add),
+                      const SizedBox(width: 10),
+                      const CustomIconButton(icon: Icons.visibility),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  currentProfile.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Spacer(), // Fügt Raum zwischen "User" und den neuen Buttons hinzu
-                const CustomIconButton(icon: Icons.add), // "+" Button
-                const SizedBox(width: 10),
-                const CustomIconButton(icon: Icons.visibility), // "Auge" Button
-              ],
-            ),
-          );
+                );
+              },
+            );
+          }
         },
       ),
     );

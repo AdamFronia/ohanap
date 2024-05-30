@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 
 class Homestatus extends StatelessWidget {
-  const Homestatus({super.key, required DatabaseRepository databaseRepository});
+  const Homestatus({
+    super.key,
+    required this.databaseRepository,
+  });
+  final DatabaseRepository databaseRepository;
 
   @override
   Widget build(BuildContext context) {

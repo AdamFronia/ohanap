@@ -13,7 +13,7 @@ class MockDatabaseRepository implements DatabaseRepository {
             "https://ca.slack-edge.com/T044YC3MSLF-U0682A3SDAN-fe6928565c03-72",
         name: "Adam",
         readme: "hi bin adam",
-        relationShip: "verheiratet",
+        relationShip: "",
         city: "Berlin",
         hobby: "hobby",
         holiday: "holiday",
@@ -26,7 +26,14 @@ class MockDatabaseRepository implements DatabaseRepository {
         likeSports: false,
         likesReading: true,
         aboutMe: "ueber mich blablabalbalblab",
-        dataList: _createDataList()),
+        dataList: _createDataList(),
+        tier: "hund",
+        getraenke: 'saft',
+        musik: 'techno',
+        essen: 'burger',
+        goodies: 'flip',
+        funnys: 'witzig',
+        futures: 'future'),
     Profile(
         profilePicUrl:
             "https://ca.slack-edge.com/T044YC3MSLF-U04S160GVMH-353316879748-72",
@@ -45,7 +52,14 @@ class MockDatabaseRepository implements DatabaseRepository {
         likeSports: false,
         likesReading: true,
         aboutMe: "ueber mich blablabalbalblab",
-        dataList: _createDataList()),
+        dataList: _createDataList(),
+        getraenke: "saft",
+        tier: "hund",
+        musik: 'techno',
+        essen: 'burger',
+        goodies: 'flip',
+        funnys: 'witzig',
+        futures: 'future'),
     Profile(
         profilePicUrl:
             "https://ca.slack-edge.com/T044YC3MSLF-U05GXAU2DH6-75f1f34f2c6f-192",
@@ -64,11 +78,19 @@ class MockDatabaseRepository implements DatabaseRepository {
         likeSports: false,
         likesReading: true,
         aboutMe: "ueber mich blablabalbalblab",
-        dataList: _createDataList()),
+        dataList: _createDataList(),
+        getraenke: "saft",
+        tier: "hund",
+        musik: 'techno',
+        essen: 'burger',
+        goodies: 'flip',
+        funnys: 'witzig',
+        futures: 'future'),
   ];
 
   @override
-  List<Profile> getAllProfiles() {
+  Future<List<Profile>> getAllProfiles() async {
+    await Future.delayed(const Duration(seconds: 3));
     return profileList;
   }
 }

@@ -32,102 +32,124 @@ class _FavosState extends State<Favos> {
           )
         ],
       ),
-      child: Stack(
-        children: [
-          Positioned(
-            right: 80,
-            top: 10,
-            child: Image.asset(
-              'assets/love.png',
-              width: 50,
-              height: 50,
-            ),
-          ),
-          const Positioned(
-            left: 20,
-            bottom: 220,
-            child: SizedBox(
-              width: 140,
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Essen',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'SF Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+      child: FutureBuilder(
+        future: widget.databaseRepository.getAllProfiles(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData &&
+              snapshot.connectionState == ConnectionState.done) {
+            // FALL: Future ist komplett und hat Daten!
+            return Stack(
+              children: [
+                Positioned(
+                  right: 80,
+                  top: 10,
+                  child: Image.asset(
+                    'assets/love.png',
+                    width: 50,
+                    height: 50,
                   ),
                 ),
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 20,
-            bottom: 160,
-            child: SizedBox(
-              width: 140,
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Getränk',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'SF Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 20,
-            bottom: 100,
-            child: SizedBox(
-              width: 140,
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Musik',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'SF Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                Positioned(
+                  left: 20,
+                  bottom: 220,
+                  child: SizedBox(
+                    width: 140,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Essen',
+                        hintText: snapshot.data![0].essen,
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'SF Pro',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 20,
-            bottom: 40,
-            child: SizedBox(
-              width: 140,
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Tier',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'SF Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                Positioned(
+                  left: 20,
+                  bottom: 160,
+                  child: SizedBox(
+                    width: 140,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Getränk',
+                        hintText: snapshot.data![0].getraenke,
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'SF Pro',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-        ],
+                Positioned(
+                  left: 20,
+                  bottom: 100,
+                  child: SizedBox(
+                    width: 140,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Musik',
+                        hintText: snapshot.data![0].musik,
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'SF Pro',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 20,
+                  bottom: 40,
+                  child: SizedBox(
+                    width: 140,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Tier',
+                        hintText: snapshot.data![0].tier,
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'SF Pro',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          } else if (snapshot.connectionState != ConnectionState.done) {
+            // FALL: Sind noch im Ladezustand
+            return const Center(
+              child: SizedBox(
+                  height: 20, width: 20, child: CircularProgressIndicator()),
+            );
+          } else {
+            // FALL: Es gab nen Fehler
+            return const Icon(Icons.error);
+          }
+        },
       ),
     );
   }

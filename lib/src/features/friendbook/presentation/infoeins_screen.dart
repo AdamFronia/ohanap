@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/personal_container.dart';
+import 'package:ohanap/src/features/friendbook/presentation/widgets/personal_container.dart';
 
 class InfoeinsScreen extends StatelessWidget {
   final DatabaseRepository databaseRepository;
@@ -43,7 +43,7 @@ class InfoeinsScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 1),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: const Divider(
@@ -51,7 +51,7 @@ class InfoeinsScreen extends StatelessWidget {
               thickness: 1,
             ),
           ),
-          const SizedBox(height: 3),
+          const SizedBox(height: 1),
           const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -70,7 +70,7 @@ class InfoeinsScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 1),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: const Divider(
@@ -78,7 +78,7 @@ class InfoeinsScreen extends StatelessWidget {
               thickness: 1,
             ),
           ),
-          const SizedBox(height: 3),
+          const SizedBox(height: 2),
           const PersonalContainer(
             assetPath: 'assets/astronaut.png',
             text: "Schlafenszeit",

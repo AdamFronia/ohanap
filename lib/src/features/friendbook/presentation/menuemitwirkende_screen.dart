@@ -20,13 +20,41 @@ class MenuemitwirkendeScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/babe.jpg',
+                    'assets/babee.png',
                     width: 50,
                     height: 50,
                   ),
                   const SizedBox(width: 10),
                   const Text(
                     'Ramona T.\nFamily Management \nErzieherin',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // "Auge" Button
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Divider(
+                color: Color.fromARGB(255, 0, 0, 0),
+                thickness: 1,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/Ralf.png',
+                    width: 55,
+                    height: 55,
+                  ),
+                  const SizedBox(width: 5),
+                  const Text(
+                    'Ralf Ingo Magerl\nSoftware Entwickler \nFullstack',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

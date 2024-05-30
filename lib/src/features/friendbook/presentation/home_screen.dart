@@ -25,9 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
       content: Column(
         children: [
           Homecenter(databaseRepository: widget.databaseRepository),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           Homecenterreadme(databaseRepository: widget.databaseRepository),
-          const SizedBox(height: 20),
+          const SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
@@ -67,11 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 5),
           Homestatus(databaseRepository: widget.databaseRepository),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Homeplace(databaseRepository: widget.databaseRepository),
-          const SizedBox(height: 4),
+          const SizedBox(height: 7),
         ],
       ),
     );

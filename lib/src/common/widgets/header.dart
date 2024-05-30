@@ -6,6 +6,7 @@ import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart'
 
 class Header extends StatelessWidget {
   final DatabaseRepository databaseRepository;
+
   const Header({super.key, required this.databaseRepository});
 
   @override
@@ -41,7 +42,7 @@ class Header extends StatelessWidget {
               ),
               child: const Icon(
                 Icons.menu,
-                color: Color(0xFF0C4CA4),
+                color: Color.fromARGB(255, 0, 101, 202),
                 size: 20,
               ),
             ),
@@ -62,13 +63,6 @@ class Header extends StatelessWidget {
             },
             child: const CustomIconButton(icon: Icons.mail_outlined),
           ),
-        ),
-        const Spacer(),
-        const CustomIconButton(
-          icon: Icons.close,
-          // onPressed: () {
-          //   SystemNavigator.pop(); // Beenden der App
-          // },
         ),
       ],
     );

@@ -39,7 +39,7 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: const Divider(
@@ -47,7 +47,7 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
               thickness: 1,
             ),
           ),
-          const SizedBox(height: 3),
+          const SizedBox(height: 2),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(

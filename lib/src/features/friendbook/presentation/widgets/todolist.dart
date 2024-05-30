@@ -29,78 +29,97 @@ class _TodolistState extends State<Todolist> {
           )
         ],
       ),
-      child: Stack(
-        children: [
-          Positioned(
-            right: 0,
-            left: 0,
-            top: 0,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(50),
-                topRight: Radius.circular(50),
-              ),
-              child: SizedBox(
-                height: 300,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: widget.databaseRepository
-                        .getAllProfiles()[0]
-                        .dataList
-                        .length,
-                    itemBuilder: (context, index) {
-                      final String? title = widget.databaseRepository
-                          .getAllProfiles()[0]
-                          .dataList[index]["title"];
-                      return CheckboxListTile(
-                        value: widget.databaseRepository
-                            .getAllProfiles()[0]
-                            .dataList[index]["isChecked"],
-                        onChanged: (value) {
-                          setState(() {
-                            widget.databaseRepository
-                                .getAllProfiles()[0]
-                                .dataList[index]["isChecked"] = value!;
-                          });
+      child: Stack(children: [
+        Positioned(
+          right: 0,
+          left: 0,
+          top: 0,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
+            ),
+            child: SizedBox(
+              height: 300,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: FutureBuilder(
+                  future: widget.databaseRepository.getAllProfiles(),
+                  builder: (context, snapshot) {
+                    /*
+                1. Uncompleted (Ladend)
+                2. Completed with data (Fertig)
+                3. Completed with error (Fehler)
+                 */
+                    if (snapshot.hasData &&
+                        snapshot.connectionState == ConnectionState.done) {
+                      // FALL: Future ist komplett und hat Daten!
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data![0].dataList.length,
+                        itemBuilder: (context, index) {
+                          final String? title =
+                              snapshot.data![0].dataList[index]["title"];
+                          return CheckboxListTile(
+                            value: snapshot.data![0].dataList[index]
+                                ["isChecked"],
+                            onChanged: (value) {
+                              setState(() {
+                                snapshot.data![0].dataList[index]["isChecked"] =
+                                    value!;
+                              });
+                            },
+                            title: title != null
+                                ? Text(
+                                    title,
+                                    style:
+                                        const TextStyle(color: Colors.black87),
+                                  )
+                                : null,
+                          );
                         },
-                        title: title != null
-                            ? Text(
-                                title,
-                                style: const TextStyle(color: Colors.black87),
-                              )
-                            : null,
                       );
-                    },
-                  ),
+                    } else if (snapshot.connectionState !=
+                        ConnectionState.done) {
+                      // FALL: Sind noch im Ladezustand
+                      return const Center(
+                        child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator()),
+                      );
+                    } else {
+                      // FALL: Es gab nen Fehler
+                      return const Icon(Icons.error);
+                    }
+                  },
                 ),
               ),
             ),
           ),
-          Positioned(
-            right: 0,
-            left: 0,
-            top: 0,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(50),
-                topRight: Radius.circular(50),
-              ),
-              child: Container(
-                width: 150,
+        ),
+        Positioned(
+          right: 0,
+          left: 0,
+          top: 0,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
+            ),
+            child: Container(
+              width: 150,
+              height: 50,
+              color: const Color.fromARGB(255, 247, 188, 38),
+              child: Image.asset(
+                'assets/checklist.png',
+                width: 50,
                 height: 50,
-                color: const Color.fromARGB(255, 247, 188, 38),
-                child: Image.asset(
-                  'assets/checklist.png',
-                  width: 50,
-                  height: 50,
-                ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }

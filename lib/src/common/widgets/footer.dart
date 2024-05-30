@@ -19,8 +19,9 @@ class _FooterState extends State<Footer> {
   bool isStarSelected = false;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+    return Container(
+      height: 100,
+      color: const Color.fromARGB(255, 14, 227, 255),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -44,14 +45,15 @@ class _FooterState extends State<Footer> {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
-                    offset: const Offset(0, 3),
-                    blurRadius: 6,
+                    offset: const Offset(0, 0),
+                    blurRadius: 14,
                   ),
                 ],
               ),
               child: Icon(
                 Icons.star,
-                color: isStarSelected ? Colors.black : null,
+                color:
+                    isStarSelected ? const Color.fromARGB(255, 0, 0, 0) : null,
                 size: 20,
               ),
             ),
@@ -123,14 +125,14 @@ class _FooterState extends State<Footer> {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 78, 171, 253),
+          color: const Color(0xFFA1EFFD),
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.25),
-              offset: const Offset(4, 0),
+              color: const Color.fromARGB(255, 0, 101, 202).withOpacity(0.35),
+              offset: const Offset(4, 4),
               blurRadius: 4,
-              spreadRadius: 0,
+              spreadRadius: 1,
             ),
           ],
         ),

@@ -10,6 +10,14 @@ class Aboutme extends StatefulWidget {
 }
 
 class _AboutmeState extends State<Aboutme> {
+  late DatabaseRepository databaseRepository;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    databaseRepository = widget.databaseRepository;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,25 +49,46 @@ class _AboutmeState extends State<Aboutme> {
               height: 50,
             ),
           ),
-          const Positioned(
+          Positioned(
             left: 20,
             bottom: 25,
             child: SizedBox(
               width: 210,
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Über mich',
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontFamily: 'SF Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                ),
-              ),
+              child: FutureBuilder(
+                  future: databaseRepository.getAllProfiles(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData &&
+                        snapshot.connectionState == ConnectionState.done) {
+                      // FALL: Future ist komplett und hat Daten!
+                      return TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Über mich',
+                          hintText: snapshot.data![0].aboutMe,
+                          labelStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontFamily: 'SF Pro',
+                            fontWeight: FontWeight.w400,
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
+                        ),
+                      );
+                    } else if (snapshot.connectionState !=
+                        ConnectionState.done) {
+                      // FALL: Sind noch im Ladezustand
+                      return const Center(
+                        child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator()),
+                      );
+                    } else {
+                      // FALL: Es gab nen Fehler
+                      return const Icon(Icons.error);
+                    }
+                  }),
             ),
           ),
         ],

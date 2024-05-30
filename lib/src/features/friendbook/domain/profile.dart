@@ -2,6 +2,13 @@ import 'dart:ui';
 
 class Profile {
   // Attribute
+  String futures;
+  String funnys;
+  String goodies;
+  String essen;
+  String getraenke;
+  String musik;
+  String tier;
   String profilePicUrl;
   String name;
   String readme;
@@ -24,6 +31,9 @@ class Profile {
   String? futuretime;
   // Konstruktor
   Profile({
+    required this.futures,
+    required this.funnys,
+    required this.goodies,
     required this.profilePicUrl,
     required this.name,
     required this.readme,
@@ -41,6 +51,10 @@ class Profile {
     required this.likesReading,
     required this.aboutMe,
     required this.dataList,
+    required this.tier,
+    required this.getraenke,
+    required this.musik,
+    required this.essen,
     this.thatsMyStrengths,
     this.funnyFact,
     this.futuretime,

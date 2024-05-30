@@ -21,6 +21,8 @@ class _TemplateScreenState extends State<TemplateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar:
+          Footer(databaseRepository: widget.databaseRepository),
       body: SafeArea(
         child: Stack(
           children: [
@@ -42,7 +44,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
                       databaseRepository: widget.databaseRepository,
                     ),
                     const SizedBox(
-                      height: 4,
+                      height: 2,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -52,7 +54,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 4,
                     ),
                     // ab hier individuell
                     widget.content,
@@ -65,9 +67,8 @@ class _TemplateScreenState extends State<TemplateScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 4,
+                      height: 2,
                     ),
-                    Footer(databaseRepository: widget.databaseRepository),
                   ],
                 ),
               ),
