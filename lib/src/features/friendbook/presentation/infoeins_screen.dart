@@ -3,89 +3,111 @@ import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/personal_container.dart';
 
-class InfoeinsScreen extends StatelessWidget {
+class InfoeinsScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
   const InfoeinsScreen({super.key, required this.databaseRepository});
 
   @override
+  State<InfoeinsScreen> createState() => _InfoeinsScreenState();
+}
+
+class _InfoeinsScreenState extends State<InfoeinsScreen> {
+  @override
   Widget build(BuildContext context) {
     return TemplateScreen(
-      databaseRepository: databaseRepository,
-      content: Column(
-        children: [
-          const SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                PersonalContainer(
-                  assetPath: 'assets/mental-health.png',
-                  text: "Lieblingshobby",
-                  color: Colors.blue,
-                ),
-                SizedBox(width: 5),
-                PersonalContainer(
-                  assetPath: 'assets/summer-holidays.png',
-                  text: "LiebstUrlaubsort",
-                  color: Colors.orange,
-                ),
-                SizedBox(width: 5),
-                PersonalContainer(
-                  assetPath: 'assets/businessman.png',
-                  text: "Beruf",
-                  color: Colors.purple,
-                ),
-                SizedBox(width: 5),
-                PersonalContainer(
-                  assetPath: 'assets/astronaut.png',
-                  text: "Wunschberuf",
-                  color: Colors.pink,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 1),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Divider(
-              color: Color.fromARGB(255, 0, 0, 0),
-              thickness: 1,
-            ),
-          ),
-          const SizedBox(height: 1),
-          const SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                PersonalContainer(
-                  assetPath: 'assets/astronaut.png',
-                  text: "Lieblingsfarbe",
-                  color: Colors.cyanAccent,
-                ),
-                SizedBox(width: 5),
-                PersonalContainer(
-                  assetPath: 'assets/birthday-cake.png',
-                  text: "Geburtsdatum",
-                  color: Colors.yellow,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 1),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Divider(
-              color: Color.fromARGB(255, 0, 0, 0),
-              thickness: 1,
-            ),
-          ),
-          const SizedBox(height: 2),
-          const PersonalContainer(
-            assetPath: 'assets/astronaut.png',
-            text: "Schlafenszeit",
-            color: Colors.deepPurple,
-          ),
-        ],
-      ),
-    );
+        databaseRepository: widget.databaseRepository,
+        content: FutureBuilder(
+          future: widget.databaseRepository.getAllProfiles(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData &&
+                snapshot.connectionState == ConnectionState.done) {
+              // FALL: Future ist komplett und hat Daten!
+              return Column(
+                children: [
+                  const SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        PersonalContainer(
+                          assetPath: 'assets/mental-health.png',
+                          text: "Lieblingshobby",
+                          color: Colors.blue,
+                        ),
+                        SizedBox(width: 5),
+                        PersonalContainer(
+                          assetPath: 'assets/summer-holidays.png',
+                          text: "LiebstUrlaubsort",
+                          color: Colors.orange,
+                        ),
+                        SizedBox(width: 5),
+                        PersonalContainer(
+                          assetPath: 'assets/businessman.png',
+                          text: "Beruf",
+                          color: Colors.purple,
+                        ),
+                        SizedBox(width: 5),
+                        PersonalContainer(
+                          assetPath: 'assets/astronaut.png',
+                          text: "Wunschberuf",
+                          color: Colors.pink,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 1),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 1),
+                  const SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        PersonalContainer(
+                          assetPath: 'assets/astronaut.png',
+                          text: "Lieblingsfarbe",
+                          color: Colors.cyanAccent,
+                        ),
+                        SizedBox(width: 5),
+                        PersonalContainer(
+                          assetPath: 'assets/birthday-cake.png',
+                          text: "Geburtsdatum",
+                          color: Colors.yellow,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 1),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Divider(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      thickness: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  const PersonalContainer(
+                    assetPath: 'assets/astronaut.png',
+                    text: "Schlafenszeit",
+                    color: Colors.deepPurple,
+                  ),
+                ],
+              );
+            } else if (snapshot.connectionState != ConnectionState.done) {
+              // FALL: Sind noch im Ladezustand
+              return const Center(
+                child: SizedBox(
+                    height: 20, width: 20, child: CircularProgressIndicator()),
+              );
+            } else {
+              // FALL: Es gab nen Fehler
+              return const Icon(Icons.error);
+            }
+          },
+        ));
   }
 }

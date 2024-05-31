@@ -30,6 +30,7 @@ class Profile {
   String? funnyFact;
   String? futuretime;
   // Konstruktor
+
   Profile({
     required this.futures,
     required this.funnys,
