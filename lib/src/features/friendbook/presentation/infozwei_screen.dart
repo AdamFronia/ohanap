@@ -7,18 +7,38 @@ import 'package:ohanap/src/features/friendbook/presentation/widgets/funnys.dart'
 import 'package:ohanap/src/features/friendbook/presentation/widgets/futures.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/goodys.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/todolist.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InfozweiScreen extends StatefulWidget {
-  // Attribute
   final DatabaseRepository databaseRepository;
 
-  // Konstruktor
   const InfozweiScreen({super.key, required this.databaseRepository});
+
   @override
   State<InfozweiScreen> createState() => _InfozweiScreenState();
 }
 
 class _InfozweiScreenState extends State<InfozweiScreen> {
+  late String savedData = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      savedData = prefs.getString('savedData') ?? '';
+    });
+  }
+
+  Future<void> _saveData(String key, String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(key, value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
@@ -35,7 +55,7 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
                 const SizedBox(width: 5),
                 Favos(
                   databaseRepository: widget.databaseRepository,
-                )
+                ),
               ],
             ),
           ),

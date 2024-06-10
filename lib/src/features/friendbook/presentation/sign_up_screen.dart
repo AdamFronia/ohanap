@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
@@ -14,11 +15,37 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final bool _termsAccepted = false;
+  bool _termsAccepted = false;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSignUpData();
+  }
+
+  Future<void> _loadSignUpData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _emailController.text = prefs.getString('signUpEmail') ?? '';
+      _passwordController.text = prefs.getString('signUpPassword') ?? '';
+      _confirmPasswordController.text =
+          prefs.getString('confirmSignUpPassword') ?? '';
+      _termsAccepted = prefs.getBool('termsAccepted') ?? false;
+    });
+  }
+
+  Future<void> _saveSignUpData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('signUpEmail', _emailController.text);
+    await prefs.setString('signUpPassword', _passwordController.text);
+    await prefs.setString(
+        'confirmSignUpPassword', _confirmPasswordController.text);
+    await prefs.setBool('termsAccepted', _termsAccepted);
+  }
 
   String? _validateEmail(String? value) {
     const emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
