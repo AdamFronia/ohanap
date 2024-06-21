@@ -63,27 +63,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           assetPath: 'assets/superhero (1).png',
                           selected: selectedEmoji == 'assets/superhero (1).png',
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 8),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (2).png',
                           selected: selectedEmoji == 'assets/superhero (2).png',
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 8),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (3).png',
                           selected: selectedEmoji == 'assets/superhero (3).png',
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 8),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (4).png',
                           selected: selectedEmoji == 'assets/superhero (4).png',
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 8),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero (5).png',
                           selected: selectedEmoji == 'assets/superhero (5).png',
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 8),
                         _buildEmojiContainer(
                           assetPath: 'assets/superhero.png',
                           selected: selectedEmoji == 'assets/superhero.png',
