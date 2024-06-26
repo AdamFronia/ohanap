@@ -20,7 +20,7 @@ class _InfoeinsScreenState extends State<InfoeinsScreen> {
   }
 
   Future<void> _loadData() async {
-    final prefs = await SharedPreferences.getInstance();
+    await SharedPreferences.getInstance();
   }
 
   Future<void> _saveData(String key, String value) async {

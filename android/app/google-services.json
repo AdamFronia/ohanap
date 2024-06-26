@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "845867170802",
+    "project_id": "ohanap-b60eb",
+    "storage_bucket": "ohanap-b60eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845867170802:android:6e747fd68ac0dfa13e096b",
+        "android_client_info": {
+          "package_name": "com.example.ohanap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwt45kUP3itnHJJPDHmNCoNntlKG_JpsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
