@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 
 class MessageschreibenScreen extends StatelessWidget {
   // Attribute
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   // Konstruktor
-  const MessageschreibenScreen({super.key, required this.databaseRepository});
+  const MessageschreibenScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
         databaseRepository: databaseRepository,
+        authRepository: authRepository,
         content: Column(
           children: [
             Container(

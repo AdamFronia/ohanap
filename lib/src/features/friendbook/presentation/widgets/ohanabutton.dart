@@ -4,14 +4,13 @@ import 'package:ohanap/src/data/database_repository.dart';
 class Ohanabutton extends StatelessWidget {
   final DatabaseRepository databaseRepository;
   final String text;
-  final Widget destination;
+  final Function()? onTap;
 
-  const Ohanabutton({
-    super.key,
-    required this.databaseRepository,
-    required this.text,
-    required this.destination,
-  });
+  const Ohanabutton(
+      {super.key,
+      required this.databaseRepository,
+      required this.text,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +41,7 @@ class Ohanabutton extends StatelessWidget {
         ],
       ),
       child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => destination),
-          );
-        },
+        onTap: onTap,
         child: Center(
           child: Text(
             text,

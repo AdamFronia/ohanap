@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.dart';
@@ -7,26 +8,46 @@ import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.
 class MenueeinstellungenScreen extends StatelessWidget {
   // Attribute
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   // Konstruktor
-  const MenueeinstellungenScreen({super.key, required this.databaseRepository});
+  const MenueeinstellungenScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
         databaseRepository: databaseRepository,
+        authRepository: authRepository,
         content: Column(
           children: [
             Ohanabutton(
-                databaseRepository: databaseRepository,
-                text: "Einstellungen",
-                destination:
-                    MenueScreen(databaseRepository: databaseRepository)),
+              databaseRepository: databaseRepository,
+              text: "Einstellungen",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenueScreen(
+                              databaseRepository: databaseRepository,
+                              authRepository: authRepository,
+                            )));
+              },
+            ),
             Ohanabutton(
-                databaseRepository: databaseRepository,
-                text: "Hintergrund",
-                destination:
-                    MenueScreen(databaseRepository: databaseRepository)),
+              databaseRepository: databaseRepository,
+              text: "Hintergrund",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenueScreen(
+                              databaseRepository: databaseRepository,
+                              authRepository: authRepository,
+                            )));
+              },
+            ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: const Divider(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/Customiconbutton.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.dart';
@@ -12,21 +13,33 @@ buildMenuButton(BuildContext context, String s) {
 class MenuesteckbriefeScreen extends StatelessWidget {
   // Attribute
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   // Konstruktor
-  const MenuesteckbriefeScreen({super.key, required this.databaseRepository});
+  const MenuesteckbriefeScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
         databaseRepository: databaseRepository,
+        authRepository: authRepository,
         content: Column(
           children: [
             Ohanabutton(
-                databaseRepository: databaseRepository,
-                text: "Steckbriefe",
-                destination:
-                    MenueScreen(databaseRepository: databaseRepository)),
+              databaseRepository: databaseRepository,
+              text: "Steckbriefe",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenueScreen(
+                              databaseRepository: databaseRepository,
+                              authRepository: authRepository,
+                            )));
+              },
+            ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: const Divider(

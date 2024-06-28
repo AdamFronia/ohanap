@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/homecenter.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/homecenterreadme.dart';
@@ -9,7 +10,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
-  const HomeScreen({super.key, required this.databaseRepository});
+  final AuthRepository authRepository;
+
+  const HomeScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -41,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return TemplateScreen(
       databaseRepository: widget.databaseRepository,
+      authRepository: widget.authRepository,
       content: FutureBuilder(
         future: widget.databaseRepository.getAllProfiles(),
         builder: (context, snapshot) {

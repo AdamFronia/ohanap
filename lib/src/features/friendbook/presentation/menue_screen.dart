@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menueadmins_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menueausloggen_screen.dart';
@@ -17,81 +18,176 @@ import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.
 class MenueScreen extends StatelessWidget {
   // Attribute
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   // Konstruktor
-  const MenueScreen({super.key, required this.databaseRepository});
+  const MenueScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
       databaseRepository: databaseRepository,
+      authRepository: authRepository,
       content: Column(
         children: [
           Ohanabutton(
-            databaseRepository: databaseRepository,
-            text: "Suche",
-            destination:
-                MenuesucheScreen(databaseRepository: databaseRepository),
-          ),
+              databaseRepository: databaseRepository,
+              text: "Suche",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenuesucheScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ),
+                );
+              }),
           Ohanabutton(
-            databaseRepository: databaseRepository,
-            text: "Steckbriefe",
-            destination:
-                MenuesteckbriefeScreen(databaseRepository: databaseRepository),
-          ),
+              databaseRepository: databaseRepository,
+              text: "Steckbriefe",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MenuesteckbriefeScreen(
+                        databaseRepository: databaseRepository,
+                        authRepository: authRepository,
+                      ),
+                    ));
+              }),
           Ohanabutton(
-            databaseRepository: databaseRepository,
-            text: "Gallerie",
-            destination:
-                MenuegallerieScreen(databaseRepository: databaseRepository),
-          ),
+              databaseRepository: databaseRepository,
+              text: "Gallerie",
+              onTap: () {
+                Ohanabutton(
+                    databaseRepository: databaseRepository,
+                    text: "Steckbriefe",
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MenuegallerieScreen(
+                              databaseRepository: databaseRepository,
+                              authRepository: authRepository,
+                            ),
+                          ));
+                    });
+              }),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "Einstellungen",
-            destination: MenueeinstellungenScreen(
-                databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenueeinstellungenScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "Blockliste",
-            destination:
-                MenueblocklisteScreen(databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenueblocklisteScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "QR-Code",
-            destination:
-                MenueqrcodeScreen(databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenueqrcodeScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "Mitwirkende",
-            destination:
-                MenuemitwirkendeScreen(databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenuemitwirkendeScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "Admins",
-            destination:
-                MenueadminsScreen(databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenueadminsScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "Kontaktinfos",
-            destination:
-                MenuekontaktinfosScreen(databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenuekontaktinfosScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "Impressum",
-            destination:
-                MenueimpressumScreen(databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenueimpressumScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
           Ohanabutton(
             databaseRepository: databaseRepository,
             text: "Ausloggen",
-            destination:
-                MenueausloggenScreen(databaseRepository: databaseRepository),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenueausloggenScreen(
+                      databaseRepository: databaseRepository,
+                      authRepository: authRepository,
+                    ),
+                  ));
+            },
           ),
         ],
       ),

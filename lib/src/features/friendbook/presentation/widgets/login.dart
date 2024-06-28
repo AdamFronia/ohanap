@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/sign_up_screen.dart';
 
 class Login extends StatefulWidget {
   final DatabaseRepository databaseRepository;
+  final AuthRepository authRepository;
 
-  const Login({super.key, required this.databaseRepository});
+  const Login(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   State<Login> createState() => _LoginState();
@@ -125,10 +130,22 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState?.validate() ?? false) {
-                          // Formular ist gültig, Aktion durchführen
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Login erfolgreich')),
-                          );
+                          try {
+                            widget.authRepository.loginWithEmailAndPassword(
+                                _emailController.text,
+                                _passwordController.text);
+                            // Formular ist gültig, Aktion durchführen
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Login erfolgreich')),
+                            );
+                          } catch (e) {
+                            // Formular ist gültig, Aktion durchführen
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Login fehlgeschlagen')),
+                            );
+                          }
                         } else {
                           // Formular ist nicht gültig, Nachricht anzeigen
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -296,6 +313,7 @@ class _LoginState extends State<Login> {
                         MaterialPageRoute(
                           builder: (context) => SignUpScreen(
                             databaseRepository: widget.databaseRepository,
+                            authRepository: widget.authRepository,
                           ),
                         ),
                       );

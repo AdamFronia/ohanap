@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/personal_container.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InfoeinsScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
-  const InfoeinsScreen({super.key, required this.databaseRepository});
+  final AuthRepository authRepository;
+
+  const InfoeinsScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   State<InfoeinsScreen> createState() => _InfoeinsScreenState();
@@ -32,6 +38,7 @@ class _InfoeinsScreenState extends State<InfoeinsScreen> {
   Widget build(BuildContext context) {
     return TemplateScreen(
       databaseRepository: widget.databaseRepository,
+      authRepository: widget.authRepository,
       content: FutureBuilder(
         future: widget.databaseRepository.getAllProfiles(),
         builder: (context, snapshot) {

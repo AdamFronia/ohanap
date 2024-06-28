@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
@@ -7,7 +8,11 @@ import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
 
 class Footer extends StatefulWidget {
   final DatabaseRepository databaseRepository;
-  const Footer({super.key, required this.databaseRepository});
+  final AuthRepository authRepository;
+  const Footer(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   State<Footer> createState() => _FooterState();
@@ -76,6 +81,7 @@ class _FooterState extends State<Footer> {
             MaterialPageRoute(
                 builder: (context) => InfozweiScreen(
                       databaseRepository: widget.databaseRepository,
+                      authRepository: widget.authRepository,
                     )),
           );
         };
@@ -89,6 +95,7 @@ class _FooterState extends State<Footer> {
             MaterialPageRoute(
                 builder: (context) => InfoeinsScreen(
                       databaseRepository: widget.databaseRepository,
+                      authRepository: widget.authRepository,
                     )),
           );
         };
@@ -102,6 +109,7 @@ class _FooterState extends State<Footer> {
             MaterialPageRoute(
                 builder: (context) => HomeScreen(
                       databaseRepository: widget.databaseRepository,
+                      authRepository: widget.authRepository,
                     )),
           );
         };
@@ -114,6 +122,7 @@ class _FooterState extends State<Footer> {
             MaterialPageRoute(
                 builder: (context) => UserScreen(
                       databaseRepository: widget.databaseRepository,
+                      authRepository: widget.authRepository,
                     )),
           );
         };

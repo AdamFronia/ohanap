@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart';
 
 class MessageausgangScreen extends StatelessWidget {
   // Attribute
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   // Konstruktor
-  const MessageausgangScreen({super.key, required this.databaseRepository});
+  const MessageausgangScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
         databaseRepository: databaseRepository,
+        authRepository: authRepository,
         content: Column(
           children: [
             Container(
@@ -50,6 +55,7 @@ class MessageausgangScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => MessageScreen(
                         databaseRepository: databaseRepository,
+                        authRepository: authRepository,
                       ),
                     ),
                   );

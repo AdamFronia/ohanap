@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
 
 class Signup extends StatefulWidget {
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   const Signup({
     super.key,
     required this.databaseRepository,
+    required this.authRepository,
   });
 
   @override
@@ -191,15 +192,25 @@ class _SignupState extends State<Signup> {
                                 ? () {
                                     if (_formKey.currentState?.validate() ??
                                         false) {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => HomeScreen(
-                                            databaseRepository:
-                                                widget.databaseRepository,
-                                          ),
-                                        ),
-                                      );
+                                      try {
+                                        widget.authRepository
+                                            .signUpWithEmailAndPassword(
+                                                _emailController.text,
+                                                _passwordController.text);
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              content: Text(
+                                                  'Erfolgreich registriert')),
+                                        );
+                                      } catch (e) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              content: Text(
+                                                  'Fehler ist aufgetreten')),
+                                        );
+                                      }
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(

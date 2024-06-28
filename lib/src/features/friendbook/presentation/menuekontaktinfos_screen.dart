@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.dart';
@@ -7,21 +8,33 @@ import 'package:ohanap/src/features/friendbook/presentation/widgets/ohanabutton.
 class MenuekontaktinfosScreen extends StatelessWidget {
   // Attribute
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   // Konstruktor
-  const MenuekontaktinfosScreen({super.key, required this.databaseRepository});
+  const MenuekontaktinfosScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
         databaseRepository: databaseRepository,
+        authRepository: authRepository,
         content: Column(
           children: [
             Ohanabutton(
-                databaseRepository: databaseRepository,
-                text: "Kontaktinfos",
-                destination:
-                    MenueScreen(databaseRepository: databaseRepository)),
+              databaseRepository: databaseRepository,
+              text: "Kontaktinfos",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenueScreen(
+                              databaseRepository: databaseRepository,
+                              authRepository: authRepository,
+                            )));
+              },
+            ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: const Divider(
@@ -30,10 +43,18 @@ class MenuekontaktinfosScreen extends StatelessWidget {
               ),
             ),
             Ohanabutton(
-                databaseRepository: databaseRepository,
-                text: "Kontaktinfos",
-                destination:
-                    MenueScreen(databaseRepository: databaseRepository)),
+              databaseRepository: databaseRepository,
+              text: "Kontaktinfos",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenueScreen(
+                              databaseRepository: databaseRepository,
+                              authRepository: authRepository,
+                            )));
+              },
+            ),
           ],
         ));
   }

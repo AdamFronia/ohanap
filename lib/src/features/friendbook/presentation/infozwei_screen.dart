@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/aboutme.dart';
 import 'package:ohanap/src/features/friendbook/presentation/widgets/favos.dart';
@@ -11,8 +12,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class InfozweiScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
+  final AuthRepository authRepository;
 
-  const InfozweiScreen({super.key, required this.databaseRepository});
+  const InfozweiScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   State<InfozweiScreen> createState() => _InfozweiScreenState();
@@ -42,6 +47,7 @@ class _InfozweiScreenState extends State<InfozweiScreen> {
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
+      authRepository: widget.authRepository,
       databaseRepository: widget.databaseRepository,
       content: Column(
         children: [

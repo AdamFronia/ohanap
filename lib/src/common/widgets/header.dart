@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/widgets/Customiconbutton.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/menue_screen.dart';
 import 'package:ohanap/src/features/friendbook/presentation/message_screen.dart';
 
 class Header extends StatelessWidget {
   final DatabaseRepository databaseRepository;
+  final AuthRepository authRepository;
 
-  const Header({super.key, required this.databaseRepository});
+  const Header(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,7 @@ class Header extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => MenueScreen(
                     databaseRepository: databaseRepository,
+                    authRepository: authRepository,
                   ),
                 ),
               );
@@ -57,6 +63,7 @@ class Header extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => MessageScreen(
                     databaseRepository: databaseRepository,
+                    authRepository: authRepository,
                   ),
                 ),
               );

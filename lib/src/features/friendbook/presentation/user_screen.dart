@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/Customiconbutton.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 
 class UserScreen extends StatelessWidget {
   // Attribute
   final DatabaseRepository databaseRepository;
-
+  final AuthRepository authRepository;
   // Konstruktor
-  const UserScreen({super.key, required this.databaseRepository});
+  const UserScreen(
+      {super.key,
+      required this.databaseRepository,
+      required this.authRepository});
 
   // Methoden
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
       databaseRepository: databaseRepository,
+      authRepository: authRepository,
       content: FutureBuilder<List<Profile>>(
         future: databaseRepository.getAllProfiles(),
         builder: (context, snapshot) {
