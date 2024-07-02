@@ -29,8 +29,8 @@ class Profile {
   String? thatsMyStrengths;
   String? funnyFact;
   String? futuretime;
-  // Konstruktor
 
+  // Konstruktor
   Profile({
     required this.futures,
     required this.funnys,
@@ -60,4 +60,68 @@ class Profile {
     this.funnyFact,
     this.futuretime,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      "futures": futures,
+      "funnys": funnys,
+      "goodies": goodies,
+      "essen": essen,
+      "getraenke": getraenke,
+      "musik": musik,
+      "tier": tier,
+      "profilePicUrl": profilePicUrl,
+      "name": name,
+      "readme": readme,
+      "relationShip": relationShip,
+      "city": city,
+      "hobby": hobby,
+      "holiday": holiday,
+      "job": job,
+      "wishJob": wishJob,
+      "color": color.value, // Color als int speichern
+      "birthdate": birthdate,
+      "sleepTime": sleepTime,
+      "hasSiblings": hasSiblings,
+      "likeSports": likeSports,
+      "likesReading": likesReading,
+      "aboutMe": aboutMe,
+      "dataList": dataList,
+      "thatsMyStrengths": thatsMyStrengths,
+      "funnyFact": funnyFact,
+      "futuretime": futuretime,
+    };
+  }
+
+  factory Profile.fromMap(Map<String, dynamic> map) {
+    return Profile(
+      futures: map['futures'],
+      funnys: map['funnys'],
+      goodies: map['goodies'],
+      essen: map['essen'],
+      getraenke: map['getraenke'],
+      musik: map['musik'],
+      tier: map['tier'],
+      profilePicUrl: map['profilePicUrl'],
+      name: map['name'],
+      readme: map['readme'],
+      relationShip: map['relationShip'],
+      city: map['city'],
+      hobby: map['hobby'],
+      holiday: map['holiday'],
+      job: map['job'],
+      wishJob: map['wishJob'],
+      color: Color(map['color']), // Color von int wiederherstellen
+      birthdate: map['birthdate'],
+      sleepTime: map['sleepTime'],
+      hasSiblings: map['hasSiblings'],
+      likeSports: map['likeSports'],
+      likesReading: map['likesReading'],
+      aboutMe: map['aboutMe'],
+      dataList: List<Map<String, dynamic>>.from(map['dataList']),
+      thatsMyStrengths: map['thatsMyStrengths'],
+      funnyFact: map['funnyFact'],
+      futuretime: map['futuretime'],
+    );
+  }
 }
