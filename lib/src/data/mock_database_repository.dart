@@ -106,7 +106,7 @@ List<Map<String, dynamic>> _createDataList() {
     "Ich bin Hilfsbereit",
     "Ich schlafe gerne",
     "Ich Kuschel gerne",
-    "Ich treffe mich gerne mit einen Freunden",
+    "Ich treffe mich gerne mit meinen Freunden",
   ];
   List<Map<String, dynamic>> dataList = [];
   for (int i = 0; i < itemTitles.length; i++) {

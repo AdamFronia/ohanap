@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/features/friendbook/presentation/home_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/infoeins_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/infozwei_screen.dart';
-import 'package:ohanap/src/features/friendbook/presentation/user_screen.dart';
+import 'package:ohanap/src/features/friendbook/presentation/friendbook_screen.dart';
+import 'package:ohanap/src/features/home/presentation/home_screen.dart';
+import 'package:ohanap/src/features/home/presentation/info_screens/about_me_page.dart';
+import 'package:ohanap/src/features/home/presentation/info_screens/info_page.dart';
 
 class Footer extends StatefulWidget {
   final DatabaseRepository databaseRepository;
@@ -79,7 +79,7 @@ class _FooterState extends State<Footer> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => InfozweiScreen(
+                builder: (context) => InfoPage(
                       databaseRepository: widget.databaseRepository,
                       authRepository: widget.authRepository,
                     )),
@@ -93,7 +93,7 @@ class _FooterState extends State<Footer> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => InfoeinsScreen(
+                builder: (context) => AboutMePage(
                       databaseRepository: widget.databaseRepository,
                       authRepository: widget.authRepository,
                     )),
@@ -120,7 +120,7 @@ class _FooterState extends State<Footer> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => UserScreen(
+                builder: (context) => FriendbookScreen(
                       databaseRepository: widget.databaseRepository,
                       authRepository: widget.authRepository,
                     )),

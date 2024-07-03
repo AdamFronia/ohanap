@@ -5,14 +5,14 @@ import 'package:ohanap/firebase_options.dart';
 import 'package:ohanap/src/app.dart';
 import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
-import 'package:ohanap/src/data/mock_database_repository.dart';
+import 'package:ohanap/src/data/firestore_database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  DatabaseRepository databaseRepository = MockDatabaseRepository();
+  DatabaseRepository databaseRepository = FirestoreDatabase();
   AuthRepository authRepository = AuthRepository(FirebaseAuth.instance);
   runApp(App(
     databaseRepository: databaseRepository,
