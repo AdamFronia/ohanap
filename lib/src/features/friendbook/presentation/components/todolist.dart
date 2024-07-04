@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 
 class Todolist extends StatefulWidget {
   const Todolist({super.key, required this.databaseRepository});
@@ -9,6 +10,14 @@ class Todolist extends StatefulWidget {
 }
 
 class _TodolistState extends State<Todolist> {
+  late final Future<List<Profile>> futureProfile;
+
+  @override
+  void initState() {
+    futureProfile = widget.databaseRepository.getAllProfiles();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +53,7 @@ class _TodolistState extends State<Todolist> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: FutureBuilder(
-                  future: widget.databaseRepository.getAllProfiles(),
+                  future: futureProfile,
                   builder: (context, snapshot) {
                     /*
                 1. Uncompleted (Ladend)
@@ -62,13 +71,21 @@ class _TodolistState extends State<Todolist> {
                           final String? title =
                               snapshot.data![0].dataList[index]["title"];
                           return CheckboxListTile(
+                            key: ValueKey(
+                                snapshot.data![0].dataList[index]["isChecked"]),
                             value: snapshot.data![0].dataList[index]
                                 ["isChecked"],
                             onChanged: (value) {
                               setState(() {
                                 snapshot.data![0].dataList[index]["isChecked"] =
                                     value!;
+                                print(value);
+
+                                // DataRepository -> Firestore Daten Updaten
                               });
+                              widget.databaseRepository.updateToDoList(
+                                  snapshot.data![0].dataList[index],
+                                  snapshot.data!.first.docID);
                             },
                             title: title != null
                                 ? Text(

@@ -30,6 +30,9 @@ class Profile {
   String? funnyFact;
   String? futuretime;
 
+  // Document ID
+  final String docID;
+
   // Konstruktor
   Profile({
     required this.futures,
@@ -56,10 +59,13 @@ class Profile {
     required this.getraenke,
     required this.musik,
     required this.essen,
+    required this.docID,
     this.thatsMyStrengths,
     this.funnyFact,
     this.futuretime,
   });
+
+//Methodes
 
   Map<String, dynamic> toMap() {
     return {
@@ -93,8 +99,9 @@ class Profile {
     };
   }
 
-  factory Profile.fromMap(Map<String, dynamic> map) {
+  factory Profile.fromMap(Map<String, dynamic> map, String docID) {
     return Profile(
+      docID: docID,
       futures: map['futures'],
       funnys: map['funnys'],
       goodies: map['goodies'],

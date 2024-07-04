@@ -9,6 +9,7 @@ class MockDatabaseRepository implements DatabaseRepository {
   // simulierten Daten in der Datenbank
   List<Profile> profileList = [
     Profile(
+        docID: "4",
         profilePicUrl:
             "https://ca.slack-edge.com/T044YC3MSLF-U0682A3SDAN-fe6928565c03-72",
         name: "Adam",
@@ -35,6 +36,7 @@ class MockDatabaseRepository implements DatabaseRepository {
         funnys: 'witzig',
         futures: 'future'),
     Profile(
+        docID: "1",
         profilePicUrl:
             "https://ca.slack-edge.com/T044YC3MSLF-U04S160GVMH-353316879748-72",
         name: "Angie",
@@ -61,6 +63,7 @@ class MockDatabaseRepository implements DatabaseRepository {
         funnys: 'witzig',
         futures: 'future'),
     Profile(
+        docID: "2",
         profilePicUrl:
             "https://ca.slack-edge.com/T044YC3MSLF-U05GXAU2DH6-75f1f34f2c6f-192",
         name: "David",
@@ -92,6 +95,25 @@ class MockDatabaseRepository implements DatabaseRepository {
   Future<List<Profile>> getAllProfiles() async {
     await Future.delayed(const Duration(seconds: 3));
     return profileList;
+  }
+
+  @override
+  Future<void> updateToDoList(Map<String, dynamic> map, String docID) {
+    // TODO: implement updateToDoList
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<Profile> getSpecificProfile(String docID) {
+    // TODO: implement getSpecificProfile
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateRelationshipStatus(
+      String docID, String relationshipStatus) {
+    // TODO: implement updateRelationshipStatus
+    throw UnimplementedError();
   }
 }
 
