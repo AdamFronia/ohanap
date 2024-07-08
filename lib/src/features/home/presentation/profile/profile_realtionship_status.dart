@@ -18,6 +18,7 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
 
   @override
   void initState() {
+    // ToDo Hier den Text setzen
     relationshipStatus = TextEditingController();
     super.initState();
   }
@@ -30,67 +31,78 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        color: const Color(0xFFA1EFFD),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            offset: const Offset(0, 3),
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Beziehungsstatus',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 2),
-          TextFormField(
-            controller: relationshipStatus,
-            onEditingComplete: () async {
-              // TODO: Id Dynamisch hinzufügen
-              try {
-                await widget.databaseRepository.updateRelationshipStatus(
-                    "l75mGuGI0dKtUKMWQ6m5", relationshipStatus.text);
-              } catch (e) {
-                print(e);
-              }
+    return StreamBuilder(
+        stream: widget.databaseRepository
+            .getSpecificProfile("l75mGuGI0dKtUKMWQ6m5"),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            relationshipStatus.text = snapshot.data?.relationShip ?? "";
+            return Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                color: const Color(0xFFA1EFFD),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.25),
+                    offset: const Offset(0, 3),
+                    blurRadius: 6,
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Beziehungsstatus',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  TextFormField(
+                    controller: relationshipStatus,
+                    onEditingComplete: () async {
+                      // TODO: Id Dynamisch hinzufügen
+                      try {
+                        await widget.databaseRepository
+                            .updateRelationshipStatus("l75mGuGI0dKtUKMWQ6m5",
+                                relationshipStatus.text);
+                      } catch (e) {
+                        print(e);
+                      }
 
-              print("updated");
-            },
-            decoration: InputDecoration(
-              labelText: 'Gib deinen Beziehungsstatus ein',
-              labelStyle: const TextStyle(color: Colors.white),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Colors.white),
+                      print("updated");
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Gib deinen Beziehungsstatus ein',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.white),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.white),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Colors.white),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(color: Colors.white),
-              ),
-            ),
-            style: const TextStyle(color: Colors.white),
-          ),
-        ],
-      ),
-    );
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
+        });
   }
 }
 
