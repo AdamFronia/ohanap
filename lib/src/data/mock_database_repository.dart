@@ -115,6 +115,12 @@ class MockDatabaseRepository implements DatabaseRepository {
     // TODO: implement updateRelationshipStatus
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> updateDiscription(String docID, String discription) {
+    // TODO: implement updateDiscription
+    throw UnimplementedError();
+  }
 }
 
 List<Map<String, dynamic>> _createDataList() {

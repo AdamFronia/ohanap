@@ -130,4 +130,13 @@ class FirestoreDatabase implements DatabaseRepository {
       "futures": futures,
     });
   }
+
+  @override
+  Future<void> updateDiscription(String docID, String discription) async {
+    await firestore.collection("profiles").doc(docID).update(
+      {
+        "readme": discription,
+      },
+    );
+  }
 }
