@@ -7,4 +7,6 @@ abstract class DatabaseRepository {
   Future<void> updateDiscription(String docID, String discription);
   Future<void> updateRelationshipStatus(
       String docID, String relationshipStatus);
+
+  Future<void> updateCity(String docID, String city);
 }

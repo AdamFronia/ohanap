@@ -59,7 +59,10 @@ class _ProfileDescriptionState extends State<ProfileDescription> {
                   borderSide: BorderSide(color: Colors.black),
                 ),
               ),
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             );
           } else {
             return const CircularProgressIndicator();

@@ -60,7 +60,7 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 28, 39, 166),
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -80,21 +80,24 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Gib deinen Beziehungsstatus ein',
-                      labelStyle: const TextStyle(color: Colors.white),
+                      labelStyle: const TextStyle(color: Colors.blueGrey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.black),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.black),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: const BorderSide(color: Colors.white),
                       ),
                     ),
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(
+                      color: Colors.lightBlue,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),

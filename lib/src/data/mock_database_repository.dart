@@ -121,6 +121,12 @@ class MockDatabaseRepository implements DatabaseRepository {
     // TODO: implement updateDiscription
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> updateCity(String docID, String city) {
+    // TODO: implement updateCity
+    throw UnimplementedError();
+  }
 }
 
 List<Map<String, dynamic>> _createDataList() {

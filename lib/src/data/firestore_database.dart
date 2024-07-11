@@ -41,6 +41,7 @@ class FirestoreDatabase implements DatabaseRepository {
   }
 
   // Method to update city
+  @override
   Future<void> updateCity(String docID, String city) async {
     await firestore.collection("profiles").doc(docID).update({
       "city": city,
