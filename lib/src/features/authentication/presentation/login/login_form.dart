@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/authentication/presentation/signup/sign_up_screen.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const LoginForm(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const LoginForm({
+    super.key,
+  });
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -40,6 +36,7 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthRepository authRepository = context.read<AuthRepository>();
     return Column(
       children: [
         const SizedBox(height: 260),
@@ -126,7 +123,7 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
                       try {
-                        widget.authRepository.loginWithEmailAndPassword(
+                        authRepository.loginWithEmailAndPassword(
                             _emailController.text, _passwordController.text);
                         // Formular ist gültig, Aktion durchführen
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -302,10 +299,7 @@ class _LoginFormState extends State<LoginForm> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SignUpScreen(
-                        databaseRepository: widget.databaseRepository,
-                        authRepository: widget.authRepository,
-                      ),
+                      builder: (context) => const SignUpScreen(),
                     ),
                   );
                 },

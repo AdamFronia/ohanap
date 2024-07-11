@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/widgets/custom_icon_button.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/menus/presentation/menu_screen.dart';
 import 'package:ohanap/src/features/messages/message_screen.dart';
 
 class Header extends StatelessWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const Header(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const Header({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +18,7 @@ class Header extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MenuScreen(
-                    databaseRepository: databaseRepository,
-                    authRepository: authRepository,
-                  ),
+                  builder: (context) => const MenuScreen(),
                 ),
               );
             },
@@ -59,14 +50,10 @@ class Header extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MessageScreen(
-                    databaseRepository: databaseRepository,
-                    authRepository: authRepository,
-                  ),
-                ),
-              );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MessageScreen(),
+                  ));
             },
             child: const CustomIconButton(icon: Icons.mail_outlined),
           ),

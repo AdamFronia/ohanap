@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/custom_icon_button.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/domain/profile.dart';
+import 'package:provider/provider.dart';
 
 class FriendbookScreen extends StatelessWidget {
   // Attribute
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
+
   // Konstruktor
-  const FriendbookScreen(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const FriendbookScreen({
+    super.key,
+  });
 
   // Methoden
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
-      databaseRepository: databaseRepository,
-      authRepository: authRepository,
       content: FutureBuilder<List<Profile>>(
-        future: databaseRepository.getAllProfiles(),
+        future: context.read<DatabaseRepository>().getAllProfiles(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

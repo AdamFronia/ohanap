@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/widgets/footer.dart';
 import 'package:ohanap/src/common/widgets/header.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 
 class TemplateScreen extends StatefulWidget {
   final Widget content;
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
+
   const TemplateScreen({
     super.key,
-    required this.databaseRepository,
     required this.content,
-    required this.authRepository,
   });
 
   @override
@@ -24,10 +19,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Footer(
-        databaseRepository: widget.databaseRepository,
-        authRepository: widget.authRepository,
-      ),
+      bottomNavigationBar: const Footer(),
       body: SafeArea(
         child: Stack(
           children: [
@@ -45,10 +37,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Header(
-                      databaseRepository: widget.databaseRepository,
-                      authRepository: widget.authRepository,
-                    ),
+                    const Header(),
                     const SizedBox(
                       height: 2,
                     ),

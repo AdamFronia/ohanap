@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 
 class ProfileLocation extends StatefulWidget {
-  const ProfileLocation({super.key, required this.databaseRepository});
-
-  final DatabaseRepository databaseRepository;
+  const ProfileLocation({
+    super.key,
+  });
 
   @override
   State<ProfileLocation> createState() => _ProfileLocationState();
@@ -28,7 +29,8 @@ class _ProfileLocationState extends State<ProfileLocation> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: widget.databaseRepository
+        stream: context
+            .read<DatabaseRepository>()
             .getSpecificProfile("l75mGuGI0dKtUKMWQ6m5"),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -64,7 +66,7 @@ class _ProfileLocationState extends State<ProfileLocation> {
                     controller: profileLocationcontroller,
                     onEditingComplete: () async {
                       try {
-                        await widget.databaseRepository.updateCity(
+                        await context.read<DatabaseRepository>().updateCity(
                             "l75mGuGI0dKtUKMWQ6m5",
                             profileLocationcontroller.text);
                       } catch (e) {

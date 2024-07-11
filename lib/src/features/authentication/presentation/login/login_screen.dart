@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login_form.dart';
 
 class LoginScreen extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-  const LoginScreen(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const LoginScreen({
+    super.key,
+  });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -94,10 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          child: LoginForm(
-            databaseRepository: widget.databaseRepository,
-            authRepository: widget.authRepository,
-          )),
+          child: const LoginForm()),
     );
   }
 }

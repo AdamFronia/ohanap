@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 
 class Funnys extends StatefulWidget {
-  const Funnys({super.key, required this.databaseRepository});
-  final DatabaseRepository databaseRepository;
+  const Funnys({
+    super.key,
+  });
+
   @override
   State<Funnys> createState() => _FunnysState();
 }
@@ -30,7 +33,7 @@ class _FunnysState extends State<Funnys> {
         ],
       ),
       child: FutureBuilder(
-        future: widget.databaseRepository.getAllProfiles(),
+        future: context.read<DatabaseRepository>().getAllProfiles(),
         builder: (context, snapshot) {
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {

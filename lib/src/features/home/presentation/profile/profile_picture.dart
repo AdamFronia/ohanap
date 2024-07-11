@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 
 class ProfilePicture extends StatelessWidget {
-  const ProfilePicture(
-      {super.key, required DatabaseRepository databaseRepository});
+  const ProfilePicture({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

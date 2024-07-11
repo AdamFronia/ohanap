@@ -3,19 +3,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/authentication_manager/presentation/authentication_manager_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
   // Konstruktor
-  const SplashScreen(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const SplashScreen({
+    super.key,
+  });
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -27,13 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (BuildContext context) => AuthenticationManagerScreen(
-              databaseRepository: widget.databaseRepository,
-              authRepository: widget.authRepository),
-        ),
-      );
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (BuildContext context) => const AuthenticationManagerScreen(),
+      ));
     });
   }
 

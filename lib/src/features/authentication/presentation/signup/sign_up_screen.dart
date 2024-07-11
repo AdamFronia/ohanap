@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/authentication/presentation/signup/signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
   // Konstruktor
-  const SignUpScreen(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const SignUpScreen({
+    super.key,
+  });
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -88,13 +83,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Stack(
         children: [
-          Signup(
-            databaseRepository: widget.databaseRepository,
-            authRepository: widget.authRepository,
-          ),
+          Signup(),
         ],
       ),
     );

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 
 class ProfileRelationshipStatus extends StatefulWidget {
   const ProfileRelationshipStatus({
     super.key,
-    required this.databaseRepository,
   });
-  final DatabaseRepository databaseRepository;
 
   @override
   State<ProfileRelationshipStatus> createState() =>
@@ -32,7 +31,8 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: widget.databaseRepository
+        stream: context
+            .read<DatabaseRepository>()
             .getSpecificProfile("l75mGuGI0dKtUKMWQ6m5"),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -69,7 +69,8 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
                     onEditingComplete: () async {
                       // TODO: Id Dynamisch hinzufügen
                       try {
-                        await widget.databaseRepository
+                        await context
+                            .read<DatabaseRepository>()
                             .updateRelationshipStatus("l75mGuGI0dKtUKMWQ6m5",
                                 relationshipStatus.text);
                       } catch (e) {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/components/todolist.dart';
 import 'package:ohanap/src/features/home/presentation/about_me/about_me.dart';
 import 'package:ohanap/src/features/home/presentation/about_me/favorites.dart';
@@ -11,13 +9,9 @@ import 'package:ohanap/src/features/home/presentation/about_me/goodys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InfoPage extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const InfoPage(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const InfoPage({
+    super.key,
+  });
 
   @override
   State<InfoPage> createState() => _InfoPageState();
@@ -47,21 +41,15 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
-      authRepository: widget.authRepository,
-      databaseRepository: widget.databaseRepository,
       content: Column(
         children: [
-          SingleChildScrollView(
+          const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                Todolist(
-                  databaseRepository: widget.databaseRepository,
-                ),
-                const SizedBox(width: 5),
-                Favorites(
-                  databaseRepository: widget.databaseRepository,
-                ),
+                Todolist(),
+                SizedBox(width: 5),
+                Favorites(),
               ],
             ),
           ),
@@ -74,17 +62,17 @@ class _InfoPageState extends State<InfoPage> {
             ),
           ),
           const SizedBox(height: 2),
-          SingleChildScrollView(
+          const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                AboutMe(databaseRepository: widget.databaseRepository),
-                const SizedBox(width: 5),
-                Goodys(databaseRepository: widget.databaseRepository),
-                const SizedBox(width: 5),
-                Funnys(databaseRepository: widget.databaseRepository),
-                const SizedBox(width: 5),
-                Futures(databaseRepository: widget.databaseRepository),
+                AboutMe(),
+                SizedBox(width: 5),
+                Goodys(),
+                SizedBox(width: 5),
+                Funnys(),
+                SizedBox(width: 5),
+                Futures(),
               ],
             ),
           ),

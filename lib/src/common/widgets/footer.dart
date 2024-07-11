@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/presentation/friendbook_screen.dart';
 import 'package:ohanap/src/features/home/presentation/home_screen.dart';
 import 'package:ohanap/src/features/home/presentation/info_screens/about_me_page.dart';
 import 'package:ohanap/src/features/home/presentation/info_screens/info_page.dart';
 
 class Footer extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-  const Footer(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const Footer({
+    super.key,
+  });
 
   @override
   State<Footer> createState() => _FooterState();
@@ -78,11 +73,7 @@ class _FooterState extends State<Footer> {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => InfoPage(
-                      databaseRepository: widget.databaseRepository,
-                      authRepository: widget.authRepository,
-                    )),
+            MaterialPageRoute(builder: (context) => const InfoPage()),
           );
         };
 
@@ -92,11 +83,7 @@ class _FooterState extends State<Footer> {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => AboutMePage(
-                      databaseRepository: widget.databaseRepository,
-                      authRepository: widget.authRepository,
-                    )),
+            MaterialPageRoute(builder: (context) => const AboutMePage()),
           );
         };
 
@@ -106,11 +93,7 @@ class _FooterState extends State<Footer> {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => HomeScreen(
-                      databaseRepository: widget.databaseRepository,
-                      authRepository: widget.authRepository,
-                    )),
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
           );
         };
         break;
@@ -119,11 +102,7 @@ class _FooterState extends State<Footer> {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => FriendbookScreen(
-                      databaseRepository: widget.databaseRepository,
-                      authRepository: widget.authRepository,
-                    )),
+            MaterialPageRoute(builder: (context) => const FriendbookScreen()),
           );
         };
         break;

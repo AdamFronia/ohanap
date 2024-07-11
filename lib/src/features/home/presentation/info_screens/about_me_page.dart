@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/personal_container.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AboutMePage extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const AboutMePage(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const AboutMePage({
+    super.key,
+  });
 
   @override
   State<AboutMePage> createState() => _AboutMePageState();
@@ -37,10 +33,8 @@ class _AboutMePageState extends State<AboutMePage> {
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
-      databaseRepository: widget.databaseRepository,
-      authRepository: widget.authRepository,
       content: FutureBuilder(
-        future: widget.databaseRepository.getAllProfiles(),
+        future: context.read<DatabaseRepository>().getAllProfiles(),
         builder: (context, snapshot) {
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {

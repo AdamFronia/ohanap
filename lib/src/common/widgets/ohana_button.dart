@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/data/database_repository.dart';
 
 class OhanaButton extends StatelessWidget {
-  final DatabaseRepository databaseRepository;
   final String text;
   final Function()? onTap;
 
-  const OhanaButton(
-      {super.key,
-      required this.databaseRepository,
-      required this.text,
-      required this.onTap});
+  const OhanaButton({super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

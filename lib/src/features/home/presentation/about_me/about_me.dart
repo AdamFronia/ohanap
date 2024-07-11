@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 
 class AboutMe extends StatefulWidget {
-  const AboutMe({super.key, required this.databaseRepository});
+  const AboutMe({
+    super.key,
+  });
 
-  final DatabaseRepository databaseRepository;
   @override
   State<AboutMe> createState() => _AboutMeState();
 }
@@ -15,7 +17,7 @@ class _AboutMeState extends State<AboutMe> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    databaseRepository = widget.databaseRepository;
+    databaseRepository = context.read<DatabaseRepository>();
   }
 
   @override

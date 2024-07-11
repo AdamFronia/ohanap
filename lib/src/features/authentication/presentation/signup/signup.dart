@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/auth_repository.dart';
-import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 
 class Signup extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
   const Signup({
     super.key,
-    required this.databaseRepository,
-    required this.authRepository,
   });
 
   @override
@@ -43,6 +39,7 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthRepository authRepository = context.read<AuthRepository>();
     return Scaffold(
       body: Stack(
         children: [
@@ -193,7 +190,7 @@ class _SignupState extends State<Signup> {
                                     if (_formKey.currentState?.validate() ??
                                         false) {
                                       try {
-                                        widget.authRepository
+                                        authRepository
                                             .signUpWithEmailAndPassword(
                                                 _emailController.text,
                                                 _passwordController.text);

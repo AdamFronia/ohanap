@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 
 class Favorites extends StatefulWidget {
   const Favorites({
     super.key,
-    required this.databaseRepository,
   });
-  final DatabaseRepository databaseRepository;
+
   @override
   State<Favorites> createState() => _FavoritesState();
 }
@@ -33,7 +33,7 @@ class _FavoritesState extends State<Favorites> {
         ],
       ),
       child: FutureBuilder(
-        future: widget.databaseRepository.getAllProfiles(),
+        future: context.read<DatabaseRepository>().getAllProfiles(),
         builder: (context, snapshot) {
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {

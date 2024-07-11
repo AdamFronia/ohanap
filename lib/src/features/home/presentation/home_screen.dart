@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
-import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/home/presentation/profile/profile_description.dart';
 import 'package:ohanap/src/features/home/presentation/profile/profile_location.dart';
 import 'package:ohanap/src/features/home/presentation/profile/profile_picture.dart';
 import 'package:ohanap/src/features/home/presentation/profile/profile_realtionship_status.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const HomeScreen(
-      {super.key,
-      required this.databaseRepository,
-      required this.authRepository});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -46,20 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
-      databaseRepository: widget.databaseRepository,
-      authRepository: widget.authRepository,
       content: FutureBuilder(
-        future: widget.databaseRepository.getAllProfiles(),
+        future: context.read<DatabaseRepository>().getAllProfiles(),
         builder: (context, snapshot) {
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
             // FALL: Future ist komplett und hat Daten!
             return Column(
               children: [
-                ProfilePicture(databaseRepository: widget.databaseRepository),
+                const ProfilePicture(),
                 const SizedBox(height: 5),
-                ProfileDescription(
-                    databaseRepository: widget.databaseRepository),
+                const ProfileDescription(),
                 const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -101,10 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 5),
-                ProfileRelationshipStatus(
-                    databaseRepository: widget.databaseRepository),
+                const ProfileRelationshipStatus(),
                 const SizedBox(height: 10),
-                ProfileLocation(databaseRepository: widget.databaseRepository),
+                const ProfileLocation(),
                 const SizedBox(height: 7),
               ],
             );

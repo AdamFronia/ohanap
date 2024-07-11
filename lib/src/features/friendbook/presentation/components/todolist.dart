@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/domain/profile.dart';
+import 'package:provider/provider.dart';
 
 class Todolist extends StatefulWidget {
-  const Todolist({super.key, required this.databaseRepository});
-  final DatabaseRepository databaseRepository;
+  const Todolist({
+    super.key,
+  });
+
   @override
   State<Todolist> createState() => _TodolistState();
 }
@@ -14,7 +17,7 @@ class _TodolistState extends State<Todolist> {
 
   @override
   void initState() {
-    futureProfile = widget.databaseRepository.getAllProfiles();
+    futureProfile = context.read<DatabaseRepository>().getAllProfiles();
     super.initState();
   }
 
@@ -83,7 +86,7 @@ class _TodolistState extends State<Todolist> {
 
                                 // DataRepository -> Firestore Daten Updaten
                               });
-                              widget.databaseRepository.updateToDoList(
+                              context.read<DatabaseRepository>().updateToDoList(
                                   snapshot.data![0].dataList[index],
                                   snapshot.data!.first.docID);
                             },
