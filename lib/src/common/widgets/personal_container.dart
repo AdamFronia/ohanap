@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:provider/provider.dart';
 
-class PersonalContainer extends StatelessWidget {
+class PersonalContainer extends StatefulWidget {
   final String assetPath;
   final String text;
   final Color color;
@@ -18,12 +18,24 @@ class PersonalContainer extends StatelessWidget {
       required this.value});
 
   @override
+  State<PersonalContainer> createState() => _PersonalContainerState();
+}
+
+class _PersonalContainerState extends State<PersonalContainer> {
+  TextEditingController controller = TextEditingController();
+  @override
+  void initState() {
+    controller.text = widget.value;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 180,
       height: 180,
       decoration: ShapeDecoration(
-        color: color,
+        color: widget.color,
         shape: RoundedRectangleBorder(
           side: const BorderSide(width: 1),
           borderRadius: BorderRadius.circular(50),
@@ -43,7 +55,7 @@ class PersonalContainer extends StatelessWidget {
             right: 65,
             top: 40,
             child: Image.asset(
-              assetPath,
+              widget.assetPath,
               width: 50,
               height: 50,
             ),
@@ -54,14 +66,15 @@ class PersonalContainer extends StatelessWidget {
             child: SizedBox(
               width: 140,
               child: TextField(
+                controller: controller,
                 onChanged: (text) async {
                   await context.read<DatabaseRepository>().updateAboutMe(
-                        firestoreKey,
-                        "l75mGuGI0dKtUKMWQ6m5",
+                        widget.firestoreKey,
+                        controller.text,
                       );
                 },
                 decoration: InputDecoration(
-                  labelText: text,
+                  labelText: widget.text,
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
@@ -69,7 +82,7 @@ class PersonalContainer extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: color),
+                    borderSide: BorderSide(color: widget.color),
                   ),
                 ),
               ),

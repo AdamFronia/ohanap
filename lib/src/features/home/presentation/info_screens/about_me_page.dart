@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/personal_container.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/domain/profile.dart';
@@ -39,8 +40,10 @@ class _AboutMePageState extends State<AboutMePage> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           Profile profile = snapshot.data!;
-          return Scaffold(
-            body: Column(
+          print(profile.holiday);
+          print(profile.job);
+          return TemplateScreen(
+            content: Column(
               children: [
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
