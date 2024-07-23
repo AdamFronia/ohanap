@@ -4,6 +4,15 @@ import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 
 class FirestoreDatabase implements DatabaseRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  String docId = "l75mGuGI0dKtUKMWQ6m5";
+  // Method to update about me
+
+  @override
+  Future<void> updateAboutMe(String firestoreKey, String value) async {
+    await firestore.collection("profiles").doc(docId).update({
+      firestoreKey: value,
+    });
+  }
 
   @override
   Future<List<Profile>> getAllProfiles() async {
@@ -16,8 +25,12 @@ class FirestoreDatabase implements DatabaseRepository {
   }
 
   @override
-  Future<void> updateToDoList(Map<String, dynamic> map, String docID) async {
-    await firestore.collection("profiles").doc(docID).update(map);
+  Future<void> updateToDoList(
+      List<Map<String, dynamic>> listToDO, String docID) async {
+    await firestore
+        .collection("profiles")
+        .doc(docID)
+        .update({"dataList": listToDO});
   }
 
   @override
@@ -104,13 +117,6 @@ class FirestoreDatabase implements DatabaseRepository {
     await firestore.collection("profiles").doc(docID).update(favorites);
   }
 
-  // Method to update about me
-  Future<void> updateAboutMe(String docID, String aboutMe) async {
-    await firestore.collection("profiles").doc(docID).update({
-      "aboutMe": aboutMe,
-    });
-  }
-
   // Method to update goodies
   Future<void> updateGoodies(String docID, String goodies) async {
     await firestore.collection("profiles").doc(docID).update({
@@ -139,5 +145,11 @@ class FirestoreDatabase implements DatabaseRepository {
         "readme": discription,
       },
     );
+  }
+
+  @override
+  profilesStream() {
+    // TODO: implement profilesStream
+    throw UnimplementedError();
   }
 }

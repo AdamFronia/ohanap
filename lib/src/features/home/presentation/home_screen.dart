@@ -43,11 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return TemplateScreen(
       content: FutureBuilder(
-        future: context.read<DatabaseRepository>().getAllProfiles(),
+        future: context.watch<DatabaseRepository>().getAllProfiles(),
         builder: (context, snapshot) {
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
             // FALL: Future ist komplett und hat Daten!
+            debugPrint(snapshot.error.toString());
             return Column(
               children: [
                 const ProfilePicture(),
@@ -104,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // FALL: Sind noch im Ladezustand
             return const CircularProgressIndicator();
           } else {
-            // FALL: Es gab nen Fehler
+            print(snapshot.error);
             return const Icon(Icons.error);
           }
         },

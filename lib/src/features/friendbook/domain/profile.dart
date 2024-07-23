@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 class Profile {
   // Attribute
   String futures;
@@ -18,7 +16,7 @@ class Profile {
   String holiday;
   String job;
   String wishJob;
-  Color color;
+  String color;
   String birthdate;
   String sleepTime;
   bool hasSiblings;
@@ -85,7 +83,7 @@ class Profile {
       "holiday": holiday,
       "job": job,
       "wishJob": wishJob,
-      "color": color.value, // Color als int speichern
+      "color": color, // Color als int speichern
       "birthdate": birthdate,
       "sleepTime": sleepTime,
       "hasSiblings": hasSiblings,
@@ -118,7 +116,7 @@ class Profile {
       holiday: map['holiday'],
       job: map['job'],
       wishJob: map['wishJob'],
-      color: Color(map['color']), // Color von int wiederherstellen
+      color: map['color'], // Color von int wiederherstellen
       birthdate: map['birthdate'],
       sleepTime: map['sleepTime'],
       hasSiblings: map['hasSiblings'],

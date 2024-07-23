@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/personal_container.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,16 +32,17 @@ class _AboutMePageState extends State<AboutMePage> {
 
   @override
   Widget build(BuildContext context) {
-    return TemplateScreen(
-      content: FutureBuilder(
-        future: context.read<DatabaseRepository>().getAllProfiles(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData &&
-              snapshot.connectionState == ConnectionState.done) {
-            // FALL: Future ist komplett und hat Daten!
-            return Column(
+    return StreamBuilder(
+      stream: context
+          .read<DatabaseRepository>()
+          .getSpecificProfile("l75mGuGI0dKtUKMWQ6m5"),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          Profile profile = snapshot.data!;
+          return Scaffold(
+            body: Column(
               children: [
-                const SingleChildScrollView(
+                SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -49,24 +50,32 @@ class _AboutMePageState extends State<AboutMePage> {
                         assetPath: 'assets/mental-health.png',
                         text: "Lieblingshobby",
                         color: Colors.blue,
+                        firestoreKey: "hobby",
+                        value: profile.hobby,
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       PersonalContainer(
                         assetPath: 'assets/summer-holidays.png',
                         text: "LiebstUrlaubsort",
                         color: Colors.orange,
+                        firestoreKey: "holiday",
+                        value: profile.holiday,
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       PersonalContainer(
                         assetPath: 'assets/businessman.png',
                         text: "Beruf",
                         color: Colors.purple,
+                        firestoreKey: "job",
+                        value: profile.job,
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       PersonalContainer(
                         assetPath: 'assets/astronaut.png',
                         text: "Wunschberuf",
                         color: Colors.pink,
+                        firestoreKey: "wishJob",
+                        value: profile.wishJob,
                       ),
                     ],
                   ),
@@ -80,7 +89,7 @@ class _AboutMePageState extends State<AboutMePage> {
                   ),
                 ),
                 const SizedBox(height: 1),
-                const SingleChildScrollView(
+                SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -88,12 +97,16 @@ class _AboutMePageState extends State<AboutMePage> {
                         assetPath: 'assets/astronaut.png',
                         text: "Lieblingsfarbe",
                         color: Colors.cyanAccent,
+                        firestoreKey: "color",
+                        value: profile.color.toString(),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       PersonalContainer(
                         assetPath: 'assets/birthday-cake.png',
                         text: "Geburtsdatum",
                         color: Colors.yellow,
+                        firestoreKey: "bithdate",
+                        value: profile.birthdate,
                       ),
                     ],
                   ),
@@ -107,28 +120,30 @@ class _AboutMePageState extends State<AboutMePage> {
                   ),
                 ),
                 const SizedBox(height: 2),
-                const PersonalContainer(
+                PersonalContainer(
                   assetPath: 'assets/astronaut.png',
                   text: "Schlafenszeit",
                   color: Colors.deepPurple,
+                  firestoreKey: "sleepTime",
+                  value: profile.sleepTime,
                 ),
               ],
-            );
-          } else if (snapshot.connectionState != ConnectionState.done) {
-            // FALL: Sind noch im Ladezustand
-            return const Center(
-              child: SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(),
-              ),
-            );
-          } else {
-            // FALL: Es gab nen Fehler
-            return const Icon(Icons.error);
-          }
-        },
-      ),
+            ),
+          );
+        } else if (snapshot.connectionState != ConnectionState.done) {
+          // FALL: Sind noch im Ladezustand
+          return const Center(
+            child: SizedBox(
+              height: 20,
+              width: 20,
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          // FALL: Es gab nen Fehler
+          return const Icon(Icons.error);
+        }
+      },
     );
   }
 }

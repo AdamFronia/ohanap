@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 
 import 'database_repository.dart';
@@ -20,7 +19,7 @@ class MockDatabaseRepository implements DatabaseRepository {
         holiday: "holiday",
         job: "job",
         wishJob: "wishJob",
-        color: Colors.red,
+        color: "red",
         birthdate: "11.11.1990",
         sleepTime: "abends",
         hasSiblings: true,
@@ -47,7 +46,7 @@ class MockDatabaseRepository implements DatabaseRepository {
         holiday: "holiday",
         job: "job",
         wishJob: "wishJob",
-        color: Colors.green,
+        color: "green",
         birthdate: "11.11.1990",
         sleepTime: "abends",
         hasSiblings: true,
@@ -74,7 +73,7 @@ class MockDatabaseRepository implements DatabaseRepository {
         holiday: "holiday",
         job: "job",
         wishJob: "wishJob",
-        color: Colors.purple,
+        color: "purple",
         birthdate: "11.11.1994",
         sleepTime: "morgens",
         hasSiblings: true,
@@ -98,7 +97,7 @@ class MockDatabaseRepository implements DatabaseRepository {
   }
 
   @override
-  Future<void> updateToDoList(Map<String, dynamic> map, String docID) {
+  Future<void> updateToDoList(List<Map<String, dynamic>> map, String docID) {
     // TODO: implement updateToDoList
     throw UnimplementedError();
   }
@@ -125,6 +124,12 @@ class MockDatabaseRepository implements DatabaseRepository {
   @override
   Future<void> updateCity(String docID, String city) {
     // TODO: implement updateCity
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateAboutMe(String key, String value) {
+    // TODO: implement updateAboutMe
     throw UnimplementedError();
   }
 }

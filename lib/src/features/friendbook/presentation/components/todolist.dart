@@ -73,22 +73,21 @@ class _TodolistState extends State<Todolist> {
                         itemBuilder: (context, index) {
                           final String? title =
                               snapshot.data![0].dataList[index]["title"];
+                          List<Map<String, dynamic>> meineListe =
+                              snapshot.data![0].dataList;
                           return CheckboxListTile(
-                            key: ValueKey(
-                                snapshot.data![0].dataList[index]["isChecked"]),
-                            value: snapshot.data![0].dataList[index]
-                                ["isChecked"],
-                            onChanged: (value) {
+                            key: ValueKey(meineListe[index]["isChecked"]),
+                            value: meineListe[index]["isChecked"],
+                            onChanged: (value) async {
                               setState(() {
-                                snapshot.data![0].dataList[index]["isChecked"] =
-                                    value!;
-                                print(value);
-
-                                // DataRepository -> Firestore Daten Updaten
+                                meineListe[index]["isChecked"] = value!;
                               });
-                              context.read<DatabaseRepository>().updateToDoList(
-                                  snapshot.data![0].dataList[index],
-                                  snapshot.data!.first.docID);
+
+                              // Firestore Daten Updaten
+                              await context
+                                  .read<DatabaseRepository>()
+                                  .updateToDoList(
+                                      meineListe, snapshot.data!.first.docID);
                             },
                             title: title != null
                                 ? Text(

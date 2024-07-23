@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/database_repository.dart';
+import 'package:provider/provider.dart';
 
 class PersonalContainer extends StatelessWidget {
   final String assetPath;
   final String text;
   final Color color;
+  final String firestoreKey;
+  final String value;
 
-  const PersonalContainer({
-    super.key,
-    required this.assetPath,
-    required this.text,
-    required this.color,
-  });
+  const PersonalContainer(
+      {super.key,
+      required this.assetPath,
+      required this.text,
+      required this.color,
+      required this.firestoreKey,
+      required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +54,12 @@ class PersonalContainer extends StatelessWidget {
             child: SizedBox(
               width: 140,
               child: TextField(
+                onChanged: (text) async {
+                  await context.read<DatabaseRepository>().updateAboutMe(
+                        firestoreKey,
+                        "l75mGuGI0dKtUKMWQ6m5",
+                      );
+                },
                 decoration: InputDecoration(
                   labelText: text,
                   labelStyle: const TextStyle(
