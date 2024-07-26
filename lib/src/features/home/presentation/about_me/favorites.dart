@@ -14,10 +14,18 @@ class Favorites extends StatefulWidget {
 }
 
 class _FavoritesState extends State<Favorites> {
+  late TextEditingController controllerFood;
+  late TextEditingController controllerDrink;
+  late TextEditingController controllerMusik;
+  late TextEditingController controllerAnimal;
   @override
   void initState() {
     super.initState();
     _loadData();
+    controllerFood = TextEditingController();
+    controllerDrink = TextEditingController();
+    controllerMusik = TextEditingController();
+    controllerAnimal = TextEditingController();
   }
 
   Future<void> _loadData() async {
@@ -63,6 +71,10 @@ class _FavoritesState extends State<Favorites> {
                   if (snapshot.hasData &&
                       snapshot.connectionState == ConnectionState.done) {
                     // FALL: Future ist komplett und hat Daten!
+                    controllerFood.text = snapshot.data![0].essen;
+                    controllerDrink.text = snapshot.data![0].drink;
+                    controllerMusik.text = snapshot.data![0].musik;
+                    controllerAnimal.text = snapshot.data![0].animal;
                     return Stack(
                       children: [
                         Positioned(
@@ -80,16 +92,24 @@ class _FavoritesState extends State<Favorites> {
                           child: SizedBox(
                             width: 140,
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: controllerFood,
+                              onSubmitted: (text) async {
+                                await context
+                                    .read<DatabaseRepository>()
+                                    .updateAboutMe(
+                                      "essen",
+                                      text,
+                                    );
+                              },
+                              decoration: const InputDecoration(
                                 labelText: 'Essen',
-                                hintText: snapshot.data![0].essen,
-                                labelStyle: const TextStyle(
+                                labelStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontFamily: 'SF Pro',
                                   fontWeight: FontWeight.w400,
                                 ),
-                                focusedBorder: const UnderlineInputBorder(
+                                focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.blue),
                                 ),
                               ),
@@ -102,16 +122,24 @@ class _FavoritesState extends State<Favorites> {
                           child: SizedBox(
                             width: 140,
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: controllerDrink,
+                              onSubmitted: (text) async {
+                                await context
+                                    .read<DatabaseRepository>()
+                                    .updateAboutMe(
+                                      "Getraenke",
+                                      text,
+                                    );
+                              },
+                              decoration: const InputDecoration(
                                 labelText: 'Getränk',
-                                hintText: snapshot.data![0].getraenke,
-                                labelStyle: const TextStyle(
+                                labelStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontFamily: 'SF Pro',
                                   fontWeight: FontWeight.w400,
                                 ),
-                                focusedBorder: const UnderlineInputBorder(
+                                focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.blue),
                                 ),
                               ),
@@ -124,16 +152,24 @@ class _FavoritesState extends State<Favorites> {
                           child: SizedBox(
                             width: 140,
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: controllerMusik,
+                              onSubmitted: (text) async {
+                                await context
+                                    .read<DatabaseRepository>()
+                                    .updateAboutMe(
+                                      "musik",
+                                      text,
+                                    );
+                              },
+                              decoration: const InputDecoration(
                                 labelText: 'Musik',
-                                hintText: snapshot.data![0].musik,
-                                labelStyle: const TextStyle(
+                                labelStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontFamily: 'SF Pro',
                                   fontWeight: FontWeight.w400,
                                 ),
-                                focusedBorder: const UnderlineInputBorder(
+                                focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.blue),
                                 ),
                               ),
@@ -146,16 +182,24 @@ class _FavoritesState extends State<Favorites> {
                           child: SizedBox(
                             width: 140,
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: controllerAnimal,
+                              onSubmitted: (text) async {
+                                await context
+                                    .read<DatabaseRepository>()
+                                    .updateAboutMe(
+                                      "tier",
+                                      text,
+                                    );
+                              },
+                              decoration: const InputDecoration(
                                 labelText: 'Tier',
-                                hintText: snapshot.data![0].tier,
-                                labelStyle: const TextStyle(
+                                labelStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontFamily: 'SF Pro',
                                   fontWeight: FontWeight.w400,
                                 ),
-                                focusedBorder: const UnderlineInputBorder(
+                                focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.blue),
                                 ),
                               ),

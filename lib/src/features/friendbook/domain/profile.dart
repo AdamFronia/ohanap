@@ -4,9 +4,9 @@ class Profile {
   String funnys;
   String goodies;
   String essen;
-  String getraenke;
+  String drink;
   String musik;
-  String tier;
+  String animal;
   String profilePicUrl;
   String name;
   String readme;
@@ -53,8 +53,8 @@ class Profile {
     required this.likesReading,
     required this.aboutMe,
     required this.dataList,
-    required this.tier,
-    required this.getraenke,
+    required this.animal,
+    required this.drink,
     required this.musik,
     required this.essen,
     required this.docID,
@@ -71,9 +71,9 @@ class Profile {
       "funnys": funnys,
       "goodies": goodies,
       "essen": essen,
-      "getraenke": getraenke,
+      "getraenke": drink,
       "musik": musik,
-      "tier": tier,
+      "tier": animal,
       "profilePicUrl": profilePicUrl,
       "name": name,
       "readme": readme,
@@ -104,9 +104,9 @@ class Profile {
       funnys: map['funnys'],
       goodies: map['goodies'],
       essen: map['essen'],
-      getraenke: map['getraenke'],
+      drink: map['Getraenke'],
       musik: map['musik'],
-      tier: map['tier'],
+      animal: map['tier'],
       profilePicUrl: map['profilePicUrl'],
       name: map['name'],
       readme: map['readme'],
