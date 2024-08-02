@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -28,10 +29,10 @@ class _ProfileLocationState extends State<ProfileLocation> {
 
   @override
   Widget build(BuildContext context) {
+    final authRepository = context.read<AuthRepository>();
+    final userUid = authRepository.getCurrentUser()?.uid;
     return StreamBuilder(
-        stream: context
-            .read<DatabaseRepository>()
-            .getSpecificProfile("l75mGuGI0dKtUKMWQ6m5"),
+        stream: context.read<DatabaseRepository>().getSpecificProfile(userUid!),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             profileLocationcontroller.text = snapshot.data?.city ?? "";
@@ -67,8 +68,7 @@ class _ProfileLocationState extends State<ProfileLocation> {
                     onEditingComplete: () async {
                       try {
                         await context.read<DatabaseRepository>().updateCity(
-                            "l75mGuGI0dKtUKMWQ6m5",
-                            profileLocationcontroller.text);
+                            userUid, profileLocationcontroller.text);
                       } catch (e) {
                         print(e);
                       }

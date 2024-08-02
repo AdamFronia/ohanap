@@ -18,11 +18,11 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
-        Provider<DatabaseRepository>(
-          create: (_) => databaseRepository,
-        ),
         Provider<AuthRepository>(
-          create: (_) => authRepository,
+          create: (_) => AuthRepository(FirebaseAuth.instance),
+        ),
+        Provider<DatabaseRepository>(
+          create: (_) => FirestoreDatabase(),
         ),
       ],
       child: const App(),

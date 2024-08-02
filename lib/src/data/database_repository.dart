@@ -4,7 +4,7 @@ abstract class DatabaseRepository {
   Future<List<Profile>> getAllProfiles();
   Future<void> updateToDoList(List<Map<String, dynamic>> map, String docID);
   Stream<Profile> getSpecificProfile(String docID);
-  Future<void> updateDiscription(String docID, String discription);
+  Future<void> updateDescription(String docID, String description);
   Future<void> updateRelationshipStatus(
       String docID, String relationshipStatus);
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +35,10 @@ class _FunnysState extends State<Funnys> {
 
   @override
   Widget build(BuildContext context) {
+    final authRepository = context.read<AuthRepository>();
+    final userUid = authRepository.getCurrentUser()?.uid;
     return StreamBuilder<Profile>(
-      stream: context
-          .read<DatabaseRepository>()
-          .getSpecificProfile("l75mGuGI0dKtUKMWQ6m5"),
+      stream: context.read<DatabaseRepository>().getSpecificProfile(userUid!),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           Profile profile = snapshot.data!;

@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             final profile = profiles.isNotEmpty ? profiles.first : null;
 
             if (profile == null) {
-              return const Center(child: Text('No profile data available'));
+              return const Center(child: Text("profil not available"));
             }
 
             return Column(

@@ -1,11 +1,20 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 
 class FirestoreDatabase implements DatabaseRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  String docId = "l75mGuGI0dKtUKMWQ6m5";
-  // Method to update about me
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  late String docId;
+
+  Future userId() async {
+    UserCredential userCredential = (firebaseAuth) as UserCredential;
+    User? user = userCredential.user;
+    docId = user!.uid;
+  }
 
   @override
   Future<void> updateAboutMe(String firestoreKey, String value) async {
@@ -42,7 +51,6 @@ class FirestoreDatabase implements DatabaseRepository {
         .map((snapshot) => Profile.fromMap(snapshot.data()!, docID));
   }
 
-  // Method to update relationship status
   @override
   Future<void> updateRelationshipStatus(
       String docID, String relationshipStatus) async {
@@ -53,7 +61,6 @@ class FirestoreDatabase implements DatabaseRepository {
     );
   }
 
-  // Method to update city
   @override
   Future<void> updateCity(String docID, String city) async {
     await firestore.collection("profiles").doc(docID).update({
@@ -61,14 +68,12 @@ class FirestoreDatabase implements DatabaseRepository {
     });
   }
 
-  // Method to update favorite hobby
   Future<void> updateFavoriteHobby(String docID, String hobby) async {
     await firestore.collection("profiles").doc(docID).update({
       "hobby": hobby,
     });
   }
 
-  // Method to update favorite holiday location
   Future<void> updateFavoriteHolidayLocation(
       String docID, String holiday) async {
     await firestore.collection("profiles").doc(docID).update({
@@ -76,62 +81,53 @@ class FirestoreDatabase implements DatabaseRepository {
     });
   }
 
-  // Method to update job
   Future<void> updateJob(String docID, String job) async {
     await firestore.collection("profiles").doc(docID).update({
       "job": job,
     });
   }
 
-  // Method to update wish job
   Future<void> updateWishJob(String docID, String wishJob) async {
     await firestore.collection("profiles").doc(docID).update({
       "wishJob": wishJob,
     });
   }
 
-  // Method to update favorite color
   Future<void> updateFavoriteColor(String docID, int colorValue) async {
     await firestore.collection("profiles").doc(docID).update({
       "color": colorValue,
     });
   }
 
-  // Method to update birthdate
   Future<void> updateBirthdate(String docID, String birthdate) async {
     await firestore.collection("profiles").doc(docID).update({
       "birthdate": birthdate,
     });
   }
 
-  // Method to update sleep time
   Future<void> updateSleepTime(String docID, String sleepTime) async {
     await firestore.collection("profiles").doc(docID).update({
       "sleepTime": sleepTime,
     });
   }
 
-  // Method to update favorites
   Future<void> updateFavorites(
       String docID, Map<String, dynamic> favorites) async {
     await firestore.collection("profiles").doc(docID).update(favorites);
   }
 
-  // Method to update goodies
   Future<void> updateGoodies(String docID, String goodies) async {
     await firestore.collection("profiles").doc(docID).update({
       "goodies": goodies,
     });
   }
 
-  // Method to update funnys
   Future<void> updateFunnys(String docID, String funnys) async {
     await firestore.collection("profiles").doc(docID).update({
       "funnys": funnys,
     });
   }
 
-  // Method to update futures
   Future<void> updateFutures(String docID, String futures) async {
     await firestore.collection("profiles").doc(docID).update({
       "futures": futures,
@@ -139,12 +135,15 @@ class FirestoreDatabase implements DatabaseRepository {
   }
 
   @override
-  Future<void> updateDiscription(String docID, String discription) async {
-    await firestore.collection("profiles").doc(docID).update(
-      {
-        "readme": discription,
-      },
-    );
+  Future<void> updateDescription(String docID, String description) async {
+    try {
+      await firestore.collection('profiles').doc(docID).update({
+        'readme': description,
+      });
+    } catch (e) {
+      print('Failed to update description: $e');
+      rethrow;
+    }
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -12,41 +13,42 @@ class ProfileDescription extends StatefulWidget {
 }
 
 class _ProfileDescriptionState extends State<ProfileDescription> {
-  late TextEditingController discriptioncontroller;
+  late TextEditingController descriptionController;
 
   @override
   void initState() {
-    discriptioncontroller = TextEditingController();
+    descriptionController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    discriptioncontroller.dispose();
+    descriptionController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final authRepository = context.read<AuthRepository>();
+    final userUid = authRepository.getCurrentUser()?.uid;
+
     return StreamBuilder(
         stream: context
             .read<DatabaseRepository>()
-            .getSpecificProfile("l75mGuGI0dKtUKMWQ6m5"),
+            .getSpecificProfile(userUid!), // Verwendet userUid
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            discriptioncontroller.text = snapshot.data?.readme ?? "";
+            descriptionController.text = snapshot.data?.readme ?? "";
 
             return TextFormField(
-              controller: discriptioncontroller,
+              controller: descriptionController,
               onEditingComplete: () async {
-                // TODO: Id Dynamisch hinzufügen
                 try {
-                  await context.read<DatabaseRepository>().updateDiscription(
-                      "l75mGuGI0dKtUKMWQ6m5", discriptioncontroller.text);
+                  await context.read<DatabaseRepository>().updateDescription(
+                      userUid, descriptionController.text); // Verwendet userUid
                 } catch (e) {
                   print(e);
                 }
-
                 print("updated");
               },
               decoration: const InputDecoration(

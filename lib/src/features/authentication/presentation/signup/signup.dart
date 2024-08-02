@@ -193,7 +193,8 @@ class _SignupState extends State<Signup> {
                                         authRepository
                                             .signUpWithEmailAndPassword(
                                                 _emailController.text,
-                                                _passwordController.text);
+                                                _passwordController.text,
+                                                context);
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           const SnackBar(
