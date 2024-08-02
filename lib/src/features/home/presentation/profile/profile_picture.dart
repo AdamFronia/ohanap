@@ -3,10 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 
 class ProfilePicture extends StatefulWidget {
+  final Profile profile;
+
   const ProfilePicture({
     super.key,
+    required this.profile,
   });
 
   @override
@@ -16,6 +20,30 @@ class ProfilePicture extends StatefulWidget {
 class _ProfilePictureState extends State<ProfilePicture> {
   File? image;
   File? image2;
+  ImageProvider? networkImage;
+  ImageProvider? networkImage2;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadNetworkImages();
+  }
+
+  Future<void> _loadNetworkImages() async {
+    if (widget.profile.mainProfileURL != null &&
+        widget.profile.mainProfileURL!.isNotEmpty) {
+      setState(() {
+        networkImage = NetworkImage(widget.profile.mainProfileURL!);
+      });
+    }
+
+    if (widget.profile.secondImageProfileURL != null &&
+        widget.profile.secondImageProfileURL!.isNotEmpty) {
+      setState(() {
+        networkImage2 = NetworkImage(widget.profile.secondImageProfileURL!);
+      });
+    }
+  }
 
   Future pickImage(ImageSource source) async {
     try {
@@ -76,26 +104,39 @@ class _ProfilePictureState extends State<ProfilePicture> {
               );
             },
             child: image != null
-                ? Image.file(
-                    fit: BoxFit.cover,
-                    image!,
-                    width: 150,
-                    height: 150,
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: Image.file(
+                      fit: BoxFit.scaleDown,
+                      image!,
+                      width: 150,
+                      height: 150,
+                    ),
                   )
                 : Container(
                     width: 150,
                     height: 150,
-                    color: Colors.grey, // Placeholder color or image
-                    child: const Icon(
-                      Icons.person_add_outlined,
-                      size: 55,
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      image: networkImage != null
+                          ? DecorationImage(
+                              image: networkImage!,
+                              fit: BoxFit.cover,
+                            )
+                          : null,
                     ),
+                    child: networkImage == null
+                        ? const Icon(
+                            Icons.person_add_outlined,
+                            size: 55,
+                            color: Colors.white,
+                          )
+                        : null,
                   ),
           ),
         ),
         Positioned(
-          right: 80,
+          right: 60,
           bottom: 0,
           child: GestureDetector(
             onTap: () {
@@ -128,21 +169,34 @@ class _ProfilePictureState extends State<ProfilePicture> {
               );
             },
             child: image2 != null
-                ? Image.file(
-                    fit: BoxFit.cover,
-                    image2!,
-                    width: 75,
-                    height: 75,
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Image.file(
+                      fit: BoxFit.scaleDown,
+                      image2!,
+                      width: 75,
+                      height: 75,
+                    ),
                   )
                 : Container(
                     width: 75,
                     height: 75,
-                    color: Colors.grey, // Placeholder color or image
-                    child: const Icon(
-                      Icons.person_add_outlined,
-                      size: 45,
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      image: networkImage2 != null
+                          ? DecorationImage(
+                              image: networkImage2!,
+                              fit: BoxFit.cover,
+                            )
+                          : null,
                     ),
+                    child: networkImage2 == null
+                        ? const Icon(
+                            Icons.person_add_outlined,
+                            size: 45,
+                            color: Colors.white,
+                          )
+                        : null,
                   ),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/features/authentication/presentation/signup/sign_up_screen.dart';
+import 'package:ohanap/src/features/home/presentation/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
@@ -120,17 +121,24 @@ class _LoginFormState extends State<LoginForm> {
                 width: 232,
                 height: 53,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState?.validate() ?? false) {
                       try {
-                        authRepository.loginWithEmailAndPassword(
+                        await authRepository.loginWithEmailAndPassword(
                             _emailController.text, _passwordController.text);
-                        // Formular ist gültig, Aktion durchführen
+
+                        // Login erfolgreich, zum Homescreen weiterleiten
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()),
+                        );
+
+                        // Optionale Snackbar-Bestätigung (kann entfernt werden, wenn nicht benötigt)
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Login erfolgreich')),
                         );
                       } catch (e) {
-                        // Formular ist gültig, Aktion durchführen
+                        // Login fehlgeschlagen, Fehlermeldung anzeigen
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Login fehlgeschlagen')),
                         );

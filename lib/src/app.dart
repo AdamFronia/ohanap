@@ -1,7 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ohanap/src/features/welcome/presentation/splash_screen.dart';
+import 'package:ohanap/src/features/home/presentation/home_screen.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     // Database einmal an der Wurzel erzeugt
 
     return MaterialApp(
-      home: const SplashScreen(
+      home: const HomeScreen(
           // hier wird der start screen ausgeführt
 
           ),

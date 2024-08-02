@@ -9,7 +9,6 @@ import 'package:ohanap/src/features/menus/presentation/screens/wanted_posters_sc
 import 'screens/blocked_user_screen.dart';
 import 'screens/contact_information_screen.dart';
 import 'screens/imprint_screen.dart';
-import 'screens/settings_screen.dart';
 import 'screens/signout_screen.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -44,16 +43,6 @@ class MenuScreen extends StatelessWidget {
                       builder: (context) => const WantedPostersScreen(),
                     ));
               }),
-          OhanaButton(
-            text: "Einstellungen",
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SettingsScreen(),
-                  ));
-            },
-          ),
           OhanaButton(
             text: "Blockliste",
             onTap: () {

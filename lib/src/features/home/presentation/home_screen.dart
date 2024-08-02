@@ -47,11 +47,17 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
-            // FALL: Future ist komplett und hat Daten!
-            debugPrint(snapshot.error.toString());
+            // Future ist komplett und hat Daten
+            final profiles = snapshot.data!;
+            final profile = profiles.isNotEmpty ? profiles.first : null;
+
+            if (profile == null) {
+              return const Center(child: Text('No profile data available'));
+            }
+
             return Column(
               children: [
-                const ProfilePicture(),
+                ProfilePicture(profile: profile),
                 const SizedBox(height: 5),
                 const ProfileDescription(),
                 const SizedBox(height: 5),
@@ -102,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             );
           } else if (snapshot.connectionState != ConnectionState.done) {
-            // FALL: Sind noch im Ladezustand
+            // Sind noch im Ladezustand
             return const CircularProgressIndicator();
           } else {
             print(snapshot.error);
