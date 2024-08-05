@@ -22,17 +22,6 @@ class ImprintScreen extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: const Divider(
-            color: Color.fromARGB(255, 0, 0, 0),
-            thickness: 1,
-          ),
-        ),
-        OhanaButton(
-          text: "Impressum",
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MenuScreen()));
-          },
         ),
       ],
     ));

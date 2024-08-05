@@ -110,10 +110,3 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
         });
   }
 }
-
-/// 1. TExtFeld finden
-/// 2. TExtEdetingController erstellen
-/// 3. TextedetingController zuweisen
-/// 4. Beim Textfeld leer Methode 'onEdetingCompleted' erstellen
-/// 5. Methode aus 'databaseRepository' aufrufen 
-/// 6. Text aus TextEdetingController übergeben
