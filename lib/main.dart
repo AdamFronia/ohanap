@@ -13,8 +13,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  DatabaseRepository databaseRepository = FirestoreDatabase();
-  AuthRepository authRepository = AuthRepository(FirebaseAuth.instance);
+  //DatabaseRepository databaseRepository = FirestoreDatabase();
+  //AuthRepository authRepository = AuthRepository(FirebaseAuth.instance);
   runApp(
     MultiProvider(
       providers: [

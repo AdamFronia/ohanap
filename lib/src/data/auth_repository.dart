@@ -32,7 +32,6 @@ class AuthRepository {
         "profilePicUrl":
             "https://ca.slack-edge.com/T044YC3MSLF-U0682A3SDAN-fe6928565c03-72",
         "name": "",
-        "readme": "",
         "relationShip": "",
         "city": "",
         "hobby": "",
@@ -47,7 +46,7 @@ class AuthRepository {
         "likesReading": false,
         "aboutMe": "",
         "dataList": [],
-        //_createDataList(),
+        //createDataList(),
         "animal": "",
         "drink": '',
         "musik": '',

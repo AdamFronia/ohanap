@@ -5,7 +5,7 @@ import 'database_repository.dart';
 class MockDatabaseRepository implements DatabaseRepository {
   List<Map<String, dynamic>> dataList = _createDataList();
 
-  // simulierten Daten in der Datenbank
+  // Simulierte Daten in der Datenbank
   List<Profile> profileList = [
     Profile(
         docID: "4",
@@ -116,9 +116,15 @@ class MockDatabaseRepository implements DatabaseRepository {
   }
 
   @override
-  Future<void> updateDiscription(String docID, String discription) {
-    // TODO: implement updateDiscription
-    throw UnimplementedError();
+  Future<void> updateDescription(String docID, String description) async {
+    var profile = profileList.firstWhere(
+      (p) => p.docID == docID,
+      orElse: () => null!,
+    );
+
+    profile.aboutMe = description; // Angenommene Anpassung
+
+    return Future.value();
   }
 
   @override
