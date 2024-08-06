@@ -44,7 +44,7 @@ class FriendbookScreen extends StatelessWidget {
                         height: 30,
                         width: 30,
                         child: Image.network(
-                          currentProfile.profilePicUrl,
+                          currentProfile.mainProfileURL!,
                         ),
                       ),
                       const SizedBox(width: 10),

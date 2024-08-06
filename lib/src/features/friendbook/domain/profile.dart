@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 class Profile {
-  // Attribute
+  // Attributes
   String futures;
   String funnys;
   String goodies;
@@ -7,7 +9,6 @@ class Profile {
   String drink;
   String musik;
   String animal;
-  String profilePicUrl;
   String name;
   String readme;
   String relationShip;
@@ -33,51 +34,49 @@ class Profile {
   // Document ID
   final String docID;
 
-  // Konstruktor
-  Profile(
-      {required this.futures,
-      required this.funnys,
-      required this.goodies,
-      required this.profilePicUrl,
-      required this.name,
-      required this.readme,
-      required this.relationShip,
-      required this.city,
-      required this.hobby,
-      required this.holiday,
-      required this.job,
-      required this.wishJob,
-      required this.color,
-      required this.birthdate,
-      required this.sleepTime,
-      required this.hasSiblings,
-      required this.likeSports,
-      required this.likesReading,
-      required this.aboutMe,
-      required this.dataList,
-      required this.animal,
-      required this.drink,
-      required this.musik,
-      required this.essen,
-      required this.docID,
-      this.thatsMyStrengths,
-      this.funnyFact,
-      this.futuretime,
-      this.mainProfileURL,
-      this.secondImageProfileURL});
+  // Constructor
+  Profile({
+    required this.futures,
+    required this.funnys,
+    required this.goodies,
+    required this.name,
+    required this.readme,
+    required this.relationShip,
+    required this.city,
+    required this.hobby,
+    required this.holiday,
+    required this.job,
+    required this.wishJob,
+    required this.color,
+    required this.birthdate,
+    required this.sleepTime,
+    required this.hasSiblings,
+    required this.likeSports,
+    required this.likesReading,
+    required this.aboutMe,
+    required this.dataList,
+    required this.animal,
+    required this.drink,
+    required this.musik,
+    required this.essen,
+    required this.docID,
+    this.thatsMyStrengths,
+    this.funnyFact,
+    this.futuretime,
+    this.mainProfileURL,
+    this.secondImageProfileURL,
+  });
 
-//Methodes
-
+  // Method to convert Profile to Map
   Map<String, dynamic> toMap() {
     return {
       "futures": futures,
       "funnys": funnys,
       "goodies": goodies,
       "essen": essen,
-      "getraenke": drink,
+      "drink": drink,
       "musik": musik,
       "tier": animal,
-      "profilePicUrl": profilePicUrl,
       "name": name,
       "readme": readme,
       "relationShip": relationShip,
@@ -86,7 +85,7 @@ class Profile {
       "holiday": holiday,
       "job": job,
       "wishJob": wishJob,
-      "color": color, // Color als int speichern
+      "color": color,
       "birthdate": birthdate,
       "sleepTime": sleepTime,
       "hasSiblings": hasSiblings,
@@ -98,41 +97,47 @@ class Profile {
       "funnyFact": funnyFact,
       "futuretime": futuretime,
       "mainProfileURL": mainProfileURL,
-      "secondImageProfileURL": secondImageProfileURL
+      "secondImageProfileURL": secondImageProfileURL,
     };
   }
 
+  // Factory method to create Profile from Map
   factory Profile.fromMap(Map<String, dynamic> map, String docID) {
-    return Profile(
+    try {
+      return Profile(
         docID: docID,
-        futures: map['futures'],
-        funnys: map['funnys'],
-        goodies: map['goodies'],
-        essen: map['essen'],
-        drink: map['Getraenke'],
-        musik: map['musik'],
-        animal: map['tier'],
-        profilePicUrl: map['profilePicUrl'],
-        name: map['name'],
-        readme: map['readme'],
-        relationShip: map['relationShip'],
-        city: map['city'],
-        hobby: map['hobby'],
-        holiday: map['holiday'],
-        job: map['job'],
-        wishJob: map['wishJob'],
-        color: map['color'], // Color von int wiederherstellen
-        birthdate: map['birthdate'],
-        sleepTime: map['sleepTime'],
-        hasSiblings: map['hasSiblings'],
-        likeSports: map['likeSports'],
-        likesReading: map['likesReading'],
-        aboutMe: map['aboutMe'],
-        dataList: List<Map<String, dynamic>>.from(map['dataList']),
+        futures: map['futures'] ?? '',
+        funnys: map['funnys'] ?? '',
+        goodies: map['goodies'] ?? '',
+        essen: map['essen'] ?? '',
+        drink: map['drink'] ?? '',
+        musik: map['musik'] ?? '',
+        animal: map['tier'] ?? '',
+        name: map['name'] ?? '',
+        readme: map['readme'] ?? '',
+        relationShip: map['relationShip'] ?? '',
+        city: map['city'] ?? '',
+        hobby: map['hobby'] ?? '',
+        holiday: map['holiday'] ?? '',
+        job: map['job'] ?? '',
+        wishJob: map['wishJob'] ?? '',
+        color: map['color'] ?? '',
+        birthdate: map['birthdate'] ?? '',
+        sleepTime: map['sleepTime'] ?? '',
+        hasSiblings: map['hasSiblings'] ?? false,
+        likeSports: map['likeSports'] ?? false,
+        likesReading: map['likesReading'] ?? false,
+        aboutMe: map['aboutMe'] ?? '',
+        dataList: List<Map<String, dynamic>>.from(map['dataList'] ?? []),
         thatsMyStrengths: map['thatsMyStrengths'],
         funnyFact: map['funnyFact'],
         futuretime: map['futuretime'],
         mainProfileURL: map["mainProfileURL"],
-        secondImageProfileURL: map["secondImageProfileURL"]);
+        secondImageProfileURL: map["secondImageProfileURL"],
+      );
+    } catch (e) {
+      log('Error creating Profile from map: $e');
+      rethrow;
+    }
   }
 }

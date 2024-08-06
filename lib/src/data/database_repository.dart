@@ -9,5 +9,5 @@ abstract class DatabaseRepository {
       String docID, String relationshipStatus);
 
   Future<void> updateCity(String docID, String city);
-  Future<void> updateAboutMe(String key, String value);
+  Future<void> updateAboutMe(String key, String value, String docID);
 }

@@ -47,7 +47,7 @@ class _AboutMeState extends State<AboutMe> {
               width: 250,
               height: 233,
               decoration: ShapeDecoration(
-                color: const Color.fromARGB(255, 38, 142, 247),
+                color: const Color.fromRGBO(38, 142, 247, 1),
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(width: 1),
                   borderRadius: BorderRadius.circular(50),
@@ -91,10 +91,7 @@ class _AboutMeState extends State<AboutMe> {
                                 onSubmitted: (text) async {
                                   await context
                                       .read<DatabaseRepository>()
-                                      .updateAboutMe(
-                                        "aboutMe",
-                                        text,
-                                      );
+                                      .updateAboutMe("aboutMe", text, userUid);
                                 },
                                 decoration: const InputDecoration(
                                   labelText: 'Über mich',

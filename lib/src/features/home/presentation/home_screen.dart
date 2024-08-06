@@ -1,6 +1,10 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/data/database_repository.dart';
+import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 import 'package:ohanap/src/features/home/presentation/profile/profile_description.dart';
 import 'package:ohanap/src/features/home/presentation/profile/profile_location.dart';
 import 'package:ohanap/src/features/home/presentation/profile/profile_picture.dart';
@@ -20,11 +24,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String selectedEmoji = '';
   late String location = '';
+  final StreamController<List<Profile>> _profileStreamController =
+      StreamController();
 
   @override
   void initState() {
     super.initState();
     _loadSelectedEmoji();
+    _loadProfiles();
   }
 
   Future<void> _loadSelectedEmoji() async {
@@ -39,25 +46,47 @@ class _HomeScreenState extends State<HomeScreen> {
     await prefs.setString('selectedEmoji', emoji);
   }
 
+  Future<void> _loadProfiles() async {
+    try {
+      final profiles =
+          await context.read<DatabaseRepository>().getAllProfiles();
+      _profileStreamController.add(profiles);
+    } catch (e) {
+      log('Error loading profiles: $e');
+      _profileStreamController.addError(e);
+    }
+  }
+
+  @override
+  void dispose() {
+    _profileStreamController.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
-      content: FutureBuilder(
-        future: context.watch<DatabaseRepository>().getAllProfiles(),
+      content: StreamBuilder<List<Profile>>(
+        stream: _profileStreamController.stream,
         builder: (context, snapshot) {
-          if (snapshot.hasData &&
-              snapshot.connectionState == ConnectionState.done) {
-            // Future ist komplett und hat Daten
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            log('Error: ${snapshot.error}');
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
             final profiles = snapshot.data!;
             final profile = profiles.isNotEmpty ? profiles.first : null;
 
             if (profile == null) {
-              return const Center(child: Text("profil not available"));
+              return const Center(child: Text("Profile not available"));
             }
 
             return Column(
               children: [
-                ProfilePicture(profile: profile),
+                ProfilePicture(
+                  profile: profile,
+                ),
                 const SizedBox(height: 5),
                 const ProfileDescription(),
                 const SizedBox(height: 5),
@@ -107,12 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 7),
               ],
             );
-          } else if (snapshot.connectionState != ConnectionState.done) {
-            // Sind noch im Ladezustand
-            return const CircularProgressIndicator();
           } else {
-            print(snapshot.error);
-            return const Icon(Icons.error);
+            return const Center(child: Text("No data available"));
           }
         },
       ),

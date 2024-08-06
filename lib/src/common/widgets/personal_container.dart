@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,8 @@ class _PersonalContainerState extends State<PersonalContainer> {
 
   @override
   Widget build(BuildContext context) {
+    final authRepository = context.read<AuthRepository>();
+    final userUid = authRepository.getCurrentUser()?.uid;
     return Container(
       width: 180,
       height: 180,
@@ -69,9 +72,7 @@ class _PersonalContainerState extends State<PersonalContainer> {
                 controller: controller,
                 onChanged: (text) async {
                   await context.read<DatabaseRepository>().updateAboutMe(
-                        widget.firestoreKey,
-                        controller.text,
-                      );
+                      widget.firestoreKey, controller.text, userUid!);
                 },
                 decoration: InputDecoration(
                   labelText: widget.text,

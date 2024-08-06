@@ -9,8 +9,6 @@ class MockDatabaseRepository implements DatabaseRepository {
   List<Profile> profileList = [
     Profile(
         docID: "4",
-        profilePicUrl:
-            "https://ca.slack-edge.com/T044YC3MSLF-U0682A3SDAN-fe6928565c03-72",
         name: "Adam",
         readme: "hi bin adam",
         relationShip: "",
@@ -36,8 +34,6 @@ class MockDatabaseRepository implements DatabaseRepository {
         futures: 'future'),
     Profile(
         docID: "1",
-        profilePicUrl:
-            "https://ca.slack-edge.com/T044YC3MSLF-U04S160GVMH-353316879748-72",
         name: "Angie",
         readme: "hi bin angi",
         relationShip: "verlobt",
@@ -63,8 +59,6 @@ class MockDatabaseRepository implements DatabaseRepository {
         futures: 'future'),
     Profile(
         docID: "2",
-        profilePicUrl:
-            "https://ca.slack-edge.com/T044YC3MSLF-U05GXAU2DH6-75f1f34f2c6f-192",
         name: "David",
         readme: "hi bin david",
         relationShip: "single",
@@ -134,7 +128,7 @@ class MockDatabaseRepository implements DatabaseRepository {
   }
 
   @override
-  Future<void> updateAboutMe(String key, String value) {
+  Future<void> updateAboutMe(String key, String value, String userID) {
     // TODO: implement updateAboutMe
     throw UnimplementedError();
   }

@@ -91,10 +91,7 @@ class _GoodysState extends State<Goodys> {
                                 onSubmitted: (text) async {
                                   await context
                                       .read<DatabaseRepository>()
-                                      .updateAboutMe(
-                                        "goodies",
-                                        text,
-                                      );
+                                      .updateAboutMe("goodies", text, userUid);
                                 },
                                 decoration: const InputDecoration(
                                   labelText: 'Das kann ich besonders gut',

@@ -22,6 +22,8 @@ class AuthRepository {
     return currentUser;
   }
 
+  List<Map<String, dynamic>> dataList = _createDataList();
+
   Future<void> signUpWithEmailAndPassword(String email, String pw, context) {
     return _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: pw)
@@ -29,8 +31,8 @@ class AuthRepository {
       userUid = userCredential.user!.uid;
       FirebaseFirestore.instance.collection("profiles").doc(userUid).set({
         "readme": "",
-        "profilePicUrl":
-            "https://ca.slack-edge.com/T044YC3MSLF-U0682A3SDAN-fe6928565c03-72",
+        "profilePicUrlBig": "",
+        "profilePicUrlSmall": "",
         "name": "",
         "relationShip": "",
         "city": "",
@@ -45,8 +47,7 @@ class AuthRepository {
         "likeSports": false,
         "likesReading": false,
         "aboutMe": "",
-        "dataList": [],
-        //createDataList(),
+        "dataList": _createDataList(),
         "animal": "",
         "drink": '',
         "musik": '',
@@ -79,4 +80,27 @@ class AuthRepository {
   Stream<User?> authStateChanges() {
     return _firebaseAuth.authStateChanges();
   }
+}
+
+List<Map<String, dynamic>> _createDataList() {
+  List<String> itemTitles = [
+    "Ich habe Geschwister",
+    "Ich mache gerne Sport",
+    "Ich lese gerne",
+    "Ich mag Tiere",
+    "Ich bin immer pünktlich",
+    "Ich esse gerne Obst",
+    "Ich bin Hilfsbereit",
+    "Ich schlafe gerne",
+    "Ich Kuschel gerne",
+    "Ich treffe mich gerne mit meinen Freunden",
+  ];
+  List<Map<String, dynamic>> dataList = [];
+  for (int i = 0; i < itemTitles.length; i++) {
+    dataList.add({
+      "title": itemTitles[i],
+      "isChecked": false,
+    });
+  }
+  return dataList;
 }

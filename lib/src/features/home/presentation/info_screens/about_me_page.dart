@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/personal_container.dart';
@@ -41,8 +43,8 @@ class _AboutMePageState extends State<AboutMePage> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           Profile profile = snapshot.data!;
-          print(profile.holiday);
-          print(profile.job);
+          log(profile.holiday);
+          log(profile.job);
           return TemplateScreen(
             content: Column(
               children: [
@@ -109,7 +111,7 @@ class _AboutMePageState extends State<AboutMePage> {
                         assetPath: 'assets/birthday-cake.png',
                         text: "Geburtsdatum",
                         color: Colors.yellow,
-                        firestoreKey: "bithdate",
+                        firestoreKey: "birthdate",
                         value: profile.birthdate,
                       ),
                     ],

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,20 +18,27 @@ class FirestoreDatabase implements DatabaseRepository {
   }
 
   @override
-  Future<void> updateAboutMe(String firestoreKey, String value) async {
-    await firestore.collection("profiles").doc(docId).update({
+  Future<void> updateAboutMe(
+      String firestoreKey, String value, String docID) async {
+    await firestore.collection("profiles").doc(docID).update({
       firestoreKey: value,
     });
   }
 
   @override
   Future<List<Profile>> getAllProfiles() async {
-    final snapshot = await firestore.collection('profiles').get();
-    List<Profile> profiles = snapshot.docs
-        .map((doc) => Profile.fromMap(doc.data(), doc.id))
-        .toList();
-
-    return profiles;
+    try {
+      final snapshot = await firestore.collection('profiles').get();
+      final profiles = snapshot.docs.map((doc) {
+        final data = doc.data();
+        log('Fetched profile data: $data');
+        return Profile.fromMap(data, doc.id); // Pass the document ID here
+      }).toList();
+      return profiles;
+    } catch (e) {
+      log('Error fetching profiles: $e');
+      rethrow;
+    }
   }
 
   @override

@@ -87,10 +87,7 @@ class _FunnysState extends State<Funnys> {
                               onSubmitted: (text) async {
                                 await context
                                     .read<DatabaseRepository>()
-                                    .updateAboutMe(
-                                      "funnys",
-                                      text,
-                                    );
+                                    .updateAboutMe("funnys", text, userUid);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'etwas lustiges über mich',

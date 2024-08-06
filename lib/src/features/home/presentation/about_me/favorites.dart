@@ -97,10 +97,7 @@ class _FavoritesState extends State<Favorites> {
                               onSubmitted: (text) async {
                                 await context
                                     .read<DatabaseRepository>()
-                                    .updateAboutMe(
-                                      "essen",
-                                      text,
-                                    );
+                                    .updateAboutMe("essen", text, userUid);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'Essen',
@@ -127,10 +124,7 @@ class _FavoritesState extends State<Favorites> {
                               onSubmitted: (text) async {
                                 await context
                                     .read<DatabaseRepository>()
-                                    .updateAboutMe(
-                                      "Getraenke",
-                                      text,
-                                    );
+                                    .updateAboutMe("drink", text, userUid);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'Getränk',
@@ -157,10 +151,7 @@ class _FavoritesState extends State<Favorites> {
                               onSubmitted: (text) async {
                                 await context
                                     .read<DatabaseRepository>()
-                                    .updateAboutMe(
-                                      "musik",
-                                      text,
-                                    );
+                                    .updateAboutMe("musik", text, userUid);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'Musik',
@@ -187,10 +178,7 @@ class _FavoritesState extends State<Favorites> {
                               onSubmitted: (text) async {
                                 await context
                                     .read<DatabaseRepository>()
-                                    .updateAboutMe(
-                                      "tier",
-                                      text,
-                                    );
+                                    .updateAboutMe("tier", text, userUid);
                               },
                               decoration: const InputDecoration(
                                 labelText: 'Tier',

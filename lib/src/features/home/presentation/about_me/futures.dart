@@ -91,10 +91,7 @@ class _FuturesState extends State<Futures> {
                                 onSubmitted: (text) async {
                                   await context
                                       .read<DatabaseRepository>()
-                                      .updateAboutMe(
-                                        "futures",
-                                        text,
-                                      );
+                                      .updateAboutMe("futures", text, userUid);
                                 },
                                 decoration: const InputDecoration(
                                   labelText: 'Wo siehst du dich in der Zukunft',
