@@ -24,8 +24,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String selectedEmoji = '';
   late String location = '';
-  final StreamController<List<Profile>> _profileStreamController =
-      StreamController();
+  final StreamController<Profile> _profileStreamController =
+      StreamController<Profile>();
 
   @override
   void initState() {
@@ -50,7 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       final profiles =
           await context.read<DatabaseRepository>().getAllProfiles();
-      _profileStreamController.add(profiles);
+      final profile = profiles.isNotEmpty
+          ? profiles.first
+          : null; // Default profile if list is empty
+      _profileStreamController.add(profile!);
     } catch (e) {
       log('Error loading profiles: $e');
       _profileStreamController.addError(e);
@@ -66,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
-      content: StreamBuilder<List<Profile>>(
+      content: StreamBuilder<Profile>(
         stream: _profileStreamController.stream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -75,12 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             log('Error: ${snapshot.error}');
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            final profiles = snapshot.data!;
-            final profile = profiles.isNotEmpty ? profiles.first : null;
-
-            if (profile == null) {
-              return const Center(child: Text("Profile not available"));
-            }
+            final profile = snapshot.data!;
 
             return Column(
               children: [

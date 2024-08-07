@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,37 +22,35 @@ class ProfilePicture extends StatefulWidget {
 
 class _ProfilePictureState extends State<ProfilePicture> {
   final StreamController<Map<String, String?>> _streamController =
-      StreamController();
-  Stream<Map<String, String?>> get _stream => _streamController.stream;
+      StreamController<Map<String, String?>>();
   File? image;
   File? image2;
-  ImageProvider? networkImage;
-  ImageProvider? networkImage2;
-  String? bigImage;
-  String? smallImage;
   bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
     _loadNetworkImages();
-    fetchData();
   }
 
-  Future<void> _loadNetworkImages() async {
-    if (widget.profile.mainProfileURL != null &&
-        widget.profile.mainProfileURL!.isNotEmpty) {
-      setState(() {
-        networkImage = NetworkImage(widget.profile.mainProfileURL!);
-      });
-    }
+  void _loadNetworkImages() {
+    final profileRef = FirebaseFirestore.instance
+        .collection('profiles')
+        .doc(widget.profile.docID);
 
-    if (widget.profile.secondImageProfileURL != null &&
-        widget.profile.secondImageProfileURL!.isNotEmpty) {
-      setState(() {
-        networkImage2 = NetworkImage(widget.profile.secondImageProfileURL!);
-      });
-    }
+    Stream.fromFuture(profileRef.get()).listen((doc) {
+      final data = doc.data();
+      if (data != null) {
+        _streamController.add({
+          'bigImage': data['profilePicUrlBig'] ?? "",
+          'smallImage': data['profilePicUrlSmall'] ?? ""
+        });
+      } else {
+        _streamController.add({'bigImage': "", 'smallImage': ""});
+      }
+    }, onError: (error) {
+      _streamController.add({'bigImage': "", 'smallImage': ""});
+    });
   }
 
   Future<void> pickImage(ImageSource source, bool isMain) async {
@@ -70,69 +67,41 @@ class _ProfilePictureState extends State<ProfilePicture> {
         }
       });
 
-      await _uploadImageToFirebase(imageTemp, isMain);
+      _uploadImageToFirebase(imageTemp, isMain);
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
   }
 
-  Future<void> _uploadImageToFirebase(File imageFile, bool isMain) async {
-    try {
-      final fileName = isMain ? 'mainProfilePic.jpg' : 'secondProfilePic.jpg';
-      final storageRef = FirebaseStorage.instance
-          .ref()
-          .child('profilePictures/${widget.profile.docID}/$fileName');
-      await storageRef.putFile(imageFile);
+  void _uploadImageToFirebase(File imageFile, bool isMain) {
+    final fileName = isMain ? 'mainProfilePic.jpg' : 'secondProfilePic.jpg';
+    final storageRef = FirebaseStorage.instance
+        .ref()
+        .child('profilePictures/${widget.profile.docID}/$fileName');
 
-      final downloadURL = await storageRef.getDownloadURL();
-      await _updateProfilePictureURL(downloadURL, isMain);
-    } catch (e) {
-      print('Failed to upload image: $e');
-    }
+    Stream.fromFuture(storageRef.putFile(imageFile)).listen((taskSnapshot) {
+      taskSnapshot.ref.getDownloadURL().then((downloadURL) {
+        _updateProfilePictureURL(downloadURL, isMain);
+      }).catchError((error) {
+        print('Failed to get download URL: $error');
+      });
+    }, onError: (error) {
+      print('Failed to upload image: $error');
+    });
   }
 
-  Future<void> _updateProfilePictureURL(String downloadURL, bool isMain) async {
-    try {
-      final profileRef = FirebaseFirestore.instance
-          .collection('profiles')
-          .doc(widget.profile.docID);
-      await profileRef.update({
-        isMain ? 'profilePicUrlBig' : 'profilePicUrlSmall': downloadURL,
-      });
+  void _updateProfilePictureURL(String downloadURL, bool isMain) {
+    final profileRef = FirebaseFirestore.instance
+        .collection('profiles')
+        .doc(widget.profile.docID);
 
-      setState(() {
-        if (isMain) {
-          networkImage = NetworkImage(downloadURL);
-        } else {
-          networkImage2 = NetworkImage(downloadURL);
-        }
-      });
-    } catch (e) {
-      print('Failed to update Firestore: $e');
-    }
-  }
-
-  Future<void> fetchData() async {
-    try {
-      final docID = widget.profile.docID;
-      final doc = await FirebaseFirestore.instance
-          .collection('profiles')
-          .doc(docID)
-          .get();
-      final data = doc.data();
-
-      if (data != null) {
-        _streamController.add({
-          'bigImage': data['profilePicUrlBig'] ?? "",
-          'smallImage': data['profilePicUrlSmall'] ?? ""
-        });
-      } else {
-        _streamController.add({'bigImage': "", 'smallImage': ""});
-      }
-    } catch (e) {
-      log('Error fetching user data: $e');
-      _streamController.add({'bigImage': "", 'smallImage': ""});
-    }
+    Stream.fromFuture(profileRef.update({
+      isMain ? 'profilePicUrlBig' : 'profilePicUrlSmall': downloadURL,
+    })).listen((_) {
+      _loadNetworkImages(); // Fetch the latest data after updating
+    }, onError: (error) {
+      print('Failed to update Firestore: $error');
+    });
   }
 
   @override
@@ -144,7 +113,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Map<String, String?>>(
-      stream: _stream,
+      stream: _streamController.stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -194,7 +163,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
                           padding: const EdgeInsets.only(right: 20.0),
                           child: Image.network(
                             bigImage,
-                            fit: BoxFit.scaleDown,
+                            fit: BoxFit.cover,
                             width: 150,
                             height: 150,
                           ),
@@ -202,22 +171,13 @@ class _ProfilePictureState extends State<ProfilePicture> {
                       : Container(
                           width: 150,
                           height: 150,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.grey,
-                            image: networkImage != null
-                                ? DecorationImage(
-                                    image: networkImage!,
-                                    fit: BoxFit.cover,
-                                  )
-                                : null,
+                            image: DecorationImage(
+                              image: AssetImage('assets/default_image.png'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          child: networkImage == null
-                              ? const Icon(
-                                  Icons.person_add_outlined,
-                                  size: 55,
-                                  color: Colors.white,
-                                )
-                              : null,
                         ),
                 ),
               ),
@@ -259,7 +219,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Image.network(
                             smallImage,
-                            fit: BoxFit.scaleDown,
+                            fit: BoxFit.cover,
                             width: 75,
                             height: 75,
                           ),
@@ -267,22 +227,13 @@ class _ProfilePictureState extends State<ProfilePicture> {
                       : Container(
                           width: 75,
                           height: 75,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.grey,
-                            image: networkImage2 != null
-                                ? DecorationImage(
-                                    image: networkImage2!,
-                                    fit: BoxFit.cover,
-                                  )
-                                : null,
+                            image: DecorationImage(
+                              image: AssetImage('assets/default_image.png'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          child: networkImage2 == null
-                              ? const Icon(
-                                  Icons.person_add_outlined,
-                                  size: 45,
-                                  color: Colors.white,
-                                )
-                              : null,
                         ),
                 ),
               ),
