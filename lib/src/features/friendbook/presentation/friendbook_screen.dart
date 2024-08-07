@@ -6,14 +6,10 @@ import 'package:ohanap/src/features/friendbook/domain/profile.dart';
 import 'package:provider/provider.dart';
 
 class FriendbookScreen extends StatelessWidget {
-  // Attribute
-
-  // Konstruktor
   const FriendbookScreen({
     super.key,
   });
 
-  // Methoden
   @override
   Widget build(BuildContext context) {
     return TemplateScreen(
@@ -43,9 +39,11 @@ class FriendbookScreen extends StatelessWidget {
                       SizedBox(
                         height: 30,
                         width: 30,
-                        child: Image.network(
-                          currentProfile.mainProfileURL!,
-                        ),
+                        child: currentProfile.mainProfileURL != null
+                            ? Image.network(
+                                currentProfile.mainProfileURL!,
+                              )
+                            : const Icon(Icons.account_circle, size: 30),
                       ),
                       const SizedBox(width: 10),
                       Text(
