@@ -17,6 +17,7 @@ class Goodys extends StatefulWidget {
 class _GoodysState extends State<Goodys> {
   late DatabaseRepository databaseRepository;
   late TextEditingController controllergoodies;
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +48,7 @@ class _GoodysState extends State<Goodys> {
               width: 250,
               height: 233,
               decoration: ShapeDecoration(
-                color: const Color.fromARGB(255, 241, 119, 31),
+                color: const Color.fromARGB(255, 250, 155, 12),
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(width: 1),
                   borderRadius: BorderRadius.circular(50),
@@ -93,6 +94,10 @@ class _GoodysState extends State<Goodys> {
                                       .read<DatabaseRepository>()
                                       .updateAboutMe("goodies", text, userUid);
                                 },
+                                style: const TextStyle(
+                                  color: Colors
+                                      .lightBlue, // Schriftfarbe auf LightBlue setzen
+                                ),
                                 decoration: const InputDecoration(
                                   labelText: 'Das kann ich besonders gut',
                                   labelStyle: TextStyle(

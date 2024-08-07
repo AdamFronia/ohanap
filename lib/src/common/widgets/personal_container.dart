@@ -10,13 +10,15 @@ class PersonalContainer extends StatefulWidget {
   final String firestoreKey;
   final String value;
 
-  const PersonalContainer(
-      {super.key,
-      required this.assetPath,
-      required this.text,
-      required this.color,
-      required this.firestoreKey,
-      required this.value});
+  const PersonalContainer({
+    super.key,
+    required this.assetPath,
+    required this.text,
+    required this.color,
+    required this.firestoreKey,
+    required this.value,
+    required TextStyle textStyle,
+  });
 
   @override
   State<PersonalContainer> createState() => _PersonalContainerState();
@@ -24,6 +26,7 @@ class PersonalContainer extends StatefulWidget {
 
 class _PersonalContainerState extends State<PersonalContainer> {
   TextEditingController controller = TextEditingController();
+
   @override
   void initState() {
     controller.text = widget.value;
@@ -74,10 +77,15 @@ class _PersonalContainerState extends State<PersonalContainer> {
                   await context.read<DatabaseRepository>().updateAboutMe(
                       widget.firestoreKey, controller.text, userUid!);
                 },
+                style: TextStyle(
+                  color: Colors.blue.shade900, // Schriftfarbe dunkelblau
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
                 decoration: InputDecoration(
                   labelText: widget.text,
                   labelStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.black, // Label-Schriftfarbe dunkelblau
                     fontSize: 14,
                     fontFamily: 'SF Pro',
                     fontWeight: FontWeight.w400,

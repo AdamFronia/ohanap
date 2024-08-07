@@ -58,6 +58,8 @@ class _AboutMePageState extends State<AboutMePage> {
                         color: Colors.blue,
                         firestoreKey: "hobby",
                         value: profile.hobby,
+                        textStyle: TextStyle(
+                            color: Colors.blue.shade900), // Schriftfarbe
                       ),
                       const SizedBox(width: 5),
                       PersonalContainer(
@@ -66,6 +68,8 @@ class _AboutMePageState extends State<AboutMePage> {
                         color: Colors.orange,
                         firestoreKey: "holiday",
                         value: profile.holiday,
+                        textStyle: TextStyle(
+                            color: Colors.blue.shade900), // Schriftfarbe
                       ),
                       const SizedBox(width: 5),
                       PersonalContainer(
@@ -74,6 +78,8 @@ class _AboutMePageState extends State<AboutMePage> {
                         color: Colors.purple,
                         firestoreKey: "job",
                         value: profile.job,
+                        textStyle: TextStyle(
+                            color: Colors.blue.shade900), // Schriftfarbe
                       ),
                       const SizedBox(width: 5),
                       PersonalContainer(
@@ -82,6 +88,8 @@ class _AboutMePageState extends State<AboutMePage> {
                         color: Colors.pink,
                         firestoreKey: "wishJob",
                         value: profile.wishJob,
+                        textStyle: TextStyle(
+                            color: Colors.blue.shade900), // Schriftfarbe
                       ),
                     ],
                   ),
@@ -105,6 +113,8 @@ class _AboutMePageState extends State<AboutMePage> {
                         color: Colors.cyanAccent,
                         firestoreKey: "color",
                         value: profile.color.toString(),
+                        textStyle: TextStyle(
+                            color: Colors.blue.shade900), // Schriftfarbe
                       ),
                       const SizedBox(width: 5),
                       PersonalContainer(
@@ -113,6 +123,8 @@ class _AboutMePageState extends State<AboutMePage> {
                         color: Colors.yellow,
                         firestoreKey: "birthdate",
                         value: profile.birthdate,
+                        textStyle: TextStyle(
+                            color: Colors.blue.shade900), // Schriftfarbe
                       ),
                     ],
                   ),
@@ -132,12 +144,13 @@ class _AboutMePageState extends State<AboutMePage> {
                   color: Colors.deepPurple,
                   firestoreKey: "sleepTime",
                   value: profile.sleepTime,
+                  textStyle:
+                      TextStyle(color: Colors.blue.shade900), // Schriftfarbe
                 ),
               ],
             ),
           );
         } else if (snapshot.connectionState != ConnectionState.done) {
-          // FALL: Sind noch im Ladezustand
           return const Center(
             child: SizedBox(
               height: 20,
@@ -146,7 +159,6 @@ class _AboutMePageState extends State<AboutMePage> {
             ),
           );
         } else {
-          // FALL: Es gab nen Fehler
           return const Icon(Icons.error);
         }
       },

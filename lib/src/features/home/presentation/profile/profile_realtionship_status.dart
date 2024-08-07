@@ -82,7 +82,7 @@ class _ProfileRelationshipStatusState extends State<ProfileRelationshipStatus> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Gib deinen Beziehungsstatus ein',
-                      labelStyle: const TextStyle(color: Colors.blueGrey),
+                      labelStyle: const TextStyle(color: Colors.blue),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: const BorderSide(color: Colors.black),

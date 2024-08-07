@@ -17,6 +17,7 @@ class AboutMe extends StatefulWidget {
 class _AboutMeState extends State<AboutMe> {
   late DatabaseRepository databaseRepository;
   late TextEditingController controlleraboutme;
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +48,7 @@ class _AboutMeState extends State<AboutMe> {
               width: 250,
               height: 233,
               decoration: ShapeDecoration(
-                color: const Color.fromRGBO(38, 142, 247, 1),
+                color: const Color.fromARGB(255, 99, 243, 202),
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(width: 1),
                   borderRadius: BorderRadius.circular(50),
@@ -93,6 +94,10 @@ class _AboutMeState extends State<AboutMe> {
                                       .read<DatabaseRepository>()
                                       .updateAboutMe("aboutMe", text, userUid);
                                 },
+                                style: const TextStyle(
+                                  color: Colors
+                                      .lightBlue, // Schriftfarbe auf Blau setzen
+                                ),
                                 decoration: const InputDecoration(
                                   labelText: 'Über mich',
                                   labelStyle: TextStyle(

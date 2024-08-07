@@ -59,7 +59,7 @@ class _ProfileLocationState extends State<ProfileLocation> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 28, 39, 166),
+                      color: Color.fromARGB(255, 15, 30, 200),
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -75,7 +75,7 @@ class _ProfileLocationState extends State<ProfileLocation> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Gib deine Adresse ein',
-                      labelStyle: const TextStyle(color: Colors.blueGrey),
+                      labelStyle: const TextStyle(color: Colors.lightBlue),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: const BorderSide(color: Colors.white),

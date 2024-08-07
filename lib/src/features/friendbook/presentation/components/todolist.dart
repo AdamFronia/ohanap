@@ -27,7 +27,7 @@ class _TodolistState extends State<Todolist> {
       width: 220,
       height: 330,
       decoration: ShapeDecoration(
-        color: const Color.fromARGB(255, 247, 188, 38),
+        color: const Color.fromARGB(255, 251, 255, 43),
         shape: RoundedRectangleBorder(
           side: const BorderSide(width: 1),
           borderRadius: BorderRadius.circular(50),
@@ -130,7 +130,7 @@ class _TodolistState extends State<Todolist> {
             child: Container(
               width: 150,
               height: 50,
-              color: const Color.fromARGB(255, 247, 188, 38),
+              color: const Color.fromARGB(255, 251, 255, 43),
               child: Image.asset(
                 'assets/checklist.png',
                 width: 50,

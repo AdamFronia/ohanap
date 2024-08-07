@@ -89,6 +89,10 @@ class _FunnysState extends State<Funnys> {
                                     .read<DatabaseRepository>()
                                     .updateAboutMe("funnys", text, userUid);
                               },
+                              style: const TextStyle(
+                                color: Colors
+                                    .lightBlue, // Schriftfarbe auf LightBlue setzen
+                              ),
                               decoration: const InputDecoration(
                                 labelText: 'etwas lustiges über mich',
                                 labelStyle: TextStyle(
