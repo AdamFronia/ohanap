@@ -3,7 +3,6 @@ import 'package:ohanap/src/common/template_screen.dart';
 import 'package:ohanap/src/common/widgets/ohana_button.dart';
 import 'package:ohanap/src/features/menus/presentation/screens/admin_screen.dart';
 import 'package:ohanap/src/features/menus/presentation/screens/contributing_screen.dart';
-import 'package:ohanap/src/features/menus/presentation/screens/search_screen.dart';
 import 'package:ohanap/src/features/menus/presentation/screens/wanted_posters_screen.dart';
 
 import 'screens/blocked_user_screen.dart';
@@ -24,16 +23,6 @@ class MenuScreen extends StatelessWidget {
     return TemplateScreen(
       content: Column(
         children: [
-          OhanaButton(
-              text: "Suche",
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SearchScreen(),
-                  ),
-                );
-              }),
           OhanaButton(
               text: "Steckbriefe",
               onTap: () {
