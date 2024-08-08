@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/common/widgets/custom_icon_button.dart';
 import 'package:ohanap/src/features/menus/presentation/menu_screen.dart';
-import 'package:ohanap/src/features/messages/message_screen.dart';
+import 'package:ohanap/src/features/messages/chat_room.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -52,7 +52,7 @@ class Header extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MessageScreen(),
+                    builder: (context) => const ChatRoom(),
                   ));
             },
             child: const CustomIconButton(icon: Icons.mail_outlined),
