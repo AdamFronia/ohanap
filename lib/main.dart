@@ -6,7 +6,7 @@ import 'package:ohanap/src/app.dart';
 import 'package:ohanap/src/data/auth_repository.dart';
 import 'package:ohanap/src/data/database_repository.dart';
 import 'package:ohanap/src/data/firestore_database.dart';
-import 'package:ohanap/src/features/messages/screens/domain/chat_romm_helper.dart';
+import 'package:ohanap/src/features/messages/screens/domain/chat_room_helper.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {

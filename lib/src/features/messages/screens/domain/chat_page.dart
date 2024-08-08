@@ -21,7 +21,7 @@ class _ChatPageState extends State<ChatPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
-          'ChatPage', //////könnte man den Namen der perdon mit dem du chattes sthen
+          'ChatPage', //////könnte man den Namen der person mit dem du chattes stehen
           style: Theme.of(context)
               .textTheme
               .headlineSmall!
