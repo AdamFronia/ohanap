@@ -23,41 +23,12 @@ class _FooterState extends State<Footer> {
       height: 100,
       color: const Color.fromARGB(255, 14, 227, 255),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           buildSmallButton(context, 'note'),
           buildSmallButton(context, 'features'),
           buildSmallButton(context, 'home'),
           buildSmallButton(context, 'users'),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                isStarSelected = !isStarSelected;
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: isStarSelected
-                    ? const Color.fromARGB(255, 247, 255, 95)
-                    : null,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    offset: const Offset(0, 0),
-                    blurRadius: 14,
-                  ),
-                ],
-              ),
-              child: Icon(
-                Icons.star,
-                color:
-                    isStarSelected ? const Color.fromARGB(255, 0, 0, 0) : null,
-                size: 20,
-              ),
-            ),
-          ),
         ],
       ),
     );
