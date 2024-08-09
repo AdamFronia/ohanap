@@ -161,13 +161,15 @@ class _ProfilePictureState extends State<ProfilePicture> {
                   child: bigImage.isNotEmpty
                       ? Padding(
                           padding: const EdgeInsets.only(right: 20.0),
-                          child: Image.network(
-                            bigImage,
-                            fit: BoxFit.cover,
-                            width: 150,
-                            height: 150,
-                          ),
-                        )
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.network(
+                              bigImage,
+                              fit: BoxFit.cover,
+                              width: 150,
+                              height: 150,
+                            ),
+                          ))
                       : Container(
                           width: 150,
                           height: 150,
@@ -217,13 +219,15 @@ class _ProfilePictureState extends State<ProfilePicture> {
                   child: smallImage.isNotEmpty
                       ? Padding(
                           padding: const EdgeInsets.only(left: 20.0),
-                          child: Image.network(
-                            smallImage,
-                            fit: BoxFit.cover,
-                            width: 75,
-                            height: 75,
-                          ),
-                        )
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.network(
+                              smallImage,
+                              fit: BoxFit.cover,
+                              width: 75,
+                              height: 75,
+                            ),
+                          ))
                       : Container(
                           width: 75,
                           height: 75,

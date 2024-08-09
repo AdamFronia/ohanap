@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ohanap/src/features/friendbook/presentation/friendbook_screen.dart';
 import 'package:ohanap/src/features/home/presentation/home_screen.dart';
@@ -73,7 +74,10 @@ class _FooterState extends State<Footer> {
         onPressed = () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const FriendbookScreen()),
+            MaterialPageRoute(
+                builder: (context) => FriendbookScreen(
+                      firebaseAuth: FirebaseAuth.instance,
+                    )),
           );
         };
         break;

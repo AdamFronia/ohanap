@@ -49,7 +49,7 @@ class WantedPostersScreen extends StatelessWidget {
               const Text(
                 'Ralf Dev',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -80,7 +80,7 @@ class WantedPostersScreen extends StatelessWidget {
               const Text(
                 'Peggys Bügelperlen',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -111,7 +111,7 @@ class WantedPostersScreen extends StatelessWidget {
               const Text(
                 'Thomas von Martinér',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -142,7 +142,7 @@ class WantedPostersScreen extends StatelessWidget {
               const Text(
                 'Ramona T.',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),

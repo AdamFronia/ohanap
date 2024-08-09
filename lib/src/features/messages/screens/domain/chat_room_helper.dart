@@ -22,7 +22,7 @@ class ChatRoomHelper with ChangeNotifier {
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('chats')
-                  .where('users',
+                  .where('profiles',
                       arrayContains: FirebaseAuth.instance.currentUser!.uid)
                   .snapshots(),
               builder: (context, snapshot) {

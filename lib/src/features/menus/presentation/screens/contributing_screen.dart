@@ -27,7 +27,7 @@ class ContributingScreen extends StatelessWidget {
               const Text(
                 'Ramona T.\nFamily Management \nErzieherin',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -55,7 +55,7 @@ class ContributingScreen extends StatelessWidget {
               const Text(
                 'Ralf Ingo Magerl\nSoftware Entwickler \nFullstack',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -83,7 +83,7 @@ class ContributingScreen extends StatelessWidget {
               const Text(
                 'Peggy´s Bügelperlen\nFamily Management',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -110,7 +110,7 @@ class ContributingScreen extends StatelessWidget {
               const Text(
                 'Thomas von Martinér\nVola Gründer/CEO(App)\nDie Traumfabrik (Gründer/CEO)',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),

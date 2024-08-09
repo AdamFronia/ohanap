@@ -22,10 +22,9 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         title: Text(
           'ChatPage', //////könnte man den Namen der person mit dem du chattes stehen
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall!
-              .copyWith(color: Colors.indigo), //////farben ändern
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color:
+                  const Color.fromARGB(255, 13, 17, 232)), //////farben ändern
         ),
       ),
       body: Stack(
@@ -61,7 +60,9 @@ class _ChatPageState extends State<ChatPage> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyLarge!
-                                      .copyWith(color: Colors.indigo
+                                      .copyWith(
+                                          color: const Color.fromARGB(
+                                              255, 18, 204, 237)
 
                                           /// Farbe..?
                                           ),
@@ -89,7 +90,8 @@ class _ChatPageState extends State<ChatPage> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
-                                                color: Colors.indigo
+                                                color: const Color.fromARGB(
+                                                    255, 193, 210, 254)
 
                                                 ///FArbe..?
                                                 ),
@@ -107,7 +109,9 @@ class _ChatPageState extends State<ChatPage> {
                                                         .textTheme
                                                         .bodyLarge!
                                                         .copyWith(
-                                                            color: Colors.indigo
+                                                            color: const Color
+                                                                .fromARGB(
+                                                                255, 0, 0, 0)
 
                                                             ///FArbe..?
                                                             ),
@@ -132,7 +136,8 @@ class _ChatPageState extends State<ChatPage> {
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
-                                                color: Colors.indigo
+                                                color: const Color.fromARGB(
+                                                    255, 164, 177, 252)
 
                                                 ///FArbe..?
                                                 ),
@@ -150,7 +155,9 @@ class _ChatPageState extends State<ChatPage> {
                                                         .textTheme
                                                         .bodyLarge!
                                                         .copyWith(
-                                                            color: Colors.indigo
+                                                            color: const Color
+                                                                .fromARGB(
+                                                                255, 2, 2, 2)
 
                                                             ///FArbe..?
                                                             ),
